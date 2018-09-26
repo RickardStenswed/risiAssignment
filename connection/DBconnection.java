@@ -15,5 +15,5 @@ public class DBconnection {
 		return DriverManager.getConnection(url, user, pwd);
 	}
 
-	
+	// so good
 }
