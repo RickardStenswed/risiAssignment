@@ -15,14 +15,34 @@ public class test {
 		StudentDAL sDAL = new StudentDAL();
 		HasStudiedDAL hsDAL = new HasStudiedDAL();
 		StudiesDAL csDAL = new StudiesDAL();
-		
-	//sDAL.addStudent("123", "Apa", "Hej", "1010");
+	
+		//	T
+	
 	
 	//Add + Delete and Get course is working
 		//cDAL.addCourse("c4", "Matte", 15);	
 	//cDAL.deleteCourse("c4");
 	
-	//System.out.println(cDAL.getAllCourses());
+		//Testmethod to find all students grades from a specific course
+		//hsDAL.getAllStudentsGradesCourse("c1")
+		
+		//Testmethod to find all grades for a student
+		//hsDAL.getStudentAllGrades("950218")
+		
+		//Testmethod for getting grade percentage for a course
+		//hsDAL.getGradePercentage("c1")
+	
+		//Testmethod deleta a student
+		//sDAL.deleteStudent("123");
+		
+		                             //sDAL.addStudent("555", "Jerker", "Hej", "1010");
+		                              //cDAL.addCourse("c10", "english", 6);
+		
+		//Method for getting student by ssn
+		//sDAL.getStudent("555")
+		
+		System.out.println(cont.getAllStudents());
+		//System.out.println(sDAL.getStudent("950218"));
 	}
 		
 

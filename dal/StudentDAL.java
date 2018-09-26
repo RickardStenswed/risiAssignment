@@ -18,7 +18,7 @@ public class StudentDAL {
         con = DBconnection.getConnection();
         pStmt = con.prepareStatement(sqlString);
         ResultSet rs = pStmt.executeQuery();
-        con.close();
+        //con.close();
         return rs;
         
 }
@@ -34,8 +34,8 @@ public class StudentDAL {
     // Find all information from student by searching for ssn
     
     public Student getStudent(String ssn) throws SQLException {
-        Student tempStudent;
-        String sqlString = "SELECT * FROM Student WHERE ssn = '" + ssn + "'";
+       
+        String sqlString = "SELECT * FROM Student WHERE ssn = '" + ssn + "';";
         ResultSet rs = runExecuteQuery(sqlString);
         if (rs.next()) {
             ssn = rs.getString(1);
@@ -43,10 +43,13 @@ public class StudentDAL {
             String address = rs.getString(3);
             String phoneNumber = rs.getString(4);
             
-            tempStudent = new Student(ssn, studentName, address, phoneNumber);
+            Student tempStudent = new Student(ssn, studentName, address, phoneNumber);
+            pStmt.close();
             con.close();
             return tempStudent;
         }
+        pStmt.close();
+        con.close();
         return null;
     }
     
@@ -57,7 +60,7 @@ public class StudentDAL {
         Student tempStudent;
         String sqlString = "SELECT * FROM Student";
                 ResultSet rs = runExecuteQuery(sqlString);
-                if (rs.next()) {
+                while (rs.next()) {
                     String ssn = rs.getString(1);
                     String studentName = rs.getString(2);
                     String address = rs.getString(3);
