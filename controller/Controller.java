@@ -104,4 +104,3 @@ public class Controller {
 			return hasStudiedDAL.getHighestThroughput();	
 		}	
 } 
-
