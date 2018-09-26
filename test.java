@@ -12,12 +12,17 @@ public class test {
 
 		Controller cont = new Controller();
 		CourseDAL cDAL = new CourseDAL();
+		StudentDAL sDAL = new StudentDAL();
+		HasStudiedDAL hsDAL = new HasStudiedDAL();
+		StudiesDAL csDAL = new StudiesDAL();
 		
+	//sDAL.addStudent("123", "Apa", "Hej", "1010");
+	
+	//Add + Delete and Get course is working
+		//cDAL.addCourse("c4", "Matte", 15);	
+	//cDAL.deleteCourse("c4");
+	
 	//System.out.println(cDAL.getAllCourses());
-	
-	//cDAL.addCourse("c4", "Matte", 15);	
-	
-	System.out.println(cDAL.getAllCourses());
 	}
 		
 
