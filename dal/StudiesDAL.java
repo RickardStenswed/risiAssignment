@@ -77,7 +77,7 @@ public class StudiesDAL {
 
 	public Student getStudentStudiesCourse(String ssn, String courseCode) throws SQLException {
 		String sqlString = "SELECT s.ssn, s.studentName, s.address, s.phoneNumber FROM Student s JOIN Studies st ON s.ssn = st.ssn WHERE st.courseCode = '"
-				+ courseCode + "' AND s.ssn = st.ssn;";
+				+ courseCode + "' AND st.ssn = '" + ssn + "';";
 		ResultSet rs = runExecuteQuery(sqlString);
 		Student tempStudent = null;
 		if (rs.next()) {

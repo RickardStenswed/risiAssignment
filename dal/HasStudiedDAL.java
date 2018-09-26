@@ -33,17 +33,19 @@ import connection.DBconnection;
         //Get a specific student and its grade from a specific course
         
         public HasStudied getStudentGradeCourse(String ssn, String courseCode)throws SQLException {
-            HasStudied tempStudent = null;
-            String sqlString = "SELECT s.ssn, hs.courseCode, hs.semester, hs.grade FROM Student s JOIN HasStudied hs ON s.ssn = hs.ssn WHERE hs.courseCode = '" + courseCode + "' AND s.ssn '" + ssn + "';";
-            ResultSet rs = runExecuteQuery(sqlString);
-            while (rs.next()) {
+            
+            String sqlString = "SELECT s.ssn, hs.courseCode, hs.semester, hs.grade FROM Student s JOIN HasStudied hs ON s.ssn = hs.ssn WHERE hs.courseCode = '" + courseCode + "' AND hs.ssn = '" + ssn + "';";
+           ResultSet rs = runExecuteQuery(sqlString);
+           HasStudied tempStudent = null;
+            if (rs.next()) {
                 ssn = rs.getString(1);
                 courseCode = rs.getString(2);
                 String semester = rs.getString(3);
                 String grade = rs.getString(4);
                 tempStudent = new HasStudied (ssn, courseCode, semester, grade);
+                
             }
-            con.close();
+            //con.close();
             return tempStudent;
             
                     

@@ -53,7 +53,9 @@ public class test {
 		//TestMethod for getting all students
 		//sDAL.getAllStudents()
 		
-		System.out.println(hsDAL.getStudentGradeCourse("960317", "c3"));
+		//Testmethod for getting a students grade on specific course
+		//(hsDAL.getStudentGradeCourse("960317", "c3")
+		System.out.println(csDAL.getStudentStudiesCourse("950218", "c1"));
 	}
 		
 
