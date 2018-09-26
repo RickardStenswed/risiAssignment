@@ -38,11 +38,22 @@ public class test {
 		                             //sDAL.addStudent("555", "Jerker", "Hej", "1010");
 		                              //cDAL.addCourse("c10", "english", 6);
 		
+		//Testmethod for getting all courses that a student currently studies
+		//csDAL.getAllCoursesStudies("950218")
+		
+		//Testmethod for getting all students that are studying a specific course
+		//csDAL.getAllStudentsStudiesCourse("c1")
+		
+		//Testmethod to check if a student is studying a specific course
+		//csDAL.getStudentStudiesCourse("950218", "c1");
+		
 		//Method for getting student by ssn
 		//sDAL.getStudent("555")
 		
-		System.out.println(cont.getAllStudents());
-		//System.out.println(sDAL.getStudent("950218"));
+		//TestMethod for getting all students
+		//sDAL.getAllStudents()
+		
+		System.out.println(hsDAL.getStudentGradeCourse("960317", "c3"));
 	}
 		
 

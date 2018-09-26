@@ -34,7 +34,7 @@ import connection.DBconnection;
         
         public HasStudied getStudentGradeCourse(String ssn, String courseCode)throws SQLException {
             HasStudied tempStudent = null;
-            String sqlString = "SELECT * FROM HasStudied WHERE courseCode = '" + courseCode + "' and ssn '" + ssn + "';";
+            String sqlString = "SELECT s.ssn, hs.courseCode, hs.semester, hs.grade FROM Student s JOIN HasStudied hs ON s.ssn = hs.ssn WHERE hs.courseCode = '" + courseCode + "' AND s.ssn '" + ssn + "';";
             ResultSet rs = runExecuteQuery(sqlString);
             while (rs.next()) {
                 ssn = rs.getString(1);
