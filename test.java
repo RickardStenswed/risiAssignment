@@ -72,7 +72,8 @@ public class test {
 		//Testmethod for addying student and grade for a completed course
 		//hsDAL.addStudentHasStudied("c10", "900914", "t67", "D");
 		
-		System.out.println(hsDAL.getHighestThroughput());
+		//Testmethod for getting the % of students that passed the courses 
+		//System.out.println(hsDAL.getHighestThroughput());
 		
 	//System.out.println();
 	}
@@ -80,8 +81,6 @@ public class test {
 
 		
 	}
-
-//testtesttest
 		
 	
 
