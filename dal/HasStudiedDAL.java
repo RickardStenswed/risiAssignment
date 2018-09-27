@@ -46,11 +46,10 @@ import connection.DBconnection;
                 
             }
             //con.close();
-            return tempStudent;
+            return tempStudent; 
             
-                    
             }
-            
+     
         
         //Gets all students and their grade from a specific course
         
@@ -115,7 +114,11 @@ import connection.DBconnection;
         public HashMap<String, String>getHighestThroughput() throws SQLException {
             HashMap<String, String> map = new HashMap<String, String>();
             
-            String sqlString = "SELECT TOP 10 UPPER (courseCode) AS 'Course Code', (SUM(CASE WHEN grade != 'U' THEN 1 ELSE 0 END)*100/ COUNT (courseCode) AS 'Percent Passed' " + "FROM HasStudied" + "GROUP BY courseCode" + "ORDER BY 'Percent Passed' DESC";
+            String sqlString = "SELECT TOP 10 upper(courseCode) AS 'Course', (sum(CASE WHEN grade != 'U' THEN 1 ELSE 0 END)*100) / count (courseCode) AS 'Percent Students Passed'"
+            		+ "FROM HasStudied GROUP BY courseCode ORDER BY 'Percent Students Passed' desc ";
+            		
+            		//"select top 10 upper(ccode) as 'Course Code', (sum(case when grade != 'U' then 1 else 0 end)*100) / count (ccode) as 'Percent Passed' "
+    				//+ "from studied " + "group by ccode " + "order by 'Percent Passed' desc";
             ResultSet rs = runExecuteQuery(sqlString);
             while (rs.next()) {
                 String courseCode = rs.getString(1);
@@ -132,14 +135,14 @@ import connection.DBconnection;
             
             //Gets total credits from Studies
         	
-            String sqlString1 = "SELECT SUM(c.credit) FROM Course c WHERE c.code IN (SELECT s.courseCode FROM Studies s WHERE s.ssn = '" + ssn + "' and s.semester = '" + semester + "')";
+            String sqlString1 = "SELECT SUM(c.credit) FROM Course c JOIN  Studies st ON c.courseCode = st.courseCode WHERE st.ssn = '" + ssn + "'";
             ResultSet rs = runExecuteQuery(sqlString1);
             rs.next();
             double studiesCredit = rs.getFloat(1);
             
             //Gets total credits from HasStudied
             
-            String sqlString2 = "SELECT SUM (c.credit) FROM Course c WHERE c.courseCode IN (SELECT s.courseCode FROM HasStudied hs WHERE hs.ssn ='" + ssn + "' and hs.semester = '" + semester + "')";
+            String sqlString2 = "SELECT SUM (c.credit) FROM Course c JOIN HasStudied hs ON c.courseCode = hs.courseCode WHERE hs.ssn ='" + ssn + "'";
             ResultSet rs2 = runExecuteQuery(sqlString2);
             rs2.next();
             double hasStudiedCredit = rs2.getFloat(1);
@@ -154,16 +157,16 @@ import connection.DBconnection;
     
     //Register student to a completed course AND eliminates student from the course he or she has ended
     
-    public void addStudentHasStudied (String ssn, String courseCode, String semester, String grade) throws SQLException, RuntimeException {
+    public void addStudentHasStudied (String courseCode, String ssn, String semester, String grade) throws SQLException, RuntimeException {
        
-    	double totalCreditThisSemester = this.controlTotalCreditsSemester(ssn, semester);
+    	double totalCreditThisSemester = controlTotalCreditsSemester(ssn, semester);
         double credit = courseDAL.getCourse(courseCode).getCredit();
         double totalCredit = credit + totalCreditThisSemester;
         
         //Checking if the student is allowed to take the course (must be less than 45 p)
         
         if (totalCredit <=45) {
-            String sqlString = "INSERT INTO HasStudied VALUES ('" + ssn + "', '" + courseCode + "', '" + semester + "', '" + grade + "');";
+            String sqlString = "INSERT INTO HasStudied VALUES ('" + courseCode + "', '" + ssn + "', '" + semester + "', '" + grade + "');";
             runExecuteUpdate(sqlString);
             
             String sqlString2 = "DELETE FROM Studies WHERE ssn = '" + ssn + "' AND courseCode = '" + courseCode + "';";

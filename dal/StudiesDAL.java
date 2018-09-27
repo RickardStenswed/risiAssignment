@@ -29,7 +29,6 @@ public class StudiesDAL {
 		con = DBconnection.getConnection();
 		pStmt = con.prepareStatement(sqlString);
 		pStmt.executeUpdate();
-
 	}
 
 	// Gets all courses a student is studying
@@ -94,29 +93,30 @@ public class StudiesDAL {
 
 	// Delete student from studies
 
-	public void deleteStudentStudies(String ssn, String courseCode) throws SQLException {
-		String sqlString = "DELETE FROM Studies WHERE ssn = ‘ " + ssn + " ‘ and courseCode = ‘ " + courseCode + " ‘; ";
+	public void deleteStudentStudies(String courseCode, String ssn) throws SQLException {
+		String sqlString = "DELETE FROM Studies WHERE ssn = '" + ssn + "' AND courseCode = '" + courseCode + "';";
 		runExecuteUpdate(sqlString);
 		con.close();
 	}
 
-	public void addStudentStudies(String ssn, String courseCode, String semester)
-			throws SQLException, RuntimeException {
-		double totCreditsSemester = hasStudiedDAL.controlTotalCreditsSemester(ssn, semester); // Tog bort this från
-																								// metodnamnet för att
-																								// följa conv. + måste
-																								// klistra in metoden
+	public void addStudentStudies(String courseCode, String ssn, String semester) throws SQLException, RuntimeException {
+		
+		double totCreditsSemester = hasStudiedDAL.controlTotalCreditsSemester(ssn, semester); 
 		double tempCredits = courseDAL.getCourse(courseCode).getCredit();
 		double totCredits = tempCredits + totCreditsSemester;
 		HasStudied tempHasStudied = hasStudiedDAL.getStudentGradeCourse(ssn, courseCode);
 		if (totCredits <= 45) {
 			if (tempHasStudied == null) {
-				String sqlString = "INSERT INTO Studies VALUES ('" + ssn + "', '" + courseCode + "', '" + semester
+				String sqlString = "INSERT INTO Studies VALUES ('" + courseCode + "', '" + ssn + "', '" + semester
 						+ "');";
+				
 				runExecuteUpdate(sqlString);
 			} else {
+				
 				throw new SQLException();
 			}
+		} else {
+			
 			throw new RuntimeException();
 		}
 		con.close();

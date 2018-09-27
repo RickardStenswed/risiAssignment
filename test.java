@@ -55,7 +55,26 @@ public class test {
 		
 		//Testmethod for getting a students grade on specific course
 		//(hsDAL.getStudentGradeCourse("960317", "c3")
-		System.out.println(csDAL.getStudentStudiesCourse("950218", "c1"));
+		
+		//Testmethod for getting a specific student that studies a specific course
+		//csDAL.getStudentStudiesCourse("950218", "c1")
+	
+		//Testmethod for deleteing student from studying course	
+	    //csDAL.deleteStudentStudies("c10", "555");
+		
+		
+		//Testmethod for checking all credits for a STUDENT
+		//System.out.println(hsDAL.controlTotalCreditsSemester("950218", "t3"));
+		
+		//Testmethod for addying student studying a course
+		//csDAL.addStudentStudies("c10", "900914", "t67");
+		
+		//Testmethod for addying student and grade for a completed course
+		//hsDAL.addStudentHasStudied("c10", "900914", "t67", "D");
+		
+		System.out.println(hsDAL.getHighestThroughput());
+		
+	//System.out.println();
 	}
 		
 
