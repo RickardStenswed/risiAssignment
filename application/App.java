@@ -259,10 +259,10 @@ public class App {
 		tabbedPane_1.addTab("Find", null, panel_12, null);
 		panel_12.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Find Student");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(161, 0, 122, 33);
-		panel_12.add(lblNewLabel);
+		JLabel lblFindStudent = new JLabel("Find Student");
+		lblFindStudent.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblFindStudent.setBounds(161, 0, 122, 33);
+		panel_12.add(lblFindStudent);
 		
 		JLabel lblFindCuurse = new JLabel("Find Course");
 		lblFindCuurse.setFont(new Font("Tahoma", Font.BOLD, 14));
