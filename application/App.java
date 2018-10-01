@@ -153,11 +153,11 @@ public class App {
 		        panel_13.add(lblCredits);
 		        
 		        JButton btnAdd_1 = new JButton("Add");
-		        btnAdd_1.setBounds(164, 345, 89, 23);
+		        btnAdd_1.setBounds(164, 371, 89, 23);
 		        panel_13.add(btnAdd_1);
 		        
 		        JButton btnDelete_1 = new JButton("Delete");
-		        btnDelete_1.setBounds(270, 345, 89, 23);
+		        btnDelete_1.setBounds(270, 371, 89, 23);
 		        panel_13.add(btnDelete_1);
 		        
 		        JLabel lblRegisterStudentTo = new JLabel("Register student to ongoing course");
@@ -202,46 +202,46 @@ public class App {
 		        
 		        JLabel lblRegisterStudentTo_1 = new JLabel("Register student to finished course");
 		        lblRegisterStudentTo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		        lblRegisterStudentTo_1.setBounds(561, 183, 263, 17);
+		        lblRegisterStudentTo_1.setBounds(561, 216, 263, 17);
 		        panel_13.add(lblRegisterStudentTo_1);
 		        
 		        textField_10 = new JTextField();
-		        textField_10.setBounds(561, 211, 136, 20);
+		        textField_10.setBounds(561, 245, 136, 20);
 		        panel_13.add(textField_10);
 		        textField_10.setColumns(10);
 		        
 		        textField_11 = new JTextField();
-		        textField_11.setBounds(561, 242, 136, 20);
+		        textField_11.setBounds(561, 276, 136, 20);
 		        panel_13.add(textField_11);
 		        textField_11.setColumns(10);
 		        
 		        textField_12 = new JTextField();
-		        textField_12.setBounds(561, 273, 136, 20);
+		        textField_12.setBounds(561, 307, 136, 20);
 		        panel_13.add(textField_12);
 		        textField_12.setColumns(10);
 		        
 		        JLabel lblSsn_2 = new JLabel("Ssn:");
-		        lblSsn_2.setBounds(474, 218, 46, 14);
+		        lblSsn_2.setBounds(474, 248, 46, 14);
 		        panel_13.add(lblSsn_2);
 		        
 		        JLabel lblCourseCode_2 = new JLabel("Course code:");
-		        lblCourseCode_2.setBounds(474, 248, 79, 14);
+		        lblCourseCode_2.setBounds(474, 279, 79, 14);
 		        panel_13.add(lblCourseCode_2);
 		        
 		        JLabel lblGrade = new JLabel("Semester:");
-		        lblGrade.setBounds(474, 279, 62, 14);
+		        lblGrade.setBounds(474, 310, 62, 14);
 		        panel_13.add(lblGrade);
 		        
 		        JLabel lblGrade_1 = new JLabel("Grade:");
-		        lblGrade_1.setBounds(474, 310, 46, 14);
+		        lblGrade_1.setBounds(474, 344, 46, 14);
 		        panel_13.add(lblGrade_1);
 		        
 		        JButton btnAdd_3 = new JButton("Add");
-		        btnAdd_3.setBounds(561, 345, 89, 23);
+		        btnAdd_3.setBounds(561, 371, 89, 23);
 		        panel_13.add(btnAdd_3);
 		        
 		        JButton btnDelete_3 = new JButton("Delete");
-		        btnDelete_3.setBounds(672, 345, 89, 23);
+		        btnDelete_3.setBounds(672, 371, 89, 23);
 		        panel_13.add(btnDelete_3);
 		        
 		        JList list = new JList();
@@ -249,7 +249,7 @@ public class App {
 		        panel_13.add(list);
 		        
 		        JScrollBar scrollBar = new JScrollBar();
-		        scrollBar.setBounds(561, 304, 17, 29);
+		        scrollBar.setBounds(565, 329, 17, 29);
 		        panel_13.add(scrollBar);
 		
 		JPanel panel_11 = new JPanel();
@@ -299,7 +299,7 @@ public class App {
 		panel_13.add(btnAdd);
 		
 		JLabel responseLabelRegAdd = new JLabel("*");
-		responseLabelRegAdd.setBounds(392, 406, 46, 14);
+		responseLabelRegAdd.setBounds(402, 416, 46, 14);
 		panel_13.add(responseLabelRegAdd);
 		panel_12.add(lblCourseCode2);
 		
