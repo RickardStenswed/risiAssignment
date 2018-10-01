@@ -2,6 +2,7 @@ package application;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import java.sql.*;
 import java.util.*;
@@ -20,7 +21,7 @@ public class App {
 	private JTextField textFieldFindCourseCourseCode;
 	private Controller controller = new Controller();
 	
-	// Halloj!
+	
 	private JTextField textFieldRegStudentSsn;
 	private JTextField textFieldRegStudentName;
 	private JTextField textFieldRegStudentAddress;
@@ -39,6 +40,16 @@ public class App {
 	private JTextField textFieldCourseResultCourseCode;
 	private JTextField textFieldStudentResultSsn;
 	
+	private DefaultTableModel dataModelSsnStudent;
+	private DefaultTableModel dataModelCourseCode;
+	
+	
+	private JTable tableHighestThroughput;
+    
+    //Default model
+
+	private DefaultTableModel dataModelHighestThroughput;
+    
 
 	/**
 	 * Launch the application.
@@ -92,6 +103,15 @@ public class App {
 		  lblNewLabel.setBounds(164, 0, 119, 45);
 		  panelRegisterAdd.add(lblNewLabel);
 		  
+		  JComboBox<String> comboBoxGrade = new JComboBox<String>();
+		  	comboBoxGrade.addItem("A");
+		  	comboBoxGrade.addItem("B");
+		  	comboBoxGrade.addItem("C");
+		  	comboBoxGrade.addItem("D");
+		  	comboBoxGrade.addItem("F");
+		  comboBoxGrade.setBounds(561, 338, 154, 20);
+		  panelRegisterAdd.add(comboBoxGrade);
+		  
 		  textFieldRegStudentSsn = new JTextField();
 		  textFieldRegStudentSsn.setBounds(164, 40, 119, 20);
 		  panelRegisterAdd.add(textFieldRegStudentSsn);
@@ -111,6 +131,14 @@ public class App {
 		  textFieldRegStudentPhoneNumber.setBounds(164, 133, 119, 20);
 		  panelRegisterAdd.add(textFieldRegStudentPhoneNumber);
 		  textFieldRegStudentPhoneNumber.setColumns(10);
+		  
+		  JLabel responseLabelRegAdd = new JLabel("");
+		  responseLabelRegAdd.setBounds(164, 417, 295, 14);
+		  panelRegisterAdd.add(responseLabelRegAdd);
+		  
+		  JLabel labelErrorMessage = new JLabel("System response:");
+		  labelErrorMessage.setBounds(60, 417, 94, 14);
+		  panelRegisterAdd.add(labelErrorMessage);
 		  
 		  JLabel lblName = new JLabel("Name:");
 		  lblName.setBounds(60, 74, 46, 14);
@@ -149,6 +177,31 @@ public class App {
 		  textFieldRegCourseCredits.setColumns(10);
 		  
 		  JButton btnRegStudentDelete = new JButton("Delete");
+		  btnRegStudentDelete.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		
+				String ssn = textFieldRegStudentSsn.getText();
+				responseLabelRegAdd.setForeground(Color.BLACK);
+
+				if (ssn.isEmpty()) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Please enter student ssn");
+				} else {
+					try {
+						controller.deleteStudent(ssn);
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						responseLabelRegAdd.setText("Student removed");
+						textFieldRegStudentSsn.setText(null);
+						textFieldRegStudentName.setText(null);
+						textFieldRegStudentAddress.setText(null);
+						textFieldRegStudentPhoneNumber.setText(null);
+					} catch (SQLException sq) {
+						responseLabelRegAdd.setForeground(Color.RED);
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					}
+				}  		
+		  	}
+		  });
 		  btnRegStudentDelete.setBounds(270, 170, 89, 23);
 		  panelRegisterAdd.add(btnRegStudentDelete);
 		  
@@ -157,10 +210,65 @@ public class App {
 		  panelRegisterAdd.add(lblCredits);
 		  
 		  JButton btnRegCourseAdd = new JButton("Add");
+		  btnRegCourseAdd.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+	
+						String courseCode = textFieldRegCourseCourseCode.getText();
+						String courseName = textFieldRegCourseName.getText();
+						String credit = textFieldRegCourseCredits.getText();
+						responseLabelRegAdd.setForeground(Color.BLACK);
+
+						if (courseCode.isEmpty() || courseName.isEmpty() || credit.isEmpty()) {
+							responseLabelRegAdd.setForeground(Color.RED);
+							responseLabelRegAdd.setText("All fields must be filled in");
+						} else {
+							try {
+								
+								double cred = Double.parseDouble(credit);
+								cred = Double.parseDouble(credit);
+								
+								controller.addCourse(courseCode, courseName, cred);
+								responseLabelRegAdd.setForeground(Color.GREEN);
+								responseLabelRegAdd.setText("Course registered");
+								textFieldRegCourseCourseCode.setText(null);
+								textFieldRegCourseName.setText(null);
+								textFieldRegCourseCredits.setText(null);
+							} catch (SQLException sq) {
+								responseLabelRegAdd.setForeground(Color.RED);
+							//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+							}
+						}
+		  	}
+		  });
 		  btnRegCourseAdd.setBounds(164, 371, 89, 23);
 		  panelRegisterAdd.add(btnRegCourseAdd);
 		  
 		  JButton btnRegCourseDelete = new JButton("Delete");
+		  btnRegCourseDelete.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		
+		  		String courseCode = textFieldRegStudentSsn.getText();
+				responseLabelRegAdd.setForeground(Color.BLACK);
+
+				if (courseCode.isEmpty()) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Please enter course code");
+				} else {
+					try {
+						controller.deleteCourse(courseCode);
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						responseLabelRegAdd.setText("Course removed");
+						textFieldRegStudentSsn.setText(null);
+						textFieldRegStudentName.setText(null);
+						textFieldRegStudentAddress.setText(null);
+						textFieldRegStudentPhoneNumber.setText(null);
+					} catch (SQLException sq) {
+						responseLabelRegAdd.setForeground(Color.RED);
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					}
+				}  			
+		  	}
+		  });
 		  btnRegCourseDelete.setBounds(270, 371, 89, 23);
 		  panelRegisterAdd.add(btnRegCourseDelete);
 		  
@@ -197,10 +305,64 @@ public class App {
 		  panelRegisterAdd.add(lblSemester);
 		  
 		  JButton btnRegStudentStudiesAdd = new JButton("Add");
+		  btnRegStudentStudiesAdd.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		
+		  		String ssn = textFieldRegStudentStudiesSsn.getText();
+				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
+				String semester = textFieldRegStudentStudiesSemester.getText();
+				responseLabelRegAdd.setForeground(Color.BLACK);
+
+				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("All fields must be filled in");
+				} else {
+					try {
+						
+						controller.addStudentStudies(ssn, courseCode, semester);
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						responseLabelRegAdd.setText("Student registered");
+						textFieldRegCourseCourseCode.setText(null);
+						textFieldRegCourseName.setText(null);
+						textFieldRegCourseCredits.setText(null);
+					} catch (SQLException sq) {
+						responseLabelRegAdd.setForeground(Color.RED);
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					}
+				}
+		  			
+		  	}
+		  });
 		  btnRegStudentStudiesAdd.setBounds(561, 140, 89, 23);
 		  panelRegisterAdd.add(btnRegStudentStudiesAdd);
 		  
 		  JButton btnRegStudentStudiesDelete = new JButton("Delete");
+		  btnRegStudentStudiesDelete.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		
+		  		String ssn = textFieldRegStudentStudiesSsn.getText();
+				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
+				responseLabelRegAdd.setForeground(Color.BLACK);
+
+				if (ssn.isEmpty() || courseCode.isEmpty()) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("ssn and course code must be filled in");
+				} else {
+					try {
+						
+						controller.deleteStudentStudies(ssn, courseCode);
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						responseLabelRegAdd.setText("Student removed");
+						textFieldRegCourseCourseCode.setText(null);
+						textFieldRegCourseName.setText(null);
+						textFieldRegCourseCredits.setText(null);
+					} catch (SQLException sq) {
+						responseLabelRegAdd.setForeground(Color.RED);
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					}
+				}
+		  	}
+		  });
 		  btnRegStudentStudiesDelete.setBounds(672, 140, 89, 23);
 		  panelRegisterAdd.add(btnRegStudentStudiesDelete);
 		  
@@ -237,24 +399,50 @@ public class App {
 		  panelRegisterAdd.add(lblGrade);
 		  
 		  JLabel lblGrade_1 = new JLabel("Grade:");
-		  lblGrade_1.setBounds(474, 344, 46, 14);
+		  lblGrade_1.setBounds(474, 341, 46, 14);
 		  panelRegisterAdd.add(lblGrade_1);
 		  
 		  JButton btnRegStudentHasStudiedAdd = new JButton("Add");
+		  btnRegStudentHasStudiedAdd.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent e) {
+		  		
+		  		String ssn = textFieldRegStudentHasStudiedSsn.getText();
+				String courseCode = textFieldRegStudentHasStudiedCourseCode.getText();
+				String semester = textFieldRegStudentHasStudiedSsn.getText();
+				String grade = (String) comboBoxGrade.getSelectedItem();
+				
+				responseLabelRegAdd.setForeground(Color.BLACK);
+
+				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("All fields must be filled in");
+					
+					// NOTE TO SELF: Måste göra så att "Grade" blir obligatorisk att fylla i. 
+					
+				} else {
+					try {
+						
+						controller.addStudentHasStudied(ssn, courseCode, semester, grade);
+								
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						responseLabelRegAdd.setText("Student registered");
+						textFieldRegCourseCourseCode.setText(null);
+						textFieldRegCourseName.setText(null);
+						textFieldRegCourseCredits.setText(null);
+					} catch (SQLException sq) {
+						responseLabelRegAdd.setForeground(Color.RED);
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					}
+				}
+		  	}
+		  });
 		  btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
 		  panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
 		  
-		  JButton btnRegStudentHasStudiedDelete = new JButton("Delete");
-		  btnRegStudentHasStudiedDelete.setBounds(672, 371, 89, 23);
-		  panelRegisterAdd.add(btnRegStudentHasStudiedDelete);
-		  
+		 
 		  JList list = new JList();
 		  list.setBounds(392, 276, -50, -41);
 		  panelRegisterAdd.add(list);
-		  
-		  JScrollBar scrollBarRegStudentHasStudiedGrade = new JScrollBar();
-		  scrollBarRegStudentHasStudiedGrade.setBounds(565, 329, 17, 29);
-		  panelRegisterAdd.add(scrollBarRegStudentHasStudiedGrade);
 		  
 		  JLabel lblSsn = new JLabel("Ssn:");
 		  lblSsn.setBounds(60, 43, 46, 14);
@@ -263,14 +451,6 @@ public class App {
 		  JLabel lblCourseCode = new JLabel("Course code:");
 		  lblCourseCode.setBounds(60, 248, 94, 14);
 		  panelRegisterAdd.add(lblCourseCode);
-		  
-		  JLabel responseLabelRegAdd = new JLabel("");
-		  responseLabelRegAdd.setBounds(164, 417, 295, 14);
-		  panelRegisterAdd.add(responseLabelRegAdd);
-		  
-		  JLabel labelErrorMessage = new JLabel("System response:");
-		  labelErrorMessage.setBounds(60, 417, 94, 14);
-		  panelRegisterAdd.add(labelErrorMessage);
 		
 		  JButton btnRegStudentAdd = new JButton("Add");
 		  btnRegStudentAdd.addActionListener(new ActionListener() {
@@ -282,7 +462,7 @@ public class App {
 					String phoneNumber = textFieldRegStudentPhoneNumber.getText();
 					responseLabelRegAdd.setForeground(Color.BLACK);
 
-					if (ssn.isEmpty() || studentName.isEmpty() || studentAddress.isEmpty()) {
+					if (ssn.isEmpty() || studentName.isEmpty() || studentAddress.isEmpty() || phoneNumber.isEmpty()) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText("All fields must be filled in");
 					} else {
@@ -332,6 +512,10 @@ public class App {
 		JLabel lblCourseCode2 = new JLabel("Course Code:");
 		panelFind.add(lblCourseCode2);
 		
+		JLabel responseLabelFind = new JLabel("*");
+		responseLabelFind.setBounds(67, 398, 286, 20);
+		panelFind.add(responseLabelFind);
+		
 		textFieldFindStudentSsn = new JTextField();
 		textFieldFindStudentSsn.setBounds(54, 78, 86, 20);
 		panelFind.add(textFieldFindStudentSsn);
@@ -343,10 +527,69 @@ public class App {
 		panelFind.add(textFieldFindCourseCourseCode);
 		
 		JButton btnFindCourseFind = new JButton("Find");
+		btnFindCourseFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String courseCode = textFieldFindCourseCourseCode.getText();
+	            responseLabelFind.setText(""); //viktigt att responselabelFind (new button delen) sitter ovan denna metod
+	            responseLabelFind.setForeground(Color.BLACK);
+	            dataModelCourseCode.setRowCount(0);//datamodelcoursecodecourse heter tabellen, måste skrivas som en private där uppe
+	            try {
+	                if (courseCode.isEmpty()) {
+	                    ArrayList<Course> allCourses = controller.getAllCourses();
+	                    for (Course temp : allCourses) {
+	                        dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(), temp.getCredit() });
+	                    }
+	                } else {
+	                    responseLabelFind.setText(null);
+	                    Course c = controller.getCourse(courseCode);
+	                    if (c != null) {
+	                        dataModelCourseCode.addRow(new Object[] { c.getCourseCode(), c.getCourseName(), c.getCredit() });
+	                    } else {
+	                        responseLabelFind.setForeground(Color.RED);
+	                        responseLabelFind.setText("Course does not exits");
+	                    }
+	                }
+	            } catch (SQLException sqlException) {
+	                //responseLabelFind.setForeground(Color.RED);
+	                //responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
+	              
+	}
+			}
+		});
 		btnFindCourseFind.setBounds(462, 126, 89, 23);
 		panelFind.add(btnFindCourseFind);
 		
 		JButton btnFindStudentFind = new JButton("Find");
+		btnFindStudentFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String ssn = textFieldFindStudentSsn.getText();
+	            responseLabelFind.setText(""); //viktigt att responselabelFind (new button delen) sitter ovan denna metod
+	            responseLabelFind.setForeground(Color.BLACK);
+	            dataModelSsnStudent.setRowCount(0);//datamodelssnstudent heter tabellen, måste skrivas som en private där uppe
+	            try {
+	                if (ssn.isEmpty()) {
+	                    ArrayList<Student> allStudents = controller.getAllStudents();
+	                    for (Student temp : allStudents) {
+	                        dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
+	                    }
+	                } else {
+	                    responseLabelFind.setText(null);
+	                    Student s = controller.getStudent(ssn);
+	                    if (s != null) {
+	                        dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
+	                    } else {
+	                        responseLabelFind.setForeground(Color.RED);
+	                        responseLabelFind.setText("Student does not exists");
+	                    }
+	                }
+	            } catch (SQLException sqlException) {
+	                //responseLabelFind.setForeground(Color.RED);
+	                //responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
+	}	
+			}
+		});
 		btnFindStudentFind.setBounds(54, 126, 89, 23);
 		panelFind.add(btnFindStudentFind);
 		
@@ -383,10 +626,6 @@ public class App {
 		textFieldFindStudentCheckCourseCode.setColumns(10);
 		textFieldFindStudentCheckCourseCode.setBounds(301, 109, 86, 20);
 		panelFind.add(textFieldFindStudentCheckCourseCode);
-		
-		JLabel responseLabelFind = new JLabel("*");
-		responseLabelFind.setBounds(403, 404, 46, 14);
-		panelFind.add(responseLabelFind);
 		
 		JButton btnFindStudentFindAll = new JButton("Find all");
 		btnFindStudentFindAll.setBounds(54, 160, 89, 23);
@@ -434,7 +673,32 @@ public class App {
 		btnCourseResultGetResult.setBounds(72, 204, 89, 23);
 		panel.add(btnCourseResultGetResult);
 		
+		dataModelHighestThroughput = new DefaultTableModel();
+        tableHighestThroughput = new JTable(dataModelHighestThroughput);
+		
 		JButton btnGet = new JButton("Get");
+		btnGet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 dataModelHighestThroughput.setRowCount(0);
+	                String[] headerHighestThroughput = {"Course code", "Percent passed"};
+	                dataModelHighestThroughput.setColumnIdentifiers(headerHighestThroughput);
+	            
+	                    try {
+	                        HashMap <String, String> highestTP = controller.getHighestThroughput();
+	                        
+	                        for (Map.Entry<String, String> entry : highestTP.entrySet()) {
+	                        String courseCode = entry.getKey();
+	                        String percent = entry.getValue();
+	                        dataModelHighestThroughput.addRow(new Object[] {courseCode, percent + "%"});
+	                    }
+	            } catch (SQLException sqlException) {
+	                sqlException.printStackTrace();
+	                //lblShowFlow.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
+	            }				
+			}
+		});
+		
 		btnGet.setBounds(606, 147, 89, 23);
 		panel.add(btnGet);
 		
