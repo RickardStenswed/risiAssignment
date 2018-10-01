@@ -416,11 +416,11 @@ public class App {
 		panel.add(lblHighestThroughput);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(606, 250, 218, 148);
+		scrollPane_1.setBounds(499, 250, 325, 148);
 		panel.add(scrollPane_1);
 		
 		JLabel label_1 = new JLabel("*");
-		label_1.setBounds(453, 414, 46, 14);
+		label_1.setBounds(445, 422, 46, 14);
 		panel.add(label_1);
 		
 		JComboBox comboBox_1 = new JComboBox();
