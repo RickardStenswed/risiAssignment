@@ -288,10 +288,12 @@ public class App {
 					} else {
 						try {
 							controller.addStudent(ssn, studentName, studentAddress, phoneNumber);
+							responseLabelRegAdd.setForeground(Color.GREEN);
 							responseLabelRegAdd.setText("Student registered");
 							textFieldRegStudentSsn.setText(null);
 							textFieldRegStudentName.setText(null);
 							textFieldRegStudentAddress.setText(null);
+							textFieldRegStudentPhoneNumber.setText(null);
 						} catch (SQLException sq) {
 							responseLabelRegAdd.setForeground(Color.RED);
 						//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
