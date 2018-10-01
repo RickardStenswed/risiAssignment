@@ -250,7 +250,7 @@ public class App {
 		  btnRegCourseDelete.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
 		  		
-		  		String courseCode = textFieldRegStudentSsn.getText();
+		  		String courseCode = textFieldRegCourseCourseCode.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
 
 				if (courseCode.isEmpty()) {
@@ -272,6 +272,9 @@ public class App {
 				}  			
 		  	}
 		  });
+		  
+		 
+		  
 		  btnRegCourseDelete.setBounds(270, 371, 89, 23);
 		  panelRegisterAdd.add(btnRegCourseDelete);
 		  
