@@ -298,9 +298,9 @@ public class App {
 		btnAdd.setBounds(164, 170, 89, 23);
 		panel_13.add(btnAdd);
 		
-		JLabel responseLabel = new JLabel("*");
-		responseLabel.setBounds(392, 406, 46, 14);
-		panel_13.add(responseLabel);
+		JLabel responseLabelRegAdd = new JLabel("*");
+		responseLabelRegAdd.setBounds(392, 406, 46, 14);
+		panel_13.add(responseLabelRegAdd);
 		panel_12.add(lblCourseCode2);
 		
 		textFieldStudentSsn = new JTextField();
@@ -365,6 +365,10 @@ public class App {
 		textField_14.setColumns(10);
 		textField_14.setBounds(301, 109, 86, 20);
 		panel_12.add(textField_14);
+		
+		JLabel responseLabelFind = new JLabel("*");
+		responseLabelFind.setBounds(403, 404, 46, 14);
+		panel_12.add(responseLabelFind);
 		
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
