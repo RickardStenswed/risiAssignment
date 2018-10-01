@@ -65,13 +65,13 @@ public class App {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.activeCaption);
-		frame.setBounds(100, 100, 929, 497);
+		frame.setBounds(100, 100, 929, 564);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBackground(SystemColor.activeCaption);
-		tabbedPane_2.setBounds(0, 0, 913, 458);
+		tabbedPane_2.setBounds(0, 0, 913, 514);
 		frame.getContentPane().add(tabbedPane_2);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -291,8 +291,16 @@ public class App {
 		panel_13.add(lblCourseCode);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAdd.setBounds(164, 170, 89, 23);
 		panel_13.add(btnAdd);
+		
+		JLabel responseLabel = new JLabel("*");
+		responseLabel.setBounds(392, 406, 46, 14);
+		panel_13.add(responseLabel);
 		panel_12.add(lblCourseCode2);
 		
 		textFieldStudentSsn = new JTextField();
