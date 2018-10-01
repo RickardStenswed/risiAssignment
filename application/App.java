@@ -252,9 +252,6 @@ public class App {
 		        scrollBar.setBounds(565, 329, 17, 29);
 		        panel_13.add(scrollBar);
 		
-		JPanel panel_11 = new JPanel();
-		tabbedPane_1.addTab("View Results", null, panel_11, null);
-		
 		JPanel panel_12 = new JPanel();
 		tabbedPane_1.addTab("Find", null, panel_12, null);
 		panel_12.setLayout(null);
@@ -377,6 +374,12 @@ public class App {
 		JButton btnFindAll_1 = new JButton("Find all");
 		btnFindAll_1.setBounds(462, 160, 89, 23);
 		panel_12.add(btnFindAll_1);
+		
+		JPanel panel_11 = new JPanel();
+		tabbedPane_1.addTab("Student results", null, panel_11, null);
+		
+		JPanel panel = new JPanel();
+		tabbedPane_1.addTab("Course results", null, panel, null);
 		
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
