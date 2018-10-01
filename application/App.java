@@ -2,10 +2,12 @@ package application;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.sql.*;
 import java.util.*;
 
 import model.*;
+import dal.*;
 import controller.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +18,7 @@ public class App {
 	private JFrame frame;
 	private JTextField textFieldFindStudentSsn;
 	private JTextField textFieldFindCourseCourseCode;
+	private Controller controller = new Controller();
 	
 	// Halloj!
 	private JTextField textFieldRegStudentSsn;
@@ -81,198 +84,224 @@ public class App {
 		
 
 		  JPanel panelRegisterAdd = new JPanel();
-		        tabbedPane_1.addTab("Register / Add", null, panelRegisterAdd, null);
-		        panelRegisterAdd.setLayout(null);
-		        
-		        JLabel lblNewLabel = new JLabel("Register student");
-		        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		        lblNewLabel.setBounds(164, 0, 119, 45);
-		        panelRegisterAdd.add(lblNewLabel);
-		        
-		        textFieldRegStudentSsn = new JTextField();
-		        textFieldRegStudentSsn.setBounds(164, 40, 119, 20);
-		        panelRegisterAdd.add(textFieldRegStudentSsn);
-		        textFieldRegStudentSsn.setColumns(10);
-		        
-		        textFieldRegStudentName = new JTextField();
-		        textFieldRegStudentName.setBounds(164, 71, 119, 20);
-		        panelRegisterAdd.add(textFieldRegStudentName);
-		        textFieldRegStudentName.setColumns(10);
-		        
-		        textFieldRegStudentAddress = new JTextField();
-		        textFieldRegStudentAddress.setBounds(164, 102, 119, 20);
-		        panelRegisterAdd.add(textFieldRegStudentAddress);
-		        textFieldRegStudentAddress.setColumns(10);
-		        
-		        textFieldRegStudentPhoneNumber = new JTextField();
-		        textFieldRegStudentPhoneNumber.setBounds(164, 133, 119, 20);
-		        panelRegisterAdd.add(textFieldRegStudentPhoneNumber);
-		        textFieldRegStudentPhoneNumber.setColumns(10);
-		        
-		        JLabel lblName = new JLabel("Name:");
-		        lblName.setBounds(60, 74, 46, 14);
-		        panelRegisterAdd.add(lblName);
-		        
-		        JLabel lblAddress = new JLabel("Address:");
-		        lblAddress.setBounds(60, 105, 71, 14);
-		        panelRegisterAdd.add(lblAddress);
-		        
-		        JLabel lblPhoneNumber = new JLabel("Phone number:");
-		        lblPhoneNumber.setBounds(60, 136, 94, 14);
-		        panelRegisterAdd.add(lblPhoneNumber);
-		        
-		        JLabel lblRegisterCourse = new JLabel("Register course");
-		        lblRegisterCourse.setFont(new Font("Tahoma", Font.BOLD, 13));
-		        lblRegisterCourse.setBounds(164, 214, 119, 20);
-		        panelRegisterAdd.add(lblRegisterCourse);
-		        
-		        textFieldRegCourseCourseCode = new JTextField();
-		        textFieldRegCourseCourseCode.setBounds(164, 245, 119, 20);
-		        panelRegisterAdd.add(textFieldRegCourseCourseCode);
-		        textFieldRegCourseCourseCode.setColumns(10);
-		        
-		        textFieldRegCourseName = new JTextField();
-		        textFieldRegCourseName.setBounds(164, 276, 119, 20);
-		        panelRegisterAdd.add(textFieldRegCourseName);
-		        textFieldRegCourseName.setColumns(10);
-		        
-		        JLabel lblName_1 = new JLabel("Name:");
-		        lblName_1.setBounds(60, 279, 46, 14);
-		        panelRegisterAdd.add(lblName_1);
-		        
-		        textFieldRegCourseCredits = new JTextField();
-		        textFieldRegCourseCredits.setBounds(164, 307, 119, 20);
-		        panelRegisterAdd.add(textFieldRegCourseCredits);
-		        textFieldRegCourseCredits.setColumns(10);
-		        
-		        JButton btnRegStudentDelete = new JButton("Delete");
-		        btnRegStudentDelete.setBounds(270, 170, 89, 23);
-		        panelRegisterAdd.add(btnRegStudentDelete);
-		        
-		        JLabel lblCredits = new JLabel("Credits:");
-		        lblCredits.setBounds(60, 310, 46, 14);
-		        panelRegisterAdd.add(lblCredits);
-		        
-		        JButton btnRegCourseAdd = new JButton("Add");
-		        btnRegCourseAdd.setBounds(164, 371, 89, 23);
-		        panelRegisterAdd.add(btnRegCourseAdd);
-		        
-		        JButton btnRegCourseDelete = new JButton("Delete");
-		        btnRegCourseDelete.setBounds(270, 371, 89, 23);
-		        panelRegisterAdd.add(btnRegCourseDelete);
-		        
-		        JLabel lblRegisterStudentTo = new JLabel("Register student to ongoing course");
-		        lblRegisterStudentTo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		        lblRegisterStudentTo.setBounds(561, 12, 253, 20);
-		        panelRegisterAdd.add(lblRegisterStudentTo);
-		        
-		        JLabel lblSsn_1 = new JLabel("Ssn:");
-		        lblSsn_1.setBounds(474, 43, 46, 14);
-		        panelRegisterAdd.add(lblSsn_1);
-		        
-		        textFieldRegStudentStudiesSsn = new JTextField();
-		        textFieldRegStudentStudiesSsn.setBounds(561, 40, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentStudiesSsn);
-		        textFieldRegStudentStudiesSsn.setColumns(10);
-		        
-		        textFieldRegStudentStudiesCourseCode = new JTextField();
-		        textFieldRegStudentStudiesCourseCode.setBounds(561, 71, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentStudiesCourseCode);
-		        textFieldRegStudentStudiesCourseCode.setColumns(10);
-		        
-		        JLabel lblCourseCode_1 = new JLabel("Course code:");
-		        lblCourseCode_1.setBounds(474, 74, 79, 14);
-		        panelRegisterAdd.add(lblCourseCode_1);
-		        
-		        textFieldRegStudentStudiesSemester = new JTextField();
-		        textFieldRegStudentStudiesSemester.setBounds(561, 102, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentStudiesSemester);
-		        textFieldRegStudentStudiesSemester.setColumns(10);
-		        
-		        JLabel lblSemester = new JLabel("Semester:");
-		        lblSemester.setBounds(474, 105, 62, 14);
-		        panelRegisterAdd.add(lblSemester);
-		        
-		        JButton btnRegStudentStudiesAdd = new JButton("Add");
-		        btnRegStudentStudiesAdd.setBounds(561, 140, 89, 23);
-		        panelRegisterAdd.add(btnRegStudentStudiesAdd);
-		        
-		        JButton btnRegStudentStudiesDelete = new JButton("Delete");
-		        btnRegStudentStudiesDelete.setBounds(672, 140, 89, 23);
-		        panelRegisterAdd.add(btnRegStudentStudiesDelete);
-		        
-		        JLabel lblRegisterStudentTo_1 = new JLabel("Register student to finished course");
-		        lblRegisterStudentTo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		        lblRegisterStudentTo_1.setBounds(561, 216, 263, 17);
-		        panelRegisterAdd.add(lblRegisterStudentTo_1);
-		        
-		        textFieldRegStudentHasStudiedSsn = new JTextField();
-		        textFieldRegStudentHasStudiedSsn.setBounds(561, 245, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentHasStudiedSsn);
-		        textFieldRegStudentHasStudiedSsn.setColumns(10);
-		        
-		        textFieldRegStudentHasStudiedCourseCode = new JTextField();
-		        textFieldRegStudentHasStudiedCourseCode.setBounds(561, 276, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentHasStudiedCourseCode);
-		        textFieldRegStudentHasStudiedCourseCode.setColumns(10);
-		        
-		        textFieldRegStudentHasStudiedSemester = new JTextField();
-		        textFieldRegStudentHasStudiedSemester.setBounds(561, 307, 136, 20);
-		        panelRegisterAdd.add(textFieldRegStudentHasStudiedSemester);
-		        textFieldRegStudentHasStudiedSemester.setColumns(10);
-		        
-		        JLabel lblSsn_2 = new JLabel("Ssn:");
-		        lblSsn_2.setBounds(474, 248, 46, 14);
-		        panelRegisterAdd.add(lblSsn_2);
-		        
-		        JLabel lblCourseCode_2 = new JLabel("Course code:");
-		        lblCourseCode_2.setBounds(474, 279, 79, 14);
-		        panelRegisterAdd.add(lblCourseCode_2);
-		        
-		        JLabel lblGrade = new JLabel("Semester:");
-		        lblGrade.setBounds(474, 310, 62, 14);
-		        panelRegisterAdd.add(lblGrade);
-		        
-		        JLabel lblGrade_1 = new JLabel("Grade:");
-		        lblGrade_1.setBounds(474, 344, 46, 14);
-		        panelRegisterAdd.add(lblGrade_1);
-		        
-		        JButton btnRegStudentHasStudiedAdd = new JButton("Add");
-		        btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
-		        panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
-		        
-		        JButton btnRegStudentHasStudiedDelete = new JButton("Delete");
-		        btnRegStudentHasStudiedDelete.setBounds(672, 371, 89, 23);
-		        panelRegisterAdd.add(btnRegStudentHasStudiedDelete);
-		        
-		        JList list = new JList();
-		        list.setBounds(392, 276, -50, -41);
-		        panelRegisterAdd.add(list);
-		        
-		        JScrollBar scrollBarRegStudentHasStudiedGrade = new JScrollBar();
-		        scrollBarRegStudentHasStudiedGrade.setBounds(565, 329, 17, 29);
-		        panelRegisterAdd.add(scrollBarRegStudentHasStudiedGrade);
+		  tabbedPane_1.addTab("Register / Add", null, panelRegisterAdd, null);
+		  panelRegisterAdd.setLayout(null);
+		  
+		  JLabel lblNewLabel = new JLabel("Register student");
+		  lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  lblNewLabel.setBounds(164, 0, 119, 45);
+		  panelRegisterAdd.add(lblNewLabel);
+		  
+		  textFieldRegStudentSsn = new JTextField();
+		  textFieldRegStudentSsn.setBounds(164, 40, 119, 20);
+		  panelRegisterAdd.add(textFieldRegStudentSsn);
+		  textFieldRegStudentSsn.setColumns(10);
+		  
+		  textFieldRegStudentName = new JTextField();
+		  textFieldRegStudentName.setBounds(164, 71, 119, 20);
+		  panelRegisterAdd.add(textFieldRegStudentName);
+		  textFieldRegStudentName.setColumns(10);
+		  
+		  textFieldRegStudentAddress = new JTextField();
+		  textFieldRegStudentAddress.setBounds(164, 102, 119, 20);
+		  panelRegisterAdd.add(textFieldRegStudentAddress);
+		  textFieldRegStudentAddress.setColumns(10);
+		  
+		  textFieldRegStudentPhoneNumber = new JTextField();
+		  textFieldRegStudentPhoneNumber.setBounds(164, 133, 119, 20);
+		  panelRegisterAdd.add(textFieldRegStudentPhoneNumber);
+		  textFieldRegStudentPhoneNumber.setColumns(10);
+		  
+		  JLabel lblName = new JLabel("Name:");
+		  lblName.setBounds(60, 74, 46, 14);
+		  panelRegisterAdd.add(lblName);
+		  
+		  JLabel lblAddress = new JLabel("Address:");
+		  lblAddress.setBounds(60, 105, 71, 14);
+		  panelRegisterAdd.add(lblAddress);
+		  
+		  JLabel lblPhoneNumber = new JLabel("Phone number:");
+		  lblPhoneNumber.setBounds(60, 136, 94, 14);
+		  panelRegisterAdd.add(lblPhoneNumber);
+		  
+		  JLabel lblRegisterCourse = new JLabel("Register course");
+		  lblRegisterCourse.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  lblRegisterCourse.setBounds(164, 214, 119, 20);
+		  panelRegisterAdd.add(lblRegisterCourse);
+		  
+		  textFieldRegCourseCourseCode = new JTextField();
+		  textFieldRegCourseCourseCode.setBounds(164, 245, 119, 20);
+		  panelRegisterAdd.add(textFieldRegCourseCourseCode);
+		  textFieldRegCourseCourseCode.setColumns(10);
+		  
+		  textFieldRegCourseName = new JTextField();
+		  textFieldRegCourseName.setBounds(164, 276, 119, 20);
+		  panelRegisterAdd.add(textFieldRegCourseName);
+		  textFieldRegCourseName.setColumns(10);
+		  
+		  JLabel lblName_1 = new JLabel("Name:");
+		  lblName_1.setBounds(60, 279, 46, 14);
+		  panelRegisterAdd.add(lblName_1);
+		  
+		  textFieldRegCourseCredits = new JTextField();
+		  textFieldRegCourseCredits.setBounds(164, 307, 119, 20);
+		  panelRegisterAdd.add(textFieldRegCourseCredits);
+		  textFieldRegCourseCredits.setColumns(10);
+		  
+		  JButton btnRegStudentDelete = new JButton("Delete");
+		  btnRegStudentDelete.setBounds(270, 170, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentDelete);
+		  
+		  JLabel lblCredits = new JLabel("Credits:");
+		  lblCredits.setBounds(60, 310, 46, 14);
+		  panelRegisterAdd.add(lblCredits);
+		  
+		  JButton btnRegCourseAdd = new JButton("Add");
+		  btnRegCourseAdd.setBounds(164, 371, 89, 23);
+		  panelRegisterAdd.add(btnRegCourseAdd);
+		  
+		  JButton btnRegCourseDelete = new JButton("Delete");
+		  btnRegCourseDelete.setBounds(270, 371, 89, 23);
+		  panelRegisterAdd.add(btnRegCourseDelete);
+		  
+		  JLabel lblRegisterStudentTo = new JLabel("Register student to ongoing course");
+		  lblRegisterStudentTo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  lblRegisterStudentTo.setBounds(561, 12, 253, 20);
+		  panelRegisterAdd.add(lblRegisterStudentTo);
+		  
+		  JLabel lblSsn_1 = new JLabel("Ssn:");
+		  lblSsn_1.setBounds(474, 43, 46, 14);
+		  panelRegisterAdd.add(lblSsn_1);
+		  
+		  textFieldRegStudentStudiesSsn = new JTextField();
+		  textFieldRegStudentStudiesSsn.setBounds(561, 40, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentStudiesSsn);
+		  textFieldRegStudentStudiesSsn.setColumns(10);
+		  
+		  textFieldRegStudentStudiesCourseCode = new JTextField();
+		  textFieldRegStudentStudiesCourseCode.setBounds(561, 71, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentStudiesCourseCode);
+		  textFieldRegStudentStudiesCourseCode.setColumns(10);
+		  
+		  JLabel lblCourseCode_1 = new JLabel("Course code:");
+		  lblCourseCode_1.setBounds(474, 74, 79, 14);
+		  panelRegisterAdd.add(lblCourseCode_1);
+		  
+		  textFieldRegStudentStudiesSemester = new JTextField();
+		  textFieldRegStudentStudiesSemester.setBounds(561, 102, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentStudiesSemester);
+		  textFieldRegStudentStudiesSemester.setColumns(10);
+		  
+		  JLabel lblSemester = new JLabel("Semester:");
+		  lblSemester.setBounds(474, 105, 62, 14);
+		  panelRegisterAdd.add(lblSemester);
+		  
+		  JButton btnRegStudentStudiesAdd = new JButton("Add");
+		  btnRegStudentStudiesAdd.setBounds(561, 140, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentStudiesAdd);
+		  
+		  JButton btnRegStudentStudiesDelete = new JButton("Delete");
+		  btnRegStudentStudiesDelete.setBounds(672, 140, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentStudiesDelete);
+		  
+		  JLabel lblRegisterStudentTo_1 = new JLabel("Register student to finished course");
+		  lblRegisterStudentTo_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  lblRegisterStudentTo_1.setBounds(561, 216, 263, 17);
+		  panelRegisterAdd.add(lblRegisterStudentTo_1);
+		  
+		  textFieldRegStudentHasStudiedSsn = new JTextField();
+		  textFieldRegStudentHasStudiedSsn.setBounds(561, 245, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentHasStudiedSsn);
+		  textFieldRegStudentHasStudiedSsn.setColumns(10);
+		  
+		  textFieldRegStudentHasStudiedCourseCode = new JTextField();
+		  textFieldRegStudentHasStudiedCourseCode.setBounds(561, 276, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentHasStudiedCourseCode);
+		  textFieldRegStudentHasStudiedCourseCode.setColumns(10);
+		  
+		  textFieldRegStudentHasStudiedSemester = new JTextField();
+		  textFieldRegStudentHasStudiedSemester.setBounds(561, 307, 136, 20);
+		  panelRegisterAdd.add(textFieldRegStudentHasStudiedSemester);
+		  textFieldRegStudentHasStudiedSemester.setColumns(10);
+		  
+		  JLabel lblSsn_2 = new JLabel("Ssn:");
+		  lblSsn_2.setBounds(474, 248, 46, 14);
+		  panelRegisterAdd.add(lblSsn_2);
+		  
+		  JLabel lblCourseCode_2 = new JLabel("Course code:");
+		  lblCourseCode_2.setBounds(474, 279, 79, 14);
+		  panelRegisterAdd.add(lblCourseCode_2);
+		  
+		  JLabel lblGrade = new JLabel("Semester:");
+		  lblGrade.setBounds(474, 310, 62, 14);
+		  panelRegisterAdd.add(lblGrade);
+		  
+		  JLabel lblGrade_1 = new JLabel("Grade:");
+		  lblGrade_1.setBounds(474, 344, 46, 14);
+		  panelRegisterAdd.add(lblGrade_1);
+		  
+		  JButton btnRegStudentHasStudiedAdd = new JButton("Add");
+		  btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
+		  
+		  JButton btnRegStudentHasStudiedDelete = new JButton("Delete");
+		  btnRegStudentHasStudiedDelete.setBounds(672, 371, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentHasStudiedDelete);
+		  
+		  JList list = new JList();
+		  list.setBounds(392, 276, -50, -41);
+		  panelRegisterAdd.add(list);
+		  
+		  JScrollBar scrollBarRegStudentHasStudiedGrade = new JScrollBar();
+		  scrollBarRegStudentHasStudiedGrade.setBounds(565, 329, 17, 29);
+		  panelRegisterAdd.add(scrollBarRegStudentHasStudiedGrade);
+		  
+		  JLabel lblSsn = new JLabel("Ssn:");
+		  lblSsn.setBounds(60, 43, 46, 14);
+		  panelRegisterAdd.add(lblSsn);
+		  
+		  JLabel lblCourseCode = new JLabel("Course code:");
+		  lblCourseCode.setBounds(60, 248, 94, 14);
+		  panelRegisterAdd.add(lblCourseCode);
+		  
+		  JLabel responseLabelRegAdd = new JLabel("");
+		  responseLabelRegAdd.setBounds(164, 417, 295, 14);
+		  panelRegisterAdd.add(responseLabelRegAdd);
+		  
+		  JLabel labelErrorMessage = new JLabel("System response:");
+		  labelErrorMessage.setBounds(60, 417, 94, 14);
+		  panelRegisterAdd.add(labelErrorMessage);
 		
-		JLabel lblSsn = new JLabel("Ssn:");
-		lblSsn.setBounds(60, 43, 46, 14);
-		panelRegisterAdd.add(lblSsn);
-		
-		JLabel lblCourseCode = new JLabel("Course code:");
-		lblCourseCode.setBounds(60, 248, 94, 14);
-		panelRegisterAdd.add(lblCourseCode);
-		
-		JButton btnRegStudentAdd = new JButton("Add");
-		btnRegStudentAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnRegStudentAdd.setBounds(164, 170, 89, 23);
-		panelRegisterAdd.add(btnRegStudentAdd);
-		
-		JLabel responseLabelRegAdd = new JLabel("*");
-		responseLabelRegAdd.setBounds(402, 416, 46, 14);
-		panelRegisterAdd.add(responseLabelRegAdd);
-		
+		  JButton btnRegStudentAdd = new JButton("Add");
+		  btnRegStudentAdd.addActionListener(new ActionListener() {
+		  	public void actionPerformed(ActionEvent arg0) {
+		  		
+					String ssn = textFieldRegStudentSsn.getText();
+					String studentName = textFieldRegStudentName.getText();
+					String studentAddress = textFieldRegStudentAddress.getText();
+					String phoneNumber = textFieldRegStudentPhoneNumber.getText();
+					responseLabelRegAdd.setForeground(Color.BLACK);
+
+					if (ssn.isEmpty() || studentName.isEmpty() || studentAddress.isEmpty()) {
+						responseLabelRegAdd.setForeground(Color.RED);
+						responseLabelRegAdd.setText("All fields must be filled in");
+					} else {
+						try {
+							controller.addStudent(ssn, studentName, studentAddress, phoneNumber);
+							responseLabelRegAdd.setText("Student registered");
+							textFieldRegStudentSsn.setText(null);
+							textFieldRegStudentName.setText(null);
+							textFieldRegStudentAddress.setText(null);
+						} catch (SQLException sq) {
+							responseLabelRegAdd.setForeground(Color.RED);
+						//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+						}
+					}
+		  	}
+		  });
+		  btnRegStudentAdd.setBounds(164, 170, 89, 23);
+		  panelRegisterAdd.add(btnRegStudentAdd);
+		  
 		JPanel panelFind = new JPanel();
 		tabbedPane_1.addTab("Find", null, panelFind, null);
 		panelFind.setLayout(null);
