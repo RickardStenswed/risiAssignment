@@ -40,17 +40,20 @@ public class App {
 	private JTextField textFieldCourseResultCourseCode;
 	private JTextField textFieldStudentResultSsn;
 	
-	private DefaultTableModel dataModelSsnStudent;
-	private DefaultTableModel dataModelCourseCode;
+	
 	
 	
 	private JTable tableHighestThroughput;
-    
+    private JTable tableSsnStudent;
     //Default model
 
 	private DefaultTableModel dataModelHighestThroughput;
-    
+	private DefaultTableModel dataModelSsnStudent;
+	private DefaultTableModel dataModelCourseCode; 
+	
+	private JScrollPane scrollPaneFindStudent;
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -560,6 +563,9 @@ public class App {
 		btnFindCourseFind.setBounds(462, 126, 89, 23);
 		panelFind.add(btnFindCourseFind);
 		
+		dataModelSsnStudent = new DefaultTableModel();
+        tableSsnStudent = new JTable(dataModelSsnStudent);
+		
 		JButton btnFindStudentFind = new JButton("Find");
 		btnFindStudentFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -639,7 +645,7 @@ public class App {
 		scrollPane.setBounds(86, 358, 301, -134);
 		panelFind.add(scrollPane);
 		
-		JScrollPane scrollPaneFindStudent = new JScrollPane();
+		JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
 		scrollPaneFindStudent.setBounds(65, 211, 337, 147);
 		panelFind.add(scrollPaneFindStudent);
 		
@@ -710,7 +716,7 @@ public class App {
 		lblHighestThroughput.setBounds(606, 101, 129, 14);
 		panel.add(lblHighestThroughput);
 		
-		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane();
+		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane(tableHighestThroughput);
 		scrollPaneCourseResultHighestThroughput.setBounds(499, 250, 325, 148);
 		panel.add(scrollPaneCourseResultHighestThroughput);
 		
