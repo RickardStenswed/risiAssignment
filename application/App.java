@@ -270,14 +270,14 @@ public class App {
 		panel_12.add(lblFindCuurse);
 		
 		JLabel lblSearchForStudent = new JLabel("Search for Student");
-		lblSearchForStudent.setBounds(54, 55, 145, 23);
+		lblSearchForStudent.setBounds(54, 44, 145, 23);
 		panel_12.add(lblSearchForStudent);
 		
 		JLabel lblSsn2 = new JLabel("SSN:");
 		panel_12.add(lblSsn2);
 		
 		JLabel lblSearchForCourse = new JLabel("Search for Course");
-		lblSearchForCourse.setBounds(462, 55, 145, 23);
+		lblSearchForCourse.setBounds(462, 44, 145, 23);
 		panel_12.add(lblSearchForCourse);
 		
 		JLabel lblCourseCode2 = new JLabel("Course Code:");
@@ -304,17 +304,17 @@ public class App {
 		panel_12.add(lblCourseCode2);
 		
 		textFieldStudentSsn = new JTextField();
-		textFieldStudentSsn.setBounds(99, 90, 86, 20);
+		textFieldStudentSsn.setBounds(54, 78, 86, 20);
 		panel_12.add(textFieldStudentSsn);
 		textFieldStudentSsn.setColumns(10);
 		
 		textFieldCoursecode = new JTextField();
 		textFieldCoursecode.setColumns(10);
-		textFieldCoursecode.setBounds(561, 90, 86, 20);
+		textFieldCoursecode.setBounds(561, 75, 86, 20);
 		panel_12.add(textFieldCoursecode);
 		
 		JButton btnFindCourse = new JButton("Find");
-		btnFindCourse.setBounds(462, 143, 89, 23);
+		btnFindCourse.setBounds(462, 126, 89, 23);
 		panel_12.add(btnFindCourse);
 		
 		JScrollPane ResultSetFindStudent = new JScrollPane();
@@ -329,15 +329,15 @@ public class App {
 		panel_12.add(ResultSetFindCourse);
 		
 		JButton btnFindStudent = new JButton("Find");
-		btnFindStudent.setBounds(54, 143, 89, 23);
+		btnFindStudent.setBounds(54, 126, 89, 23);
 		panel_12.add(btnFindStudent);
 		
 		JLabel lblSsn_3 = new JLabel("Ssn:");
-		lblSsn_3.setBounds(54, 93, 46, 14);
+		lblSsn_3.setBounds(10, 81, 46, 14);
 		panel_12.add(lblSsn_3);
 		
 		JLabel lblCourseCode_3 = new JLabel("Course code:");
-		lblCourseCode_3.setBounds(462, 93, 89, 14);
+		lblCourseCode_3.setBounds(462, 78, 89, 14);
 		panel_12.add(lblCourseCode_3);
 		
 		JLabel lblCheckIfStudent = new JLabel("Check if Student studies a course");
@@ -350,7 +350,7 @@ public class App {
 		panel_12.add(textField_13);
 		
 		JButton btnCheck = new JButton("Check");
-		btnCheck.setBounds(302, 143, 89, 23);
+		btnCheck.setBounds(302, 160, 89, 23);
 		panel_12.add(btnCheck);
 		
 		JLabel label = new JLabel("Ssn:");
@@ -369,6 +369,14 @@ public class App {
 		JLabel responseLabelFind = new JLabel("*");
 		responseLabelFind.setBounds(403, 404, 46, 14);
 		panel_12.add(responseLabelFind);
+		
+		JButton btnFindAll = new JButton("Find all");
+		btnFindAll.setBounds(54, 160, 89, 23);
+		panel_12.add(btnFindAll);
+		
+		JButton btnFindAll_1 = new JButton("Find all");
+		btnFindAll_1.setBounds(462, 160, 89, 23);
+		panel_12.add(btnFindAll_1);
 		
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
