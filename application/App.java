@@ -34,6 +34,8 @@ public class App {
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
 	
 
 	/**
@@ -375,11 +377,93 @@ public class App {
 		btnFindAll_1.setBounds(462, 160, 89, 23);
 		panel_12.add(btnFindAll_1);
 		
-		JPanel panel_11 = new JPanel();
-		tabbedPane_1.addTab("Student results", null, panel_11, null);
-		
 		JPanel panel = new JPanel();
-		tabbedPane_1.addTab("Course results", null, panel, null);
+		tabbedPane_1.addTab("Course result", null, panel, null);
+		panel.setLayout(null);
+		
+		JLabel lblCourseResult = new JLabel("Course result");
+		lblCourseResult.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblCourseResult.setBounds(410, 36, 115, 23);
+		panel.add(lblCourseResult);
+		
+		textField_15 = new JTextField();
+		textField_15.setBounds(203, 98, 86, 20);
+		panel.add(textField_15);
+		textField_15.setColumns(10);
+		
+		JLabel lblCourseCode_5 = new JLabel("Course code:");
+		lblCourseCode_5.setBounds(72, 101, 78, 14);
+		panel.add(lblCourseCode_5);
+		
+		JLabel lblFeatures = new JLabel("Features:");
+		lblFeatures.setBounds(72, 151, 63, 14);
+		panel.add(lblFeatures);
+		
+		JButton btnGetResult = new JButton("Get result");
+		btnGetResult.setBounds(72, 204, 89, 23);
+		panel.add(btnGetResult);
+		
+		JButton btnGet = new JButton("Get");
+		btnGet.setBounds(606, 147, 89, 23);
+		panel.add(btnGet);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(72, 250, 325, 148);
+		panel.add(scrollPane);
+		
+		JLabel lblHighestThroughput = new JLabel("Highest throughput:");
+		lblHighestThroughput.setBounds(606, 101, 129, 14);
+		panel.add(lblHighestThroughput);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(606, 250, 218, 148);
+		panel.add(scrollPane_1);
+		
+		JLabel label_1 = new JLabel("*");
+		label_1.setBounds(453, 414, 46, 14);
+		panel.add(label_1);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(203, 148, 86, 20);
+		panel.add(comboBox_1);
+		
+		JPanel panel_11 = new JPanel();
+		tabbedPane_1.addTab("Student result", null, panel_11, null);
+		panel_11.setLayout(null);
+		
+		JLabel lblStudentResult = new JLabel("Student result");
+		lblStudentResult.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblStudentResult.setBounds(95, 11, 100, 14);
+		panel_11.add(lblStudentResult);
+		
+		textField_16 = new JTextField();
+		textField_16.setBounds(164, 51, 86, 20);
+		panel_11.add(textField_16);
+		textField_16.setColumns(10);
+		
+		JLabel lblSsn_4 = new JLabel("Ssn:");
+		lblSsn_4.setBounds(43, 54, 46, 14);
+		panel_11.add(lblSsn_4);
+		
+		JLabel lblFeatures_1 = new JLabel("Features:");
+		lblFeatures_1.setBounds(43, 92, 65, 14);
+		panel_11.add(lblFeatures_1);
+		
+		JButton btnGetResult_1 = new JButton("Get result");
+		btnGetResult_1.setBounds(43, 154, 89, 23);
+		panel_11.add(btnGetResult_1);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(43, 208, 302, 165);
+		panel_11.add(scrollPane_2);
+		
+		JLabel label_2 = new JLabel("*");
+		label_2.setBounds(428, 412, 46, 14);
+		panel_11.add(label_2);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(164, 89, 86, 17);
+		panel_11.add(comboBox);
 		
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
