@@ -41,13 +41,14 @@ public class App {
 	private JTable tableHighestThroughput;
 	private JTable tableSsnStudent;
 	private JTable tableCourseCode;
-	private JTable tableFeaturesCourse;
+	private JTable tableStudentCurrentCourses;
 	// Default model
 
 	private DefaultTableModel dataModelHighestThroughput;
 	private DefaultTableModel dataModelSsnStudent;
 	private DefaultTableModel dataModelCourseCode;
-	private DefaultTableModel dataModelFeaturesCourse;
+	private DefaultTableModel dataModelStudentCurrentCourses;
+
 
 	private JScrollPane scrollPaneFindStudent;
 	private JTextField textField;
@@ -808,13 +809,12 @@ public class App {
 		/*dataModelSsnStudent = new DefaultTableModel();
 		tableSsnStudent = new JTable(dataModelSsnStudent);*/
 		
-		dataModelFeaturesCourse = new DefaultTableModel();
-		tableFeaturesCourse = new JTable(dataModelFeaturesCourse);
+		
 
 		JButton btnCourseResultGetResult = new JButton("Get result");
 		btnCourseResultGetResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dataModelFeaturesCourse.setRowCount(0);
+				
 				//try {
 					//if (comboBoxCourseResultFeatures)
 				}
@@ -853,7 +853,7 @@ public class App {
 		btnGet.setBounds(606, 147, 89, 23);
 		panelCourseResult.add(btnGet);
 
-		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane(tableFeaturesCourse);
+		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane();
 		scrollPaneCourseResultSearchCourseCode.setBounds(72, 250, 325, 148);
 		panelCourseResult.add(scrollPaneCourseResultSearchCourseCode);
 
@@ -928,9 +928,12 @@ public class App {
 		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
+		dataModelStudentCurrentCourses
+		JTable tableStudentCurrentCourses 
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnStudentResultGetCurrentCourses.setBounds(161, 88, 127, 23);
