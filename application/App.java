@@ -257,10 +257,9 @@ public class App {
 						controller.deleteCourse(courseCode);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Course removed");
-						textFieldRegStudentSsn.setText(null);
-						textFieldRegStudentName.setText(null);
-						textFieldRegStudentAddress.setText(null);
-						textFieldRegStudentPhoneNumber.setText(null);
+						textFieldRegCourseCourseCode.setText(null);
+						textFieldRegCourseName.setText(null);
+						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
@@ -323,9 +322,9 @@ public class App {
 						controller.addStudentStudies(ssn, courseCode, semester);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student registered");
-						textFieldRegCourseCourseCode.setText(null);
-						textFieldRegCourseName.setText(null);
-						textFieldRegCourseCredits.setText(null);
+						textFieldRegStudentStudiesSsn.setText(null);
+						textFieldRegStudentStudiesCourseCode.setText(null);
+						textFieldRegStudentStudiesSemester.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
@@ -355,9 +354,8 @@ public class App {
 						controller.deleteStudentStudies(ssn, courseCode);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student removed");
-						textFieldRegCourseCourseCode.setText(null);
-						textFieldRegCourseName.setText(null);
-						textFieldRegCourseCredits.setText(null);
+						textFieldRegStudentStudiesSsn.setText(null);
+						textFieldRegStudentStudiesCourseCode.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
@@ -411,7 +409,7 @@ public class App {
 
 				String ssn = textFieldRegStudentHasStudiedSsn.getText();
 				String courseCode = textFieldRegStudentHasStudiedCourseCode.getText();
-				String semester = textFieldRegStudentHasStudiedSsn.getText();
+				String semester = textFieldRegStudentHasStudiedSemester.getText();
 				String grade = (String) comboBoxGrade.getSelectedItem();
 
 				responseLabelRegAdd.setForeground(Color.BLACK);
@@ -429,9 +427,9 @@ public class App {
 
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student registered");
-						textFieldRegCourseCourseCode.setText(null);
-						textFieldRegCourseName.setText(null);
-						textFieldRegCourseCredits.setText(null);
+						textFieldRegStudentHasStudiedSsn.setText(null);
+						textFieldRegStudentHasStudiedCourseCode.setText(null);
+						textFieldRegStudentHasStudiedSemester.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
