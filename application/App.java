@@ -41,11 +41,13 @@ public class App {
 	private JTable tableHighestThroughput;
 	private JTable tableSsnStudent;
 	private JTable tableCourseCode;
+	private JTable tableFeaturesCourse;
 	// Default model
 
 	private DefaultTableModel dataModelHighestThroughput;
 	private DefaultTableModel dataModelSsnStudent;
 	private DefaultTableModel dataModelCourseCode;
+	private DefaultTableModel dataModelFeaturesCourse;
 
 	private JScrollPane scrollPaneFindStudent;
 
@@ -303,6 +305,8 @@ public class App {
 		JLabel lblSemester = new JLabel("Semester:");
 		lblSemester.setBounds(474, 105, 62, 14);
 		panelRegisterAdd.add(lblSemester);
+		
+		//Button for addying a student
 
 		JButton btnRegStudentStudiesAdd = new JButton("Add");
 		btnRegStudentStudiesAdd.addActionListener(new ActionListener() {
@@ -337,6 +341,8 @@ public class App {
 		btnRegStudentStudiesAdd.setBounds(561, 140, 89, 23);
 		panelRegisterAdd.add(btnRegStudentStudiesAdd);
 
+		//Button for deleting a student from studies
+		
 		JButton btnRegStudentStudiesDelete = new JButton("Delete");
 		btnRegStudentStudiesDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +353,7 @@ public class App {
 
 				if (ssn.isEmpty() || courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("ssn and course code must be filled in");
+					responseLabelRegAdd.setText("Ssn and Course code must be filled in");
 				} else {
 					try {
 
@@ -403,6 +409,8 @@ public class App {
 		lblGrade_1.setBounds(474, 341, 46, 14);
 		panelRegisterAdd.add(lblGrade_1);
 
+		
+		// Button for regestrating a student that has completed a course.
 		JButton btnRegStudentHasStudiedAdd = new JButton("Add");
 		btnRegStudentHasStudiedAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -541,14 +549,11 @@ public class App {
 				responseLabelFind.setForeground(Color.BLACK);
 				dataModelCourseCode.setRowCount(0);// datamodelcoursecodecourse heter tabellen, måste skrivas som en
 													// private där uppe
-				String[] headerFindCourse = { "Course code", "Course Name", "Credits" };
+				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
 				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
 				try {
 					if (courseCode.isEmpty()) {
-						// ArrayList<Course> allCourses = controller.getAllCourses();
-						// for (Course temp : allCourses) {
-						// dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(),
-						// temp.getCourseName(), temp.getCredit() });
+						
 						responseLabelFind.setForeground(Color.RED);
 						responseLabelFind.setText("Fill in blank");
 
@@ -574,24 +579,7 @@ public class App {
 		btnFindCourseFind.setBounds(462, 126, 89, 23);
 		panelFind.add(btnFindCourseFind);
 
-		/*
-		 * dataModelHighestThroughput = new DefaultTableModel(); tableHighestThroughput
-		 * = new JTable(dataModelHighestThroughput);
-		 * 
-		 * JButton btnGet = new JButton("Get"); btnGet.addActionListener(new
-		 * ActionListener() { public void actionPerformed(ActionEvent e) {
-		 * 
-		 * dataModelHighestThroughput.setRowCount(0); String[] headerHighestThroughput =
-		 * {"Course code", "Percent passed"};
-		 * dataModelHighestThroughput.setColumnIdentifiers(headerHighestThroughput);
-		 * 
-		 * try { HashMap <String, String> highestTP = controller.getHighestThroughput();
-		 * 
-		 * for (Map.Entry<String, String> entry : highestTP.entrySet()) { String
-		 * courseCode = entry.getKey(); String percent = entry.getValue();
-		 * dataModelHighestThroughput.addRow(new Object[] {courseCode, percent + "%"});
-		 * }
-		 */
+	
 
 		dataModelSsnStudent = new DefaultTableModel();
 		tableSsnStudent = new JTable(dataModelSsnStudent);
@@ -611,10 +599,7 @@ public class App {
 				try {
 					if (ssn.isEmpty()) {
 
-						// ArrayList<Student> allStudents = controller.getAllStudents();
-						// for (Student temp : allStudents) {
-						// dataModelSsnStudent.addRow(new Object[] { temp.getSsn(),
-						// temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
+					
 						responseLabelFind.setForeground(Color.RED);
 						responseLabelFind.setText("Fill in blanks");
 					} else {
@@ -655,6 +640,31 @@ public class App {
 		panelFind.add(textFieldFindStudentCheckSsn);
 
 		JButton btnFindStudentCheck = new JButton("Check");
+		btnFindStudentCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ssn = textFieldFindStudentCheckSsn.getText();
+                String courseCode = textFieldFindStudentCheckCourseCode.getText();
+                try {
+                	Student s = controller.getStudentStudiesCourse(ssn, courseCode);
+                    if (ssn.isEmpty()|| courseCode.isEmpty() ){  
+                    	responseLabelFind.setForeground(Color.RED);
+                    	responseLabelFind.setText("Fill in all blanks");
+                    } else if  (s == null){
+                    	responseLabelFind.setForeground(Color.RED);
+                            responseLabelFind.setText("The student does not study the course");
+                    }  else if (s != null) {
+                    	responseLabelFind.setForeground(Color.GREEN);
+                        responseLabelFind.setText("The student studies the course");
+                    } else { 
+                    responseLabelFind.setText("");
+                    }
+                    } catch (SQLException sqlException) {
+                        //responseLabelFind.setText(
+                                //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                    	/*;*/
+                    }
+            }}
+                );
 		btnFindStudentCheck.setBounds(302, 160, 89, 23);
 		panelFind.add(btnFindStudentCheck);
 
@@ -707,10 +717,50 @@ public class App {
 				}
 			}
 		});
+		
+		/* JButton btnFindCourseFindAll = new JButton("Find all");
+		btnFindCourseFindAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				responseLabelFind.setText("");
+				responseLabelFind.setForeground(Color.BLACK);
+				dataModelCourseCode.setRowCount(0);
+				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
+				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
+				try {
+
+					ArrayList<Course> allCourses = controller.getAllCourses();
+					for (Course temp : allCourses) {
+						dataModelSsnStudent.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(),
+								temp.getCredit() });
+								*/
 		btnFindStudentFindAll.setBounds(54, 160, 89, 23);
 		panelFind.add(btnFindStudentFindAll);
 
 		JButton btnFindCourseFindAll = new JButton("Find all");
+		btnFindCourseFindAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//responseLabelFind.setText("All courses collected"); Vara konsekventa med systemrespones. Ska den alltid finnas kvar?
+				//responseLabelFind.setForeground(Color.BLACK);
+				dataModelCourseCode.setRowCount(0);
+				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
+				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
+				try {
+
+					ArrayList<Course> allCourses = controller.getAllCourses();
+					for (Course temp : allCourses) {
+						dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(),
+								temp.getCredit() });
+
+					}
+
+				} catch (SQLException sqlException) {
+					// responseLabelFind.setForeground(Color.RED);
+					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
+					// ""));
+				}
+			}
+		});
+				
 		btnFindCourseFindAll.setBounds(462, 160, 89, 23);
 		panelFind.add(btnFindCourseFindAll);
 
@@ -727,31 +777,45 @@ public class App {
 		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
 		panelFind.add(scrollPaneFindCourse);
 
-		JPanel panel = new JPanel();
-		tabbedPane_1.addTab("Course result", null, panel, null);
-		panel.setLayout(null);
+		JPanel panelCourseResult = new JPanel();
+		tabbedPane_1.addTab("Course result", null, panelCourseResult, null);
+		panelCourseResult.setLayout(null);
 
 		JLabel lblCourseResult = new JLabel("Course result");
 		lblCourseResult.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCourseResult.setBounds(410, 36, 115, 23);
-		panel.add(lblCourseResult);
+		panelCourseResult.add(lblCourseResult);
 
 		textFieldCourseResultCourseCode = new JTextField();
 		textFieldCourseResultCourseCode.setBounds(203, 98, 86, 20);
-		panel.add(textFieldCourseResultCourseCode);
+		panelCourseResult.add(textFieldCourseResultCourseCode);
 		textFieldCourseResultCourseCode.setColumns(10);
 
 		JLabel lblCourseCode_5 = new JLabel("Course code:");
 		lblCourseCode_5.setBounds(72, 101, 78, 14);
-		panel.add(lblCourseCode_5);
+		panelCourseResult.add(lblCourseCode_5);
 
 		JLabel lblFeatures = new JLabel("Features:");
 		lblFeatures.setBounds(72, 151, 63, 14);
-		panel.add(lblFeatures);
+		panelCourseResult.add(lblFeatures);
+		
+		/*dataModelSsnStudent = new DefaultTableModel();
+		tableSsnStudent = new JTable(dataModelSsnStudent);*/
+		
+		dataModelFeaturesCourse = new DefaultTableModel();
+		tableFeaturesCourse = new JTable(dataModelFeaturesCourse);
 
 		JButton btnCourseResultGetResult = new JButton("Get result");
+		btnCourseResultGetResult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dataModelFeaturesCourse.setRowCount(0);
+				//try {
+					//if (comboBoxCourseResultFeatures)
+				}
+			//}
+		});
 		btnCourseResultGetResult.setBounds(72, 204, 89, 23);
-		panel.add(btnCourseResultGetResult);
+		panelCourseResult.add(btnCourseResultGetResult);
 
 		dataModelHighestThroughput = new DefaultTableModel();
 		tableHighestThroughput = new JTable(dataModelHighestThroughput);
@@ -781,27 +845,44 @@ public class App {
 		});
 
 		btnGet.setBounds(606, 147, 89, 23);
-		panel.add(btnGet);
+		panelCourseResult.add(btnGet);
 
-		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane();
+		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane(tableFeaturesCourse);
 		scrollPaneCourseResultSearchCourseCode.setBounds(72, 250, 325, 148);
-		panel.add(scrollPaneCourseResultSearchCourseCode);
+		panelCourseResult.add(scrollPaneCourseResultSearchCourseCode);
 
 		JLabel lblHighestThroughput = new JLabel("Highest throughput:");
 		lblHighestThroughput.setBounds(606, 101, 129, 14);
-		panel.add(lblHighestThroughput);
+		panelCourseResult.add(lblHighestThroughput);
 
 		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane(tableHighestThroughput);
 		scrollPaneCourseResultHighestThroughput.setBounds(499, 250, 325, 148);
-		panel.add(scrollPaneCourseResultHighestThroughput);
+		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
 
 		JLabel labelCourseResultRespons = new JLabel("*");
 		labelCourseResultRespons.setBounds(445, 422, 46, 14);
-		panel.add(labelCourseResultRespons);
+		panelCourseResult.add(labelCourseResultRespons);
 
-		JComboBox comboBoxCourseResultFeatures = new JComboBox();
+		/*JComboBox<String> comboBoxGrade = new JComboBox<String>();
+		comboBoxGrade.addItem("A");
+		comboBoxGrade.addItem("B");
+		comboBoxGrade.addItem("C");
+		comboBoxGrade.addItem("D");
+		comboBoxGrade.addItem("F");
+		comboBoxGrade.setBounds(561, 338, 154, 20);
+		panelRegisterAdd.add(comboBoxGrade)*/
+		
+		/*Container cont;
+		JComboBox comboBoxCourseResultFeatures;
+		comboBoxCourseResultFeatures = new JComboBox();
+		comboBoxCourseResultFeatures.addItemListener(aListener);*/
+		JComboBox <String >comboBoxCourseResultFeatures = new JComboBox<String>();
+		comboBoxCourseResultFeatures.addItem("björn");
+		comboBoxCourseResultFeatures.addItem("lejon");
+		comboBoxCourseResultFeatures.addItem("fågel");
 		comboBoxCourseResultFeatures.setBounds(203, 148, 86, 20);
-		panel.add(comboBoxCourseResultFeatures);
+		panelCourseResult.add(comboBoxCourseResultFeatures);
+		
 
 		JPanel panel_11 = new JPanel();
 		tabbedPane_1.addTab("Student result", null, panel_11, null);
