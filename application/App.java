@@ -267,7 +267,7 @@ public class App {
 						textFieldRegStudentPhoneNumber.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+					//responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(), "Studenten")); Hola
 					}
 				}  			
 		  	}
