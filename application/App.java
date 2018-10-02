@@ -41,13 +41,13 @@ public class App {
 	private JTable tableHighestThroughput;
 	private JTable tableSsnStudent;
 	private JTable tableCourseCode;
-	private JTable tableStudentCurrentCourses;
+	private JTable tableStudentResult;
 	// Default model
 
 	private DefaultTableModel dataModelHighestThroughput;
 	private DefaultTableModel dataModelSsnStudent;
 	private DefaultTableModel dataModelCourseCode;
-	private DefaultTableModel dataModelStudentCurrentCourses;
+	private DefaultTableModel dataModelStudentResult;
 
 
 	private JScrollPane scrollPaneFindStudent;
@@ -920,7 +920,7 @@ public class App {
 		btnStudentResultGetGrades.setBounds(43, 88, 89, 23);
 		panel_11.add(btnStudentResultGetGrades);
 
-		JScrollPane scrollPaneStudentResult = new JScrollPane();
+		JScrollPane scrollPaneStudentResult = new JScrollPane(); //Vilken JTable ska in här??
 		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
 		panel_11.add(scrollPaneStudentResult);
 
@@ -928,11 +928,38 @@ public class App {
 		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
-		//dataModelStudentCurrentCourses = new defaultDataModelCurrent
-		//JTable tableStudentCurrentCourses 
+		/* String ssn = textFieldFindStudentSsn.getText();
+				responseLabelFind.setText(""); // viktigt att responselabelFind (new button delen) sitter ovan denna
+												// metod
+				responseLabelFind.setForeground(Color.BLACK);
+				dataModelSsnStudent.setRowCount(0);// datamodelssnstudent heter tabellen, måste skrivas som en private
+													// där uppe
+				String[] headerFindStudent = { "SSN", "Name", "Address", "Phone number" };
+				dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
+				try {
+					if (ssn.isEmpty()) {
+
+					
+						responseLabelFind.setForeground(Color.RED);
+						responseLabelFind.setText("Fill in blanks");
+					} else {
+						responseLabelFind.setText(null);
+						Student s = controller.getStudent(ssn);
+						if (s != null) {
+							dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
+						} else {
+							responseLabelFind.setForeground(Color.RED);
+							responseLabelFind.setText("Student does not exists");
+						}
+					}
+				} catch (SQLException sqlException) {*/
+		dataModelStudentResult = new DefaultTableModel();
+		tableStudentResult = new JTable(dataModelStudentResult);
+		
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				
 			}
 		});
