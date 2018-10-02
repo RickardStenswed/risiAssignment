@@ -932,10 +932,11 @@ public class App {
 		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
-		
+		//Method to find all courses a student currently studies
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String ssn = textFieldStudentResultSsn.getText();
 				dataModelStudentResult.setRowCount(0);
 				String [] headerStudentResult = {"SSN", "Course Name", "Semester"};
