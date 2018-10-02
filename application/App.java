@@ -866,7 +866,7 @@ public class App {
 		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
 
 		JLabel labelCourseResultRespons = new JLabel("*");
-		labelCourseResultRespons.setBounds(445, 422, 46, 14);
+		labelCourseResultRespons.setBounds(160, 422, 331, 14);
 		panelCourseResult.add(labelCourseResultRespons);
 
 		/*JComboBox<String> comboBoxGrade = new JComboBox<String>();
@@ -888,6 +888,10 @@ public class App {
 		comboBoxCourseResultFeatures.addItem("fågel");
 		comboBoxCourseResultFeatures.setBounds(203, 148, 86, 20);
 		panelCourseResult.add(comboBoxCourseResultFeatures);
+		
+		JLabel lblSystemRespons_1 = new JLabel("System respons:");
+		lblSystemRespons_1.setBounds(60, 422, 90, 14);
+		panelCourseResult.add(lblSystemRespons_1);
 		
 
 		JPanel panel_11 = new JPanel();
@@ -921,7 +925,7 @@ public class App {
 		panel_11.add(scrollPaneStudentResult);
 
 		JLabel labelStudentResultResponse = new JLabel("*");
-		labelStudentResultResponse.setBounds(428, 412, 46, 14);
+		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
@@ -958,6 +962,10 @@ public class App {
 		lblGradeForCourse.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblGradeForCourse.setBounds(628, 12, 184, 23);
 		panel_11.add(lblGradeForCourse);
+		
+		JLabel lblSystemRespons = new JLabel("System respons:");
+		lblSystemRespons.setBounds(43, 412, 89, 14);
+		panel_11.add(lblSystemRespons);
 
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
