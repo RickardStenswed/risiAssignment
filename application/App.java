@@ -959,7 +959,22 @@ public class App {
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String ssn = textFieldStudentResultSsn.getText();
+				dataModelStudentResult.setRowCount(0);
+				String [] headerStudentResult = {"Course Code", "Course Name", "Semester"};
+				dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
+			try {
+				if (ssn.isEmpty()) {
+				labelStudentResultResponse.setForeground(Color.RED);
+				labelStudentResultResponse.setText("Fill in SSN");
+					
+			} else {
+				labelStudentResultResponse.setText(null);
+				Studies st = controller.getAllCoursesStudies(ssn);
+				if (s != null) {
+					dataModelStudentResult.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
+			}
+			
 				
 			}
 		});
