@@ -602,13 +602,15 @@ public class App {
 	            responseLabelFind.setText(""); //viktigt att responselabelFind (new button delen) sitter ovan denna metod
 	            responseLabelFind.setForeground(Color.BLACK);
 	            dataModelSsnStudent.setRowCount(0);//datamodelssnstudent heter tabellen, måste skrivas som en private där uppe
+	            String[] headerFindStudent = {"SSN", "Name", "Address", "Phone number"};
+	            dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
 	            try {
 	                if (ssn.isEmpty()) {
-	                	Student temp = controller.getStudent(ssn);
-	                    //ArrayList<Student> allStudents = controller.getAllStudents();
-	                    //for (Student temp : allStudents) {
+	                	
+	                    ArrayList<Student> allStudents = controller.getAllStudents();
+	                    for (Student temp : allStudents) {
 	                        dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
-	                    //}
+	                    }
 	                } else {
 	                    responseLabelFind.setText(null);
 	                    Student s = controller.getStudent(ssn);
@@ -675,9 +677,9 @@ public class App {
 		panelFind.add(scrollPane);
 		
 		//kOLLAR OM DENNA LIGGER PÅ RÄTT PLATS
-		//JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
-		//scrollPaneFindStudent.setBounds(65, 211, 337, 147);
-		//panelFind.add(scrollPaneFindStudent);
+		JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
+		scrollPaneFindStudent.setBounds(65, 211, 337, 147);
+		panelFind.add(scrollPaneFindStudent);
 		
 		JScrollPane scrollPaneFindCourse = new JScrollPane();
 		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
