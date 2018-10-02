@@ -920,7 +920,11 @@ public class App {
 		btnStudentResultGetGrades.setBounds(43, 88, 89, 23);
 		panel_11.add(btnStudentResultGetGrades);
 
-		JScrollPane scrollPaneStudentResult = new JScrollPane(); //Vilken JTable ska in här??
+		
+		dataModelStudentResult = new DefaultTableModel();
+		tableStudentResult = new JTable(dataModelStudentResult);
+		
+		JScrollPane scrollPaneStudentResult = new JScrollPane(tableStudentResult); //Vilken JTable ska in här??
 		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
 		panel_11.add(scrollPaneStudentResult);
 
@@ -928,56 +932,54 @@ public class App {
 		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
-		/* String ssn = textFieldFindStudentSsn.getText();
-				responseLabelFind.setText(""); // viktigt att responselabelFind (new button delen) sitter ovan denna
-												// metod
-				responseLabelFind.setForeground(Color.BLACK);
-				dataModelSsnStudent.setRowCount(0);// datamodelssnstudent heter tabellen, måste skrivas som en private
-													// där uppe
-				String[] headerFindStudent = { "SSN", "Name", "Address", "Phone number" };
-				dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
-				try {
-					if (ssn.isEmpty()) {
-
-					
-						responseLabelFind.setForeground(Color.RED);
-						responseLabelFind.setText("Fill in blanks");
-					} else {
-						responseLabelFind.setText(null);
-						Student s = controller.getStudent(ssn);
-						if (s != null) {
-							dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
-						} else {
-							responseLabelFind.setForeground(Color.RED);
-							responseLabelFind.setText("Student does not exists");
-						}
-					}
-				} catch (SQLException sqlException) {*/
-		dataModelStudentResult = new DefaultTableModel();
-		tableStudentResult = new JTable(dataModelStudentResult);
 		
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ssn = textFieldStudentResultSsn.getText();
 				dataModelStudentResult.setRowCount(0);
-				String [] headerStudentResult = {"Course Code", "Course Name", "Semester"};
+				String [] headerStudentResult = {"SSN", "Course Name", "Semester"};
 				dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
-			try {
-				if (ssn.isEmpty()) {
-				labelStudentResultResponse.setForeground(Color.RED);
-				labelStudentResultResponse.setText("Fill in SSN");
-					
-			} else {
-				labelStudentResultResponse.setText(null);
-				Studies st = controller.getAllCoursesStudies(ssn);
-				if (s != null) {
-					dataModelStudentResult.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
-			}
-			
 				
+				/*try {
+
+					ArrayList<Studies> studiesList = controller.getAllCoursesStudies(ssn);
+					for (Student temp : allSt) {
+						dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(),
+								temp.getAddress(), temp.getPhoneNumber() });
+
+					}
+
+				} catch (SQLException sqlException) {
+					// responseLabelFind.setForeground(Color.RED);
+					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
+					// ""));
+				}
 			}
 		});
+				
+				/*if (ssn.isEmpty()) {
+				labelStudentResultResponse.setForeground(Color.RED);
+				labelStudentResultResponse.setText("Fill in SSN");
+				
+				} else  {
+				labelStudentResultResponse.setText(null);
+				ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
+				    for(Course tempCourse : st) {
+				       if (st != null) {
+					dataModelStudentResult.addRow(new Object[] {tempCourse.getSsn, tempCourse.getCourseCode(), tempCourse.getSemester()});
+				
+				
+				       } catch (SQLException sqlException) {
+		// responseLabelFind.setForeground(Color.RED);
+		// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
+		// ""));*/
+				    	   
+				       
+	}
+
+});
+			
 		btnStudentResultGetCurrentCourses.setBounds(161, 88, 127, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
@@ -991,6 +993,42 @@ public class App {
 		panel_11.add(lblCourseCode_6);
 		
 		JButton btnStudentResultGetGradeCourse = new JButton("Get grade on course");
+		btnStudentResultGetGradeCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ssn = textFieldStudentResultSsn2.getText();
+                String courseCode = textFieldStudentResultCourseCode.getText();
+                dataModelStudentResult.setRowCount(0);
+                String [] headerGetGradeCourse = {"Course Code", "SSN", "Grade", "Semester"} ;
+                dataModelStudentResult.setColumnIdentifiers(headerGetGradeCourse);
+                labelStudentResultResponse.setText("");
+                labelStudentResultResponse.setForeground(Color.BLACK);
+              
+                try {
+                    HasStudied s = controller.getStudentGradeCourse(ssn, courseCode);
+                    if (ssn.isEmpty()|| courseCode.isEmpty() ){  
+                        labelStudentResultResponse.setForeground(Color.RED);
+                        labelStudentResultResponse.setText("Fill in all blanks");
+                    
+                    } else if  (s == null){
+                        labelStudentResultResponse.setForeground(Color.RED);
+                            labelStudentResultResponse.setText("The student does not study the course");
+                    }  else if (s != null) {
+                       //String studentName = controller.getStudent(s.getSsn()).getStudentName();
+                       // String courseName = controller.getCourse(s.getCourseCode()).getCourseName();
+                    	HasStudied st =controller.getStudentGradeCourse(ssn, courseCode);
+                        dataModelStudentResult.addRow(new Object[] {st.getSsn(),st.getCourseCode(), st.getSemester(), st.getGrade()});
+                        //labelStudentResultResponse.setText("Hej");
+                    } else {
+                        responseLabelFind.setText("");
+                        }
+                        } catch (SQLException sqlException) {
+                            //responseLabelFind.setText(
+                                    //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                            /*;*/
+                        }
+                    }}
+                    );
+         
 		btnStudentResultGetGradeCourse.setBounds(628, 161, 131, 23);
 		panel_11.add(btnStudentResultGetGradeCourse);
 		
