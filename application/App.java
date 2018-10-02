@@ -51,8 +51,8 @@ public class App {
 
 
 	private JScrollPane scrollPaneFindStudent;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldStudentResultCourseCode;
+	private JTextField textFieldStudentResultSsn2;
 
 	/**
 	 * Launch the application.
@@ -928,8 +928,8 @@ public class App {
 		labelStudentResultResponse.setBounds(164, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
 		
-		dataModelStudentCurrentCourses
-		JTable tableStudentCurrentCourses 
+		//dataModelStudentCurrentCourses = new defaultDataModelCurrent
+		//JTable tableStudentCurrentCourses 
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -939,10 +939,10 @@ public class App {
 		btnStudentResultGetCurrentCourses.setBounds(161, 88, 127, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
-		textField = new JTextField();
-		textField.setBounds(673, 106, 86, 20);
-		panel_11.add(textField);
-		textField.setColumns(10);
+		textFieldStudentResultCourseCode = new JTextField();
+		textFieldStudentResultCourseCode.setBounds(673, 106, 86, 20);
+		panel_11.add(textFieldStudentResultCourseCode);
+		textFieldStudentResultCourseCode.setColumns(10);
 		
 		JLabel lblCourseCode_6 = new JLabel("Course Code");
 		lblCourseCode_6.setBounds(505, 109, 89, 14);
@@ -952,10 +952,10 @@ public class App {
 		btnStudentResultGetGradeCourse.setBounds(628, 161, 131, 23);
 		panel_11.add(btnStudentResultGetGradeCourse);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(673, 64, 86, 20);
-		panel_11.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldStudentResultSsn2 = new JTextField();
+		textFieldStudentResultSsn2.setBounds(673, 64, 86, 20);
+		panel_11.add(textFieldStudentResultSsn2);
+		textFieldStudentResultSsn2.setColumns(10);
 		
 		JLabel lblSsn_5 = new JLabel("Ssn:");
 		lblSsn_5.setBounds(518, 67, 46, 14);
