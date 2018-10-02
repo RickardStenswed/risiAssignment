@@ -566,9 +566,34 @@ public class App {
 		btnFindCourseFind.setBounds(462, 126, 89, 23);
 		panelFind.add(btnFindCourseFind);
 		
+		/*dataModelHighestThroughput = new DefaultTableModel();
+        tableHighestThroughput = new JTable(dataModelHighestThroughput);
+		
+		JButton btnGet = new JButton("Get");
+		btnGet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 dataModelHighestThroughput.setRowCount(0);
+	                String[] headerHighestThroughput = {"Course code", "Percent passed"};
+	                dataModelHighestThroughput.setColumnIdentifiers(headerHighestThroughput);
+	            
+	                    try {
+	                        HashMap <String, String> highestTP = controller.getHighestThroughput();
+	                        
+	                        for (Map.Entry<String, String> entry : highestTP.entrySet()) {
+	                        String courseCode = entry.getKey();
+	                        String percent = entry.getValue();
+	                        dataModelHighestThroughput.addRow(new Object[] {courseCode, percent + "%"});
+	                    }
+	                    */
+		
 		dataModelSsnStudent = new DefaultTableModel();
         tableSsnStudent = new JTable(dataModelSsnStudent);
 		
+        //JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
+		//scrollPaneFindStudent.setBounds(65, 211, 337, 147);
+		//panelFind.add(scrollPaneFindStudent);
+        
 		JButton btnFindStudentFind = new JButton("Find");
 		btnFindStudentFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -579,10 +604,11 @@ public class App {
 	            dataModelSsnStudent.setRowCount(0);//datamodelssnstudent heter tabellen, måste skrivas som en private där uppe
 	            try {
 	                if (ssn.isEmpty()) {
-	                    ArrayList<Student> allStudents = controller.getAllStudents();
-	                    for (Student temp : allStudents) {
+	                	Student temp = controller.getStudent(ssn);
+	                    //ArrayList<Student> allStudents = controller.getAllStudents();
+	                    //for (Student temp : allStudents) {
 	                        dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
-	                    }
+	                    //}
 	                } else {
 	                    responseLabelFind.setText(null);
 	                    Student s = controller.getStudent(ssn);
@@ -648,9 +674,10 @@ public class App {
 		scrollPane.setBounds(86, 358, 301, -134);
 		panelFind.add(scrollPane);
 		
-		JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
-		scrollPaneFindStudent.setBounds(65, 211, 337, 147);
-		panelFind.add(scrollPaneFindStudent);
+		//kOLLAR OM DENNA LIGGER PÅ RÄTT PLATS
+		//JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
+		//scrollPaneFindStudent.setBounds(65, 211, 337, 147);
+		//panelFind.add(scrollPaneFindStudent);
 		
 		JScrollPane scrollPaneFindCourse = new JScrollPane();
 		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
