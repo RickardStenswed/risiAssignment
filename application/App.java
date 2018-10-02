@@ -45,6 +45,7 @@ public class App {
 	
 	private JTable tableHighestThroughput;
     private JTable tableSsnStudent;
+    private JTable tableCourseCode;
     //Default model
 
 	private DefaultTableModel dataModelHighestThroughput;
@@ -518,7 +519,7 @@ public class App {
 		JLabel lblCourseCode2 = new JLabel("Course Code:");
 		panelFind.add(lblCourseCode2);
 		
-		JLabel responseLabelFind = new JLabel("*");
+		JLabel responseLabelFind = new JLabel("System response");
 		responseLabelFind.setBounds(67, 398, 286, 20);
 		panelFind.add(responseLabelFind);
 		
@@ -532,6 +533,9 @@ public class App {
 		textFieldFindCourseCourseCode.setBounds(561, 75, 86, 20);
 		panelFind.add(textFieldFindCourseCourseCode);
 		
+		dataModelCourseCode = new DefaultTableModel();
+		tableCourseCode = new JTable(dataModelCourseCode);
+		
 		JButton btnFindCourseFind = new JButton("Find");
 		btnFindCourseFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -540,12 +544,16 @@ public class App {
 	            responseLabelFind.setText(""); //viktigt att responselabelFind (new button delen) sitter ovan denna metod
 	            responseLabelFind.setForeground(Color.BLACK);
 	            dataModelCourseCode.setRowCount(0);//datamodelcoursecodecourse heter tabellen, måste skrivas som en private där uppe
+	            String [] headerFindCourse = {"Course code", "Course Name", "Credits" };
+	            dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
 	            try {
 	                if (courseCode.isEmpty()) {
-	                    ArrayList<Course> allCourses = controller.getAllCourses();
-	                    for (Course temp : allCourses) {
-	                        dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(), temp.getCredit() });
-	                    }
+	                    //ArrayList<Course> allCourses = controller.getAllCourses();
+	                    //for (Course temp : allCourses) {
+	                        //dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(), temp.getCredit() });
+	                	responseLabelFind.setForeground(Color.RED);
+	                	responseLabelFind.setText("Fill in blank");
+	                    
 	                } else {
 	                    responseLabelFind.setText(null);
 	                    Course c = controller.getCourse(courseCode);
@@ -590,10 +598,7 @@ public class App {
 		dataModelSsnStudent = new DefaultTableModel();
         tableSsnStudent = new JTable(dataModelSsnStudent);
 		
-        //JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
-		//scrollPaneFindStudent.setBounds(65, 211, 337, 147);
-		//panelFind.add(scrollPaneFindStudent);
-        
+       
 		JButton btnFindStudentFind = new JButton("Find");
 		btnFindStudentFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -607,10 +612,11 @@ public class App {
 	            try {
 	                if (ssn.isEmpty()) {
 	                	
-	                    ArrayList<Student> allStudents = controller.getAllStudents();
-	                    for (Student temp : allStudents) {
-	                        dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
-	                    }
+	                    //ArrayList<Student> allStudents = controller.getAllStudents();
+	                    //for (Student temp : allStudents) {
+	                        //dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(), temp.getAddress(), temp.getPhoneNumber() });
+	                    responseLabelFind.setForeground(Color.RED);
+	                    responseLabelFind.setText("Fill in blanks");
 	                } else {
 	                    responseLabelFind.setText(null);
 	                    Student s = controller.getStudent(ssn);
@@ -681,7 +687,7 @@ public class App {
 		scrollPaneFindStudent.setBounds(65, 211, 337, 147);
 		panelFind.add(scrollPaneFindStudent);
 		
-		JScrollPane scrollPaneFindCourse = new JScrollPane();
+		JScrollPane scrollPaneFindCourse = new JScrollPane(tableCourseCode);
 		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
 		panelFind.add(scrollPaneFindCourse);
 		
