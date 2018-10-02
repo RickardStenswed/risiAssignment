@@ -50,6 +50,8 @@ public class App {
 	private DefaultTableModel dataModelFeaturesCourse;
 
 	private JScrollPane scrollPaneFindStudent;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -522,8 +524,8 @@ public class App {
 		JLabel lblCourseCode2 = new JLabel("Course Code:");
 		panelFind.add(lblCourseCode2);
 
-		JLabel responseLabelFind = new JLabel("System response");
-		responseLabelFind.setBounds(67, 398, 286, 20);
+		JLabel responseLabelFind = new JLabel("");
+		responseLabelFind.setBounds(178, 398, 286, 20);
 		panelFind.add(responseLabelFind);
 
 		textFieldFindStudentSsn = new JTextField();
@@ -665,7 +667,7 @@ public class App {
                     }
             }}
                 );
-		btnFindStudentCheck.setBounds(302, 160, 89, 23);
+		btnFindStudentCheck.setBounds(301, 160, 89, 23);
 		panelFind.add(btnFindStudentCheck);
 
 		JLabel label = new JLabel("Ssn:");
@@ -776,6 +778,10 @@ public class App {
 		JScrollPane scrollPaneFindCourse = new JScrollPane(tableCourseCode);
 		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
 		panelFind.add(scrollPaneFindCourse);
+		
+		JLabel lblSystemResponse = new JLabel("System response:");
+		lblSystemResponse.setBounds(65, 401, 103, 14);
+		panelFind.add(lblSystemResponse);
 
 		JPanel panelCourseResult = new JPanel();
 		tabbedPane_1.addTab("Course result", null, panelCourseResult, null);
@@ -902,25 +908,56 @@ public class App {
 		lblSsn_4.setBounds(43, 54, 46, 14);
 		panel_11.add(lblSsn_4);
 
-		JLabel lblFeatures_1 = new JLabel("Features:");
-		lblFeatures_1.setBounds(43, 92, 65, 14);
-		panel_11.add(lblFeatures_1);
-
-		JButton btnStudentResultGetResult = new JButton("Get result");
-		btnStudentResultGetResult.setBounds(43, 154, 89, 23);
-		panel_11.add(btnStudentResultGetResult);
+		JButton btnStudentResultGetGrades = new JButton("Get grades");
+		btnStudentResultGetGrades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnStudentResultGetGrades.setBounds(43, 88, 89, 23);
+		panel_11.add(btnStudentResultGetGrades);
 
 		JScrollPane scrollPaneStudentResult = new JScrollPane();
-		scrollPaneStudentResult.setBounds(43, 208, 302, 165);
+		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
 		panel_11.add(scrollPaneStudentResult);
 
 		JLabel labelStudentResultResponse = new JLabel("*");
 		labelStudentResultResponse.setBounds(428, 412, 46, 14);
 		panel_11.add(labelStudentResultResponse);
-
-		JComboBox comboBoxStudentResultFeatures = new JComboBox();
-		comboBoxStudentResultFeatures.setBounds(164, 89, 86, 17);
-		panel_11.add(comboBoxStudentResultFeatures);
+		
+		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
+		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnStudentResultGetCurrentCourses.setBounds(161, 88, 127, 23);
+		panel_11.add(btnStudentResultGetCurrentCourses);
+		
+		textField = new JTextField();
+		textField.setBounds(673, 106, 86, 20);
+		panel_11.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblCourseCode_6 = new JLabel("Course Code");
+		lblCourseCode_6.setBounds(505, 109, 89, 14);
+		panel_11.add(lblCourseCode_6);
+		
+		JButton btnStudentResultGetGradeCourse = new JButton("Get grade on course");
+		btnStudentResultGetGradeCourse.setBounds(628, 161, 131, 23);
+		panel_11.add(btnStudentResultGetGradeCourse);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(673, 64, 86, 20);
+		panel_11.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblSsn_5 = new JLabel("Ssn:");
+		lblSsn_5.setBounds(518, 67, 46, 14);
+		panel_11.add(lblSsn_5);
+		
+		JLabel lblGradeForCourse = new JLabel("Student grade on course");
+		lblGradeForCourse.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblGradeForCourse.setBounds(628, 12, 184, 23);
+		panel_11.add(lblGradeForCourse);
 
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
