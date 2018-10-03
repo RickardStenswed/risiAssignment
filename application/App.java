@@ -321,25 +321,28 @@ public class App {
 				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
 				String semester = textFieldRegStudentStudiesSemester.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-
+				try {
 				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
+				
 				} else {
-					try {
-
-						controller.addStudentStudies(ssn, courseCode, semester);
-						responseLabelRegAdd.setForeground(Color.GREEN);
+					
+					controller.addStudentStudies(courseCode, ssn, semester);
 						responseLabelRegAdd.setText("Student registered");
+						responseLabelRegAdd.setForeground(Color.GREEN);
+						
 						textFieldRegStudentStudiesSsn.setText(null);
 						textFieldRegStudentStudiesCourseCode.setText(null);
 						textFieldRegStudentStudiesSemester.setText(null);
+						
+				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
 						// "Studenten"));
 					}
-				}
+				
 
 			}
 		});
@@ -355,24 +358,26 @@ public class App {
 				String ssn = textFieldRegStudentStudiesSsn.getText();
 				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-
+				try {
 				if (ssn.isEmpty() || courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("Ssn and Course code must be filled in");
 				} else {
-					try {
+					
 
-						controller.deleteStudentStudies(ssn, courseCode);
+						controller.deleteStudentStudies(courseCode, ssn);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student removed");
 						textFieldRegStudentStudiesSsn.setText(null);
 						textFieldRegStudentStudiesCourseCode.setText(null);
+				}
+				
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
 						// "Studenten"));
 					}
-				}
+				
 			}
 		});
 		btnRegStudentStudiesDelete.setBounds(672, 140, 89, 23);
@@ -426,30 +431,29 @@ public class App {
 				String grade = (String) comboBoxGrade.getSelectedItem();
 
 				responseLabelRegAdd.setForeground(Color.BLACK);
-
-				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
+				
+				try {
+				if ( courseCode.isEmpty() || ssn.isEmpty() || grade.isEmpty() || semester.isEmpty() ) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
 
-					// NOTE TO SELF: Måste göra så att "Grade" blir obligatorisk att fylla i.
 
 				} else {
-					try {
-
-						controller.addStudentHasStudied(ssn, courseCode, semester, grade);
-
+					
+					controller.addStudentHasStudied(courseCode, ssn, grade, semester);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student registered");
 						textFieldRegStudentHasStudiedSsn.setText(null);
 						textFieldRegStudentHasStudiedCourseCode.setText(null);
 						textFieldRegStudentHasStudiedSemester.setText(null);
+				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
 						// "Studenten"));
 					}
 				}
-			}
+			
 		});
 		btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
 		panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
@@ -686,16 +690,7 @@ public class App {
 		textFieldFindStudentCheckCourseCode.setBounds(301, 109, 86, 20);
 		panelFind.add(textFieldFindStudentCheckCourseCode);
 
-		/*
-		 * String ssn = textFieldFindStudentSsn.getText();
-		 * responseLabelFind.setText(""); //viktigt att responselabelFind (new button
-		 * delen) sitter ovan denna metod responseLabelFind.setForeground(Color.BLACK);
-		 * dataModelSsnStudent.setRowCount(0);//datamodelssnstudent heter tabellen,
-		 * måste skrivas som en private där uppe String[] headerFindStudent = {"SSN",
-		 * "Name", "Address", "Phone number"};
-		 * dataModelSsnStudent.setColumnIdentifiers(headerFindStudent); try { if
-		 * (ssn.isEmpty()) {
-		 */
+		
 
 		JButton btnFindStudentFindAll = new JButton("Find all");
 		btnFindStudentFindAll.addActionListener(new ActionListener() {
@@ -723,21 +718,6 @@ public class App {
 			}
 		});
 		
-		/* JButton btnFindCourseFindAll = new JButton("Find all");
-		btnFindCourseFindAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				responseLabelFind.setText("");
-				responseLabelFind.setForeground(Color.BLACK);
-				dataModelCourseCode.setRowCount(0);
-				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
-				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
-				try {
-
-					ArrayList<Course> allCourses = controller.getAllCourses();
-					for (Course temp : allCourses) {
-						dataModelSsnStudent.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(),
-								temp.getCredit() });
-								*/
 		btnFindStudentFindAll.setBounds(54, 160, 89, 23);
 		panelFind.add(btnFindStudentFindAll);
 
@@ -817,7 +797,7 @@ public class App {
 				String courseCode = textFieldCourseResultCourseCode.getText();
                 dataModelHighestThroughput.setRowCount(0);
                 
-                String[] headerCourseResult = {"SSN", "Course Code", "Grades" };
+                String[] headerCourseResult = {"Course Code", "SSN", "Grade", "Semester" };
                 dataModelHighestThroughput.setColumnIdentifiers(headerCourseResult);
                 
                 labelCourseResultResponse.setText("");
@@ -840,7 +820,7 @@ public class App {
                    } else {
                       
                        for (HasStudied temp : hs)
-                       dataModelHighestThroughput.addRow(new Object[]{temp.getSsn(), temp.getCourseCode(), temp.getGrade()});
+                       dataModelHighestThroughput.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
                        }
                    
                    } catch (SQLException sq) {
@@ -1006,7 +986,7 @@ public class App {
 		panel_11.add(lblSsn_4);
 
 		//Method to find all grades a student have
-		JButton btnStudentResultGetGrades = new JButton("Get grades");
+		JButton btnStudentResultGetGrades = new JButton("Get grades"); //Testing testing testing
 		btnStudentResultGetGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1031,7 +1011,7 @@ public class App {
                     
                     else {
                             for (HasStudied temp : hs)
-                            dataModelStudentResult.addRow(new Object[]{temp.getGrade(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
+                            dataModelStudentResult.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
                         }
                     //Bug in the system, can not get response specificaly if the student does not exist compared to if the student does not study any courses
                         //Hello, test, test
@@ -1056,7 +1036,7 @@ public class App {
 			
 				String ssn = textFieldStudentResultSsn.getText();
 				dataModelStudentResult.setRowCount(0);
-                String [] headerStudentResult = {"Course Code", "Course Name", "Semester"};
+                String [] headerStudentResult = {"Course Code", "Course Name", "Credit"};
                 dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
                 labelStudentResultResponse.setText("");
                 labelStudentResultResponse.setForeground(Color.BLACK);
