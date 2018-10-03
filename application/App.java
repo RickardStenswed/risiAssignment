@@ -794,25 +794,21 @@ public class App {
 		panelCourseResult.add(lblCourseResult);
 
 		textFieldCourseResultCourseCode = new JTextField();
-		textFieldCourseResultCourseCode.setBounds(203, 98, 86, 20);
+		textFieldCourseResultCourseCode.setBounds(186, 98, 145, 20);
 		panelCourseResult.add(textFieldCourseResultCourseCode);
 		textFieldCourseResultCourseCode.setColumns(10);
 
 		JLabel lblCourseCode_5 = new JLabel("Course code:");
 		lblCourseCode_5.setBounds(72, 101, 78, 14);
 		panelCourseResult.add(lblCourseCode_5);
-
-		JLabel lblFeatures = new JLabel("Features:");
-		lblFeatures.setBounds(72, 151, 63, 14);
-		panelCourseResult.add(lblFeatures);
 		
 		/*dataModelSsnStudent = new DefaultTableModel();
 		tableSsnStudent = new JTable(dataModelSsnStudent);*/
 		
 		
 
-		JButton btnCourseResultGetResult = new JButton("Get result");
-		btnCourseResultGetResult.addActionListener(new ActionListener() {
+		JButton btnCourseResultGetAllGrades = new JButton("Get all grades");
+		btnCourseResultGetAllGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//try {
@@ -820,8 +816,8 @@ public class App {
 				}
 			//}
 		});
-		btnCourseResultGetResult.setBounds(72, 204, 89, 23);
-		panelCourseResult.add(btnCourseResultGetResult);
+		btnCourseResultGetAllGrades.setBounds(186, 147, 145, 23);
+		panelCourseResult.add(btnCourseResultGetAllGrades);
 
 		dataModelHighestThroughput = new DefaultTableModel();
 		tableHighestThroughput = new JTable(dataModelHighestThroughput);
@@ -868,30 +864,26 @@ public class App {
 		JLabel labelCourseResultRespons = new JLabel("*");
 		labelCourseResultRespons.setBounds(160, 422, 331, 14);
 		panelCourseResult.add(labelCourseResultRespons);
-
-		/*JComboBox<String> comboBoxGrade = new JComboBox<String>();
-		comboBoxGrade.addItem("A");
-		comboBoxGrade.addItem("B");
-		comboBoxGrade.addItem("C");
-		comboBoxGrade.addItem("D");
-		comboBoxGrade.addItem("F");
-		comboBoxGrade.setBounds(561, 338, 154, 20);
-		panelRegisterAdd.add(comboBoxGrade)*/
-		
-		/*Container cont;
-		JComboBox comboBoxCourseResultFeatures;
-		comboBoxCourseResultFeatures = new JComboBox();
-		comboBoxCourseResultFeatures.addItemListener(aListener);*/
-		JComboBox <String >comboBoxCourseResultFeatures = new JComboBox<String>();
-		comboBoxCourseResultFeatures.addItem("björn");
-		comboBoxCourseResultFeatures.addItem("lejon");
-		comboBoxCourseResultFeatures.addItem("fågel");
-		comboBoxCourseResultFeatures.setBounds(203, 148, 86, 20);
-		panelCourseResult.add(comboBoxCourseResultFeatures);
 		
 		JLabel lblSystemRespons_1 = new JLabel("System respons:");
 		lblSystemRespons_1.setBounds(60, 422, 90, 14);
 		panelCourseResult.add(lblSystemRespons_1);
+		
+		JButton btnCourseResultGetGradePercentage = new JButton("Get grade %");
+		btnCourseResultGetGradePercentage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCourseResultGetGradePercentage.setBounds(186, 181, 145, 23);
+		panelCourseResult.add(btnCourseResultGetGradePercentage);
+		
+		JButton btnCourseResultGetAllCurrent = new JButton("Get all current students");
+		btnCourseResultGetAllCurrent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCourseResultGetAllCurrent.setBounds(186, 216, 145, 23);
+		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 
 		JPanel panel_11 = new JPanel();
