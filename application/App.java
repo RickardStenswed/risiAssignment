@@ -615,7 +615,7 @@ public class App {
 						responseLabelFind.setText(null);
 						Student s = controller.getStudent(ssn);
 						if (s != null) {
-							dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress() });
+							dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress(), s.getPhoneNumber() });
 						} else {
 							responseLabelFind.setForeground(Color.RED);
 							responseLabelFind.setText("Student does not exists");
@@ -1019,7 +1019,7 @@ public class App {
                 }
             }});
 		
-		btnStudentResultGetGrades.setBounds(87, 88, 108, 23);
+		btnStudentResultGetGrades.setBounds(74, 88, 108, 23);
 		panel_11.add(btnStudentResultGetGrades);
 	
 		dataModelStudentResult = new DefaultTableModel();
