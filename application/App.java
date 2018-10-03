@@ -914,25 +914,33 @@ public class App {
 			public void actionPerformed(ActionEvent e) {
 				
 				String ssn = textFieldStudentResultSsn.getText();
-				dataModelStudentResult.setRowCount(0);
+                dataModelStudentResult.setRowCount(0);
+                String [] headerGetGrades = {"Course Code", "SSN", "Grade", "Semester"};
+                dataModelStudentResult.setColumnIdentifiers(headerGetGrades);
                 labelStudentResultResponse.setText("");
                 labelStudentResultResponse.setForeground(Color.BLACK);
                 
-	            try {
-	            	if (ssn.isEmpty()) {
-	            		labelStudentResultResponse.setForeground(Color.RED);
-	            		labelStudentResultResponse.setText("Fill in ssn");
-	            	}
-	            	else {ArrayList<HasStudied> hs = controller.getStudentAllGrades(ssn); 
-	            		if (hs == null) {
-	            		labelStudentResultResponse.setText("The student has no grades");
-	            		}
-	            		else {dataModelStudentResult.addRow(new Object[]{hs.get(0)});
-	            		}
-	            	}
-	            }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
-	            }
-			}});
+                try { ArrayList<HasStudied> hs = controller.getStudentAllGrades(ssn);
+                    
+                if (ssn.isEmpty()) {
+                        labelStudentResultResponse.setForeground(Color.RED);
+                        labelStudentResultResponse.setText("Fill in SSN");
+                    }
+                
+                    else if (hs.isEmpty())  {
+                        labelStudentResultResponse.setText("The student has no grades");
+                        labelStudentResultResponse.setForeground(Color.RED);
+                    }
+                    
+                    else {
+                            for (HasStudied temp : hs)
+                            dataModelStudentResult.addRow(new Object[]{temp.getGrade(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
+                        }
+                    //Bug in the system, can not get response specificaly if the student does not exist compared to if the student does not study any courses
+                        //Hello, test, test
+                }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
+                }
+            }});
 		
 		btnStudentResultGetGrades.setBounds(87, 88, 108, 23);
 		panel_11.add(btnStudentResultGetGrades);
@@ -951,14 +959,34 @@ public class App {
 			
 				String ssn = textFieldStudentResultSsn.getText();
 				dataModelStudentResult.setRowCount(0);
-				String [] headerStudentResult = {"SSN", "Course Name", "Semester"};
-				dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
-				labelStudentResultResponse.setText("");
-	            labelStudentResultResponse.setForeground(Color.BLACK);			    	   
-				       
-	}
-
-});
+                String [] headerStudentResult = {"Course Code", "Course Name", "Semester"};
+                dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
+                labelStudentResultResponse.setText("");
+                labelStudentResultResponse.setForeground(Color.BLACK);
+                try { ArrayList<Course> studies = controller.getAllCoursesStudies(ssn);
+                
+                    if (ssn.isEmpty()) {
+                        labelStudentResultResponse.setText("Fill in SSN");
+                        labelStudentResultResponse.setForeground(Color.RED);
+                        }
+                    
+                    else if (studies.isEmpty()) {
+                        labelStudentResultResponse.setText("Student does not study any courses");
+                        labelStudentResultResponse.setForeground(Color.RED);
+                    
+                    } else {
+                        for (Course temp : studies) {
+                            dataModelStudentResult.addRow(new Object []  { temp.getCourseCode(), temp.getCourseName(), temp.getCredit()});
+                       }
+                    }
+                   }
+                
+                    
+                    catch (SQLException sqlException) {
+                      //lblSearchCourseInfoMessage.setText(
+                    }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                    }
+                   });
 			
 		btnStudentResultGetCurrentCourses.setBounds(216, 88, 142, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
