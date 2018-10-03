@@ -899,30 +899,50 @@ public class App {
 		textFieldStudentResultSsn.setBounds(164, 51, 86, 20);
 		panel_11.add(textFieldStudentResultSsn);
 		textFieldStudentResultSsn.setColumns(10);
+		
+		JLabel labelStudentResultResponse = new JLabel("*");
+		labelStudentResultResponse.setBounds(164, 406, 313, 20);
+		panel_11.add(labelStudentResultResponse);
 
 		JLabel lblSsn_4 = new JLabel("Ssn:");
 		lblSsn_4.setBounds(43, 54, 46, 14);
 		panel_11.add(lblSsn_4);
 
+		//Method to find all grades a student have
 		JButton btnStudentResultGetGrades = new JButton("Get grades");
 		btnStudentResultGetGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+				
+				String ssn = textFieldStudentResultSsn.getText();
+				dataModelStudentResult.setRowCount(0);
+                labelStudentResultResponse.setText("");
+                labelStudentResultResponse.setForeground(Color.BLACK);
+                
+	            try {
+	            	if (ssn.isEmpty()) {
+	            		labelStudentResultResponse.setForeground(Color.RED);
+	            		labelStudentResultResponse.setText("Fill in ssn");
+	            	}
+	            	else {ArrayList<HasStudied> hs = controller.getStudentAllGrades(ssn); 
+	            		if (hs == null) {
+	            		labelStudentResultResponse.setText("The student has no grades");
+	            		}
+	            		else {dataModelStudentResult.addRow(new Object[]{hs.get(0)});
+	            		}
+	            	}
+	            }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
+	            }
+			}});
+		
 		btnStudentResultGetGrades.setBounds(87, 88, 108, 23);
 		panel_11.add(btnStudentResultGetGrades);
-
-		
+	
 		dataModelStudentResult = new DefaultTableModel();
 		tableStudentResult = new JTable(dataModelStudentResult);
 		
 		JScrollPane scrollPaneStudentResult = new JScrollPane(tableStudentResult); //Vilken JTable ska in här??
 		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
 		panel_11.add(scrollPaneStudentResult);
-
-		JLabel labelStudentResultResponse = new JLabel("*");
-		labelStudentResultResponse.setBounds(164, 406, 313, 20);
-		panel_11.add(labelStudentResultResponse);
 		
 		//Method to find all courses a student currently studies
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
@@ -933,9 +953,8 @@ public class App {
 				dataModelStudentResult.setRowCount(0);
 				String [] headerStudentResult = {"SSN", "Course Name", "Semester"};
 				dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
-				
-				
-				    	   
+				labelStudentResultResponse.setText("");
+	            labelStudentResultResponse.setForeground(Color.BLACK);			    	   
 				       
 	}
 
