@@ -917,7 +917,7 @@ public class App {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnStudentResultGetGrades.setBounds(43, 88, 89, 23);
+		btnStudentResultGetGrades.setBounds(87, 88, 108, 23);
 		panel_11.add(btnStudentResultGetGrades);
 
 		
@@ -929,59 +929,27 @@ public class App {
 		panel_11.add(scrollPaneStudentResult);
 
 		JLabel labelStudentResultResponse = new JLabel("*");
-		labelStudentResultResponse.setBounds(164, 412, 46, 14);
+		labelStudentResultResponse.setBounds(164, 406, 313, 20);
 		panel_11.add(labelStudentResultResponse);
 		
 		//Method to find all courses a student currently studies
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			
 				String ssn = textFieldStudentResultSsn.getText();
 				dataModelStudentResult.setRowCount(0);
 				String [] headerStudentResult = {"SSN", "Course Name", "Semester"};
 				dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
 				
-				/*try {
-
-					ArrayList<Studies> studiesList = controller.getAllCoursesStudies(ssn);
-					for (Student temp : allSt) {
-						dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(),
-								temp.getAddress(), temp.getPhoneNumber() });
-
-					}
-
-				} catch (SQLException sqlException) {
-					// responseLabelFind.setForeground(Color.RED);
-					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
-				}
-			}
-		});
 				
-				/*if (ssn.isEmpty()) {
-				labelStudentResultResponse.setForeground(Color.RED);
-				labelStudentResultResponse.setText("Fill in SSN");
-				
-				} else  {
-				labelStudentResultResponse.setText(null);
-				ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
-				    for(Course tempCourse : st) {
-				       if (st != null) {
-					dataModelStudentResult.addRow(new Object[] {tempCourse.getSsn, tempCourse.getCourseCode(), tempCourse.getSemester()});
-				
-				
-				       } catch (SQLException sqlException) {
-		// responseLabelFind.setForeground(Color.RED);
-		// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-		// ""));*/
 				    	   
 				       
 	}
 
 });
 			
-		btnStudentResultGetCurrentCourses.setBounds(161, 88, 127, 23);
+		btnStudentResultGetCurrentCourses.setBounds(216, 88, 142, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
 		textFieldStudentResultCourseCode = new JTextField();
@@ -1030,7 +998,7 @@ public class App {
                     }}
                     );
          
-		btnStudentResultGetGradeCourse.setBounds(628, 161, 131, 23);
+		btnStudentResultGetGradeCourse.setBounds(628, 161, 184, 23);
 		panel_11.add(btnStudentResultGetGradeCourse);
 		
 		textFieldStudentResultSsn2 = new JTextField();
@@ -1048,7 +1016,7 @@ public class App {
 		panel_11.add(lblGradeForCourse);
 		
 		JLabel lblSystemRespons = new JLabel("System respons:");
-		lblSystemRespons.setBounds(43, 412, 89, 14);
+		lblSystemRespons.setBounds(43, 412, 111, 14);
 		panel_11.add(lblSystemRespons);
 
 		JPanel panel_9 = new JPanel();
