@@ -42,12 +42,14 @@ public class App {
 	private JTable tableSsnStudent;
 	private JTable tableCourseCode;
 	private JTable tableStudentResult;
+	private JTable tableCourseResult;
+	
 	// Default model
-
 	private DefaultTableModel dataModelHighestThroughput;
 	private DefaultTableModel dataModelSsnStudent;
 	private DefaultTableModel dataModelCourseCode;
 	private DefaultTableModel dataModelStudentResult;
+	private DefaultTableModel dataModelCourseResult;
 
 
 	private JScrollPane scrollPaneFindStudent;
@@ -804,18 +806,50 @@ public class App {
 		
 		/*dataModelSsnStudent = new DefaultTableModel();
 		tableSsnStudent = new JTable(dataModelSsnStudent);*/
-		
+		JLabel labelCourseResultResponse = new JLabel("*");
+		labelCourseResultResponse.setBounds(194, 422, 331, 14);
+		panelCourseResult.add(labelCourseResultResponse);
 		
 
 		JButton btnCourseResultGetAllGrades = new JButton("Get all grades");
 		btnCourseResultGetAllGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String courseCode = textFieldCourseResultCourseCode.getText();
+                dataModelHighestThroughput.setRowCount(0);
+                
+                String[] headerCourseResult = {"SSN", "Course Code", "Grades" };
+                dataModelHighestThroughput.setColumnIdentifiers(headerCourseResult);
+                
+                labelCourseResultResponse.setText("");
+                labelCourseResultResponse.setForeground(Color.BLACK);
+                   
+                   try {
+                       
+                       ArrayList<HasStudied> hs = controller.getAllStudentsGradesCourse(courseCode);    
+                   
+                   if (courseCode.isEmpty()) {
+                       
+                       labelCourseResultResponse.setText("All fields must be filled in");
+                       labelCourseResultResponse.setForeground(Color.RED);
+                   
+                   } else if (hs.isEmpty()) {
+                   
+                       labelCourseResultResponse.setText("Course does not have any grades");
+                       labelCourseResultResponse.setForeground(Color.RED);
+                   
+                   } else {
+                      
+                       for (HasStudied temp : hs)
+                       dataModelHighestThroughput.addRow(new Object[]{temp.getSsn(), temp.getCourseCode(), temp.getGrade()});
+                       }
+                   
+                   } catch (SQLException sq) {
+                       // responseLabelRegAdd.setForeground(Color.RED);
+                       // responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
+                   }
+           }
+       });
 				
-				//try {
-					//if (comboBoxCourseResultFeatures)
-				}
-			//}
-		});
 		btnCourseResultGetAllGrades.setBounds(186, 147, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllGrades);
 
@@ -849,7 +883,7 @@ public class App {
 		btnGet.setBounds(606, 147, 89, 23);
 		panelCourseResult.add(btnGet);
 
-		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane();
+		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane(tableCourseResult);
 		scrollPaneCourseResultSearchCourseCode.setBounds(72, 250, 325, 148);
 		panelCourseResult.add(scrollPaneCourseResultSearchCourseCode);
 
@@ -861,27 +895,90 @@ public class App {
 		scrollPaneCourseResultHighestThroughput.setBounds(499, 250, 325, 148);
 		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
 
-		JLabel labelCourseResultRespons = new JLabel("*");
-		labelCourseResultRespons.setBounds(160, 422, 331, 14);
-		panelCourseResult.add(labelCourseResultRespons);
 		
 		JLabel lblSystemRespons_1 = new JLabel("System respons:");
-		lblSystemRespons_1.setBounds(60, 422, 90, 14);
+		lblSystemRespons_1.setBounds(60, 422, 124, 14);
 		panelCourseResult.add(lblSystemRespons_1);
+		
+		dataModelCourseResult = new DefaultTableModel();
+		tableCourseResult = new JTable(dataModelCourseResult);
 		
 		JButton btnCourseResultGetGradePercentage = new JButton("Get grade %");
 		btnCourseResultGetGradePercentage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+			
+			dataModelHighestThroughput.setRowCount(0);// datamodel? scrollPaneCourseResultSearchCourseCode. skapa en private osv.
+		    labelCourseResultResponse.setText("");
+		    String courseCode = textFieldCourseResultCourseCode.getText();
+		    String[] headerShowFlow = { "Grade", "Percentage" };
+		    dataModelHighestThroughput.setColumnIdentifiers(headerShowFlow);
+		    try {
+		    	HashMap<String, String> tmp = controller.getGradePercentage(courseCode);
+		        
+		    	if (courseCode.isEmpty()) {
+		            labelCourseResultResponse.setText("Fill in course code");
+		            labelCourseResultResponse.setForeground(Color.RED);
+		        } else {
+		            
+		            if (tmp.isEmpty()) {
+		                labelCourseResultResponse.setText("The course does not exist or no student have completed the course yet");
+		                labelCourseResultResponse.setForeground(Color.RED);
+		           
+		            } else {
+		                for (Map.Entry<String, String> entry : tmp.entrySet()) {
+		                    //String grade = entry.getKey();
+		                    //String percent = entry.getValue() + "%";
+		                    dataModelHighestThroughput.addRow(new Object[] { entry.getKey(), entry.getValue() + "%" });
+		                }
+		            }
+
+		        }
+		    } catch (SQLException sqlException) {
+		       // labelCourseResult.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
+		    }
+		}
+		}); 
+
 		btnCourseResultGetGradePercentage.setBounds(186, 181, 145, 23);
 		panelCourseResult.add(btnCourseResultGetGradePercentage);
 		
 		JButton btnCourseResultGetAllCurrent = new JButton("Get all current students");
 		btnCourseResultGetAllCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+				
+				String courseCode = textFieldCourseResultCourseCode.getText();
+                dataModelHighestThroughput.setRowCount(0);
+                
+                String [] headerCourseResults = {"Ssn", "Student Name", "Address", "Phone Number"};
+                dataModelHighestThroughput.setColumnIdentifiers(headerCourseResults);
+                
+                labelCourseResultResponse.setText("");
+                labelCourseResultResponse.setForeground(Color.BLACK);
+                try { ArrayList<Student> studiesCourse = controller.getAllStudentsStudiesCourse(courseCode);
+                
+                    if (courseCode.isEmpty()) {
+                        labelCourseResultResponse.setText("Fill in course code");
+                        labelCourseResultResponse.setForeground(Color.RED);
+                        }
+                    
+                    else if (studiesCourse.isEmpty()) {
+                        labelCourseResultResponse.setText("No students are studying the course");
+                        labelCourseResultResponse.setForeground(Color.RED);
+                    
+                    } else {
+                        for (Student temp : studiesCourse) {
+                            dataModelHighestThroughput.addRow(new Object []  { temp.getSsn(), temp.getStudentName(), temp.getAddress( ), temp.getPhoneNumber()});
+                       }
+                    }
+                   }
+                
+                    
+                    catch (SQLException sqlException) {
+                      //labelCourseResultResponse.setText(
+                    }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                    }
+                   });
+           
 		btnCourseResultGetAllCurrent.setBounds(186, 216, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
