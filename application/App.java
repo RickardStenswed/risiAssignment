@@ -1152,7 +1152,7 @@ panel_10.setLayout(null);
 
     JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
     lblSelectQuestionAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
-    lblSelectQuestionAnd.setBounds(29, 91, 364, 14);
+    lblSelectQuestionAnd.setBounds(30, 91, 364, 14);
     panel_10.add(lblSelectQuestionAnd);
     
     JComboBox<String> comboBoxTask3 = new JComboBox<String>();
@@ -1166,8 +1166,8 @@ panel_10.setLayout(null);
     comboBoxTask3.setBounds(78, 128, 268, 31);
     panel_10.add(comboBoxTask3);
     
-    JButton btnExcel = new JButton("Excel");
-    btnExcel.addActionListener(new ActionListener() {
+    JButton btnExcelQuestion = new JButton("Excel");
+    btnExcelQuestion.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent arg0) {
             int index = comboBoxTask3.getSelectedIndex();
             labelTask3Response.setText("");
@@ -1180,12 +1180,12 @@ panel_10.setLayout(null);
             }    
         }
     });
-    btnExcel.setBounds(156, 194, 97, 31);
-    panel_10.add(btnExcel);
+    btnExcelQuestion.setBounds(156, 194, 97, 31);
+    panel_10.add(btnExcelQuestion);
     
     
-    JButton btnAccess = new JButton("Access");
-    btnAccess.addActionListener(new ActionListener() {
+    JButton btnAccessQuestion = new JButton("Access");
+    btnAccessQuestion.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
             int index = comboBoxTask3.getSelectedIndex();
             labelTask3Response.setText("");
@@ -1199,11 +1199,11 @@ panel_10.setLayout(null);
         }
     });
     		    
-    btnAccess.setBounds(49, 194, 97, 31);
-    panel_10.add(btnAccess);
+    btnAccessQuestion.setBounds(49, 194, 97, 31);
+    panel_10.add(btnAccessQuestion);
     
-    JButton btnWord = new JButton("Word");
-    btnWord.addActionListener(new ActionListener() {
+    JButton btnWordQuestion = new JButton("Word");
+    btnWordQuestion.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
             int index = comboBoxTask3.getSelectedIndex();
             labelTask3Response.setText("");
@@ -1217,11 +1217,11 @@ panel_10.setLayout(null);
         }
     });
     	
-    btnWord.setBounds(263, 194, 103, 31);
-    panel_10.add(btnWord);
+    btnWordQuestion.setBounds(263, 194, 103, 31);
+    panel_10.add(btnWordQuestion);
     
-    JButton button = new JButton("Word");
-    button.addActionListener(new ActionListener() {
+    JButton btnWordReportEmployees = new JButton("Word");
+    btnWordReportEmployees.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
   labelTask3Response.setText("");
               
@@ -1233,11 +1233,11 @@ panel_10.setLayout(null);
               }  
     	}
     });
-    button.setBounds(754, 157, 103, 31);
-    panel_10.add(button);
+    btnWordReportEmployees.setBounds(754, 157, 103, 31);
+    panel_10.add(btnWordReportEmployees);
     
-    JButton button_1 = new JButton("Excel");
-    button_1.addActionListener(new ActionListener() {
+    JButton btnExcelReportEmployees = new JButton("Excel");
+    btnExcelReportEmployees.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
   labelTask3Response.setText("");
               
@@ -1249,11 +1249,11 @@ panel_10.setLayout(null);
               }  
     	}
     });
-    button_1.setBounds(620, 157, 97, 31);
-    panel_10.add(button_1);
+    btnExcelReportEmployees.setBounds(620, 157, 97, 31);
+    panel_10.add(btnExcelReportEmployees);
     
-    JButton button_2 = new JButton("Access");
-    button_2.addActionListener(new ActionListener() {
+    JButton btnAccessReportEmployees = new JButton("Access");
+    btnAccessReportEmployees.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
     		
     		  labelTask3Response.setText("");
@@ -1266,11 +1266,11 @@ panel_10.setLayout(null);
               }    
     	}
     });
-    button_2.setBounds(487, 157, 97, 31);
-    panel_10.add(button_2);
+    btnAccessReportEmployees.setBounds(487, 157, 97, 31);
+    panel_10.add(btnAccessReportEmployees);
     
-    JButton button_3 = new JButton("Word");
-    button_3.addActionListener(new ActionListener() {
+    JButton btnWordReportCustomer = new JButton("Word");
+    btnWordReportCustomer.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
   labelTask3Response.setText("");
               
@@ -1282,11 +1282,11 @@ panel_10.setLayout(null);
               }  
     	}
     });
-    button_3.setBounds(754, 294, 103, 31);
-    panel_10.add(button_3);
+    btnWordReportCustomer.setBounds(754, 294, 103, 31);
+    panel_10.add(btnWordReportCustomer);
     
-    JButton button_4 = new JButton("Excel");
-    button_4.addActionListener(new ActionListener() {
+    JButton btnExcelReportCustomer = new JButton("Excel");
+    btnExcelReportCustomer.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
   labelTask3Response.setText("");
               
@@ -1298,11 +1298,11 @@ panel_10.setLayout(null);
               }  
     	}
     });
-    button_4.setBounds(620, 294, 97, 31);
-    panel_10.add(button_4);
+    btnExcelReportCustomer.setBounds(620, 294, 97, 31);
+    panel_10.add(btnExcelReportCustomer);
     
-    JButton button_5 = new JButton("Access");
-    button_5.addActionListener(new ActionListener() {
+    JButton btnAccessReportCustomers = new JButton("Access");
+    btnAccessReportCustomers.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
   labelTask3Response.setText("");
               
@@ -1314,8 +1314,8 @@ panel_10.setLayout(null);
               }  
     	}
     });
-    button_5.setBounds(487, 294, 97, 31);
-    panel_10.add(button_5);
+    btnAccessReportCustomers.setBounds(487, 294, 97, 31);
+    panel_10.add(btnAccessReportCustomers);
     
     JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
     lblChooseProgramTo.setFont(new Font("Tahoma", Font.BOLD, 12));
