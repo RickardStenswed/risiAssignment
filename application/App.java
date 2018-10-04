@@ -43,6 +43,7 @@ public class App {
 	private JTable tableCourseCode;
 	private JTable tableStudentResult;
 	private JTable tableCourseResult;
+	private JTable tableAss2;
 	
 	// Default model
 	private DefaultTableModel dataModelHighestThroughput;
@@ -50,6 +51,7 @@ public class App {
 	private DefaultTableModel dataModelCourseCode;
 	private DefaultTableModel dataModelStudentResult;
 	private DefaultTableModel dataModelCourseResult;
+	private DefaultTableModel dataModelAss2;
 
 	private Controller controller = new Controller();
 	private Controller2 controller2 = new Controller2();
@@ -1089,6 +1091,10 @@ public class App {
 		comboBox_1.setBounds(549, 159, 259, -37);
 		panel_9.add(comboBox_1);*/
 		
+		JLabel labelAss2Response = new JLabel("*");
+		labelAss2Response.setBounds(164, 450, 302, 14);
+		panel_9.add(labelAss2Response);
+		
 		JComboBox <String> comboBoxAss2Metadata = new JComboBox <String>();
 		comboBoxAss2Metadata.addItem("");
 		comboBoxAss2Metadata.addItem("All Keys");
@@ -1102,16 +1108,42 @@ public class App {
 		comboBoxAss2Metadata.setBounds(491, 87, 348, 35);
 		panel_9.add(comboBoxAss2Metadata);
 		
-		JButton btnAss2FindEmployeeTable = new JButton("Find");
+		dataModelAss2 = new DefaultTableModel();
+		tableAss2 = new JTable(dataModelAss2);
+		/*comboBoxAss2EmployeeTable.addItem("Employee");
+		comboBoxAss2EmployeeTable.addItem("Employee Relatives");
+		comboBoxAss2EmployeeTable.addItem("Employee Absence");
+		comboBoxAss2EmployeeTable.addItem("Employee Qualification");
+		comboBoxAss2EmployeeTable.addItem("Statistics Group");
+		comboBoxAss2EmployeeTable.addItem("Portal Setup ");*/
+		
+		JButton btnAss2FindEmployeeTable = new JButton("Get table");
+		btnAss2FindEmployeeTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String chosenTable = (String) comboBoxAss2EmployeeTable.getSelectedItem();
+				dataModelAss2.setRowCount(0);
+				labelAss2Response.setText(null);
+				if (chosenTable.equals("")) {
+					labelAss2Response.setText("Choose a table");
+					labelAss2Response.setForeground(Color.RED);
+				} else {
+					try {
+						if (chosenTable == "Employee" ) //Måste göra controllern
+							
+					}
+				}
+				
+			}
+		});
 		btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
 		panel_9.add(btnAss2FindEmployeeTable);
 		
-		JButton btnFindAss2FindMetadata = new JButton("Find");
-		btnFindAss2FindMetadata.setBounds(491, 146, 89, 23);
+		JButton btnFindAss2FindMetadata = new JButton("Get metadata");
+		btnFindAss2FindMetadata.setBounds(491, 146, 114, 23);
 		panel_9.add(btnFindAss2FindMetadata);
 		
 		JLabel lblSystemResponse_1 = new JLabel("System response:");
-		lblSystemResponse_1.setBounds(31, 450, 122, 14);
+		lblSystemResponse_1.setBounds(31, 450, 114, 14);
 		panel_9.add(lblSystemResponse_1);
 		
 		JScrollPane scrollPaneAssignment2 = new JScrollPane();
