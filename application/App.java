@@ -18,10 +18,6 @@ public class App {
 	private JFrame frame;
 	private JTextField textFieldFindStudentSsn;
 	private JTextField textFieldFindCourseCourseCode;
-	private Controller controller = new Controller();
-	private Controller2 controller2 = new Controller2();
-	private Controller3 controller3 = new Controller3();
-
 	private JTextField textFieldRegStudentSsn;
 	private JTextField textFieldRegStudentName;
 	private JTextField textFieldRegStudentAddress;
@@ -39,6 +35,8 @@ public class App {
 	private JTextField textFieldFindStudentCheckCourseCode;
 	private JTextField textFieldCourseResultCourseCode;
 	private JTextField textFieldStudentResultSsn;
+	private JTextField textFieldStudentResultCourseCode;
+	private JTextField textFieldStudentResultSsn2;
 
 	private JTable tableHighestThroughput;
 	private JTable tableSsnStudent;
@@ -53,11 +51,10 @@ public class App {
 	private DefaultTableModel dataModelStudentResult;
 	private DefaultTableModel dataModelCourseResult;
 
-
-	private JScrollPane scrollPaneFindStudent;
-	private JTextField textFieldStudentResultCourseCode;
-	private JTextField textFieldStudentResultSsn2;
-
+	private Controller controller = new Controller();
+	private Controller2 controller2 = new Controller2();
+	private Controller3 controller3 = new Controller3();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -103,7 +100,7 @@ public class App {
 		JPanel panelRegisterAdd = new JPanel();
 		tabbedPane_1.addTab("Register / Add", null, panelRegisterAdd, null);
 		panelRegisterAdd.setLayout(null);
-
+		
 		JLabel lblNewLabel = new JLabel("Register student");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setBounds(164, 0, 119, 45);
@@ -277,7 +274,6 @@ public class App {
 				}
 			}
 		});
-
 		btnRegCourseDelete.setBounds(270, 371, 89, 23);
 		panelRegisterAdd.add(btnRegCourseDelete);
 
@@ -313,8 +309,7 @@ public class App {
 		lblSemester.setBounds(474, 105, 62, 14);
 		panelRegisterAdd.add(lblSemester);
 		
-		//Button for addying a student
-
+		//Button for adding a student to a ongoing course
 		JButton btnRegStudentStudiesAdd = new JButton("Add");
 		btnRegStudentStudiesAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -323,36 +318,31 @@ public class App {
 				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
 				String semester = textFieldRegStudentStudiesSemester.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
+				
 				try {
 				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
 				
 				} else {
-					
 					controller.addStudentStudies(courseCode, ssn, semester);
 						responseLabelRegAdd.setText("Student registered");
 						responseLabelRegAdd.setForeground(Color.GREEN);
-						
 						textFieldRegStudentStudiesSsn.setText(null);
 						textFieldRegStudentStudiesCourseCode.setText(null);
 						textFieldRegStudentStudiesSemester.setText(null);
-						
 				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
 						// "Studenten"));
 					}
-				
-
 			}
 		});
 		btnRegStudentStudiesAdd.setBounds(561, 140, 89, 23);
 		panelRegisterAdd.add(btnRegStudentStudiesAdd);
 
 		//Button for deleting a student from studies
-		
 		JButton btnRegStudentStudiesDelete = new JButton("Delete");
 		btnRegStudentStudiesDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -360,26 +350,23 @@ public class App {
 				String ssn = textFieldRegStudentStudiesSsn.getText();
 				String courseCode = textFieldRegStudentStudiesCourseCode.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
+				
 				try {
 				if (ssn.isEmpty() || courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("Ssn and Course code must be filled in");
 				} else {
-					
-
 						controller.deleteStudentStudies(courseCode, ssn);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student removed");
 						textFieldRegStudentStudiesSsn.setText(null);
 						textFieldRegStudentStudiesCourseCode.setText(null);
 				}
-				
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
 						// "Studenten"));
 					}
-				
 			}
 		});
 		btnRegStudentStudiesDelete.setBounds(672, 140, 89, 23);
@@ -420,9 +407,8 @@ public class App {
 		JLabel lblGrade_1 = new JLabel("Grade:");
 		lblGrade_1.setBounds(474, 341, 46, 14);
 		panelRegisterAdd.add(lblGrade_1);
-
 		
-		// Button for regestrating a student that has completed a course.
+		// Button to register that a student that has completed a course.
 		JButton btnRegStudentHasStudiedAdd = new JButton("Add");
 		btnRegStudentHasStudiedAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -431,17 +417,13 @@ public class App {
 				String courseCode = textFieldRegStudentHasStudiedCourseCode.getText();
 				String semester = textFieldRegStudentHasStudiedSemester.getText();
 				String grade = (String) comboBoxGrade.getSelectedItem();
-
 				responseLabelRegAdd.setForeground(Color.BLACK);
 				
 				try {
 				if ( courseCode.isEmpty() || ssn.isEmpty() || grade.isEmpty() || semester.isEmpty() ) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
-
-
-				} else {
-					
+				} else {	
 					controller.addStudentHasStudied(courseCode, ssn, grade, semester);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student registered");
@@ -455,7 +437,6 @@ public class App {
 						// "Studenten"));
 					}
 				}
-			
 		});
 		btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
 		panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
@@ -472,6 +453,7 @@ public class App {
 		lblCourseCode.setBounds(60, 248, 94, 14);
 		panelRegisterAdd.add(lblCourseCode);
 
+		//Button to register a new student
 		JButton btnRegStudentAdd = new JButton("Add");
 		btnRegStudentAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -549,17 +531,16 @@ public class App {
 
 		dataModelCourseCode = new DefaultTableModel();
 		tableCourseCode = new JTable(dataModelCourseCode);
-
+		
+		//Button to find a course
 		JButton btnFindCourseFind = new JButton("Find");
 		btnFindCourseFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String courseCode = textFieldFindCourseCourseCode.getText();
-				responseLabelFind.setText(""); // viktigt att responselabelFind (new button delen) sitter ovan denna
-												// metod
+				responseLabelFind.setText("");
 				responseLabelFind.setForeground(Color.BLACK);
-				dataModelCourseCode.setRowCount(0);// datamodelcoursecodecourse heter tabellen, måste skrivas som en
-													// private där uppe
+				dataModelCourseCode.setRowCount(0);
 				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
 				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
 				try {
@@ -583,7 +564,6 @@ public class App {
 					// responseLabelFind.setForeground(Color.RED);
 					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
 					// ""));
-
 				}
 			}
 		});
@@ -595,18 +575,18 @@ public class App {
 		dataModelSsnStudent = new DefaultTableModel();
 		tableSsnStudent = new JTable(dataModelSsnStudent);
 
+		//Button to find a student
 		JButton btnFindStudentFind = new JButton("Find");
 		btnFindStudentFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String ssn = textFieldFindStudentSsn.getText();
-				responseLabelFind.setText(""); // viktigt att responselabelFind (new button delen) sitter ovan denna
-												// metod
+				responseLabelFind.setText("");
 				responseLabelFind.setForeground(Color.BLACK);
-				dataModelSsnStudent.setRowCount(0);// datamodelssnstudent heter tabellen, måste skrivas som en private
-													// där uppe
+				dataModelSsnStudent.setRowCount(0);	
 				String[] headerFindStudent = { "SSN", "Name", "Address", "Phone number" };
 				dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
+				
 				try {
 					if (ssn.isEmpty()) {
 
@@ -649,12 +629,15 @@ public class App {
 		textFieldFindStudentCheckSsn.setColumns(10);
 		textFieldFindStudentCheckSsn.setBounds(301, 78, 86, 20);
 		panelFind.add(textFieldFindStudentCheckSsn);
-
+		
+		//Button to check if a student studies a specific course
 		JButton btnFindStudentCheck = new JButton("Check");
 		btnFindStudentCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String ssn = textFieldFindStudentCheckSsn.getText();
                 String courseCode = textFieldFindStudentCheckCourseCode.getText();
+                
                 try {
                 	Student s = controller.getStudentStudiesCourse(ssn, courseCode);
                     if (ssn.isEmpty()|| courseCode.isEmpty() ){  
@@ -666,16 +649,13 @@ public class App {
                     }  else if (s != null) {
                     	responseLabelFind.setForeground(Color.GREEN);
                         responseLabelFind.setText("The student studies the course");
-                    } else { 
-                    responseLabelFind.setText("");
-                    }
-                    } catch (SQLException sqlException) {
+                    } 
+                  } catch (SQLException sqlException) {
                         //responseLabelFind.setText(
                                 //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     	/*;*/
                     }
-            }}
-                );
+            }} );
 		btnFindStudentCheck.setBounds(301, 160, 89, 23);
 		panelFind.add(btnFindStudentCheck);
 
@@ -692,11 +672,11 @@ public class App {
 		textFieldFindStudentCheckCourseCode.setBounds(301, 109, 86, 20);
 		panelFind.add(textFieldFindStudentCheckCourseCode);
 
-		
-
+		//Button to find all students (extension)
 		JButton btnFindStudentFindAll = new JButton("Find all");
 		btnFindStudentFindAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				responseLabelFind.setText("");
 				responseLabelFind.setForeground(Color.BLACK);
 				dataModelSsnStudent.setRowCount(0);
@@ -704,14 +684,11 @@ public class App {
 				dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
 				
 				try {
-
 					ArrayList<Student> allStudents = controller.getAllStudents();
 					for (Student temp : allStudents) {
 						dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(),
-								temp.getAddress(), temp.getPhoneNumber() });
-
+						temp.getAddress(), temp.getPhoneNumber() });
 					}
-
 				} catch (SQLException sqlException) {
 					// responseLabelFind.setForeground(Color.RED);
 					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
@@ -719,35 +696,33 @@ public class App {
 				}
 			}
 		});
-		
 		btnFindStudentFindAll.setBounds(54, 160, 89, 23);
 		panelFind.add(btnFindStudentFindAll);
 
+		//Button to find all courses (extension)
 		JButton btnFindCourseFindAll = new JButton("Find all");
 		btnFindCourseFindAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//responseLabelFind.setText("All courses collected"); Vara konsekventa med systemrespones. Ska den alltid finnas kvar?
-				//responseLabelFind.setForeground(Color.BLACK);
+				
+				responseLabelFind.setText("All courses collected");
+				responseLabelFind.setForeground(Color.BLACK);
 				dataModelCourseCode.setRowCount(0);
 				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
 				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
+				
 				try {
-
 					ArrayList<Course> allCourses = controller.getAllCourses();
 					for (Course temp : allCourses) {
 						dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(),
 								temp.getCredit() });
-
 					}
-
 				} catch (SQLException sqlException) {
 					// responseLabelFind.setForeground(Color.RED);
 					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
 					// ""));
 				}
 			}
-		});
-				
+		});	
 		btnFindCourseFindAll.setBounds(462, 160, 89, 23);
 		panelFind.add(btnFindCourseFindAll);
 
@@ -755,7 +730,6 @@ public class App {
 		scrollPane.setBounds(86, 358, 301, -134);
 		panelFind.add(scrollPane);
 
-		// kOLLAR OM DENNA LIGGER PÅ RÄTT PLATS
 		JScrollPane scrollPaneFindStudent = new JScrollPane(tableSsnStudent);
 		scrollPaneFindStudent.setBounds(65, 211, 337, 147);
 		panelFind.add(scrollPaneFindStudent);
@@ -786,58 +760,48 @@ public class App {
 		lblCourseCode_5.setBounds(72, 101, 78, 14);
 		panelCourseResult.add(lblCourseCode_5);
 		
-		/*dataModelSsnStudent = new DefaultTableModel();
-		tableSsnStudent = new JTable(dataModelSsnStudent);*/
 		JLabel labelCourseResultResponse = new JLabel("*");
 		labelCourseResultResponse.setBounds(194, 422, 331, 14);
 		panelCourseResult.add(labelCourseResultResponse);
 		
-
+		//Get all grades from a specific student
 		JButton btnCourseResultGetAllGrades = new JButton("Get all grades");
 		btnCourseResultGetAllGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String courseCode = textFieldCourseResultCourseCode.getText();
                 dataModelHighestThroughput.setRowCount(0);
                 
                 String[] headerCourseResult = {"Course Code", "SSN", "Grade", "Semester" };
                 dataModelHighestThroughput.setColumnIdentifiers(headerCourseResult);
-                
                 labelCourseResultResponse.setText("");
                 labelCourseResultResponse.setForeground(Color.BLACK);
                    
-                   try {
-                       
-                       ArrayList<HasStudied> hs = controller.getAllStudentsGradesCourse(courseCode);    
-                   
+                   try {  
+                       ArrayList<HasStudied> hs = controller.getAllStudentsGradesCourse(courseCode);
                    if (courseCode.isEmpty()) {
-                       
                        labelCourseResultResponse.setText("All fields must be filled in");
                        labelCourseResultResponse.setForeground(Color.RED);
-                   
                    } else if (hs.isEmpty()) {
-                   
                        labelCourseResultResponse.setText("Course does not have any grades");
                        labelCourseResultResponse.setForeground(Color.RED);
-                   
                    } else {
-                      
                        for (HasStudied temp : hs)
                        dataModelHighestThroughput.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
                        }
-                   
                    } catch (SQLException sq) {
                        // responseLabelRegAdd.setForeground(Color.RED);
                        // responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
                    }
            }
-       });
-				
+       });		
 		btnCourseResultGetAllGrades.setBounds(186, 147, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllGrades);
 
 		dataModelHighestThroughput = new DefaultTableModel();
 		tableHighestThroughput = new JTable(dataModelHighestThroughput);
-
+		
+		//Button to get highest throughput
 		JButton btnGet = new JButton("Get");
 		btnGet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -861,7 +825,6 @@ public class App {
 				}
 			}
 		});
-
 		btnGet.setBounds(606, 147, 89, 23);
 		panelCourseResult.add(btnGet);
 
@@ -876,7 +839,6 @@ public class App {
 		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane(tableHighestThroughput);
 		scrollPaneCourseResultHighestThroughput.setBounds(499, 250, 325, 148);
 		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
-
 		
 		JLabel lblSystemRespons_1 = new JLabel("System respons:");
 		lblSystemRespons_1.setBounds(60, 422, 124, 14);
@@ -885,27 +847,26 @@ public class App {
 		dataModelCourseResult = new DefaultTableModel();
 		tableCourseResult = new JTable(dataModelCourseResult);
 		
+		//Button to get grade % from a specific course
 		JButton btnCourseResultGetGradePercentage = new JButton("Get grade %");
 		btnCourseResultGetGradePercentage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-			dataModelHighestThroughput.setRowCount(0);// datamodel? scrollPaneCourseResultSearchCourseCode. skapa en private osv.
+			dataModelHighestThroughput.setRowCount(0);
 		    labelCourseResultResponse.setText("");
 		    String courseCode = textFieldCourseResultCourseCode.getText();
 		    String[] headerShowFlow = { "Grade", "Percentage" };
 		    dataModelHighestThroughput.setColumnIdentifiers(headerShowFlow);
+		    
 		    try {
 		    	HashMap<String, String> tmp = controller.getGradePercentage(courseCode);
-		        
 		    	if (courseCode.isEmpty()) {
 		            labelCourseResultResponse.setText("Fill in course code");
 		            labelCourseResultResponse.setForeground(Color.RED);
 		        } else {
-		            
 		            if (tmp.isEmpty()) {
 		                labelCourseResultResponse.setText("The course does not exist or no student have completed the course yet");
 		                labelCourseResultResponse.setForeground(Color.RED);
-		           
 		            } else {
 		                for (Map.Entry<String, String> entry : tmp.entrySet()) {
 		                    //String grade = entry.getKey();
@@ -913,58 +874,48 @@ public class App {
 		                    dataModelHighestThroughput.addRow(new Object[] { entry.getKey(), entry.getValue() + "%" });
 		                }
 		            }
-
 		        }
 		    } catch (SQLException sqlException) {
 		       // labelCourseResult.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
 		    }
 		}
 		}); 
-
 		btnCourseResultGetGradePercentage.setBounds(186, 181, 145, 23);
 		panelCourseResult.add(btnCourseResultGetGradePercentage);
 		
+		//Button to get all current students from a course
 		JButton btnCourseResultGetAllCurrent = new JButton("Get all current students");
 		btnCourseResultGetAllCurrent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String courseCode = textFieldCourseResultCourseCode.getText();
                 dataModelHighestThroughput.setRowCount(0);
-                
                 String [] headerCourseResults = {"Ssn", "Student Name", "Address", "Phone Number"};
                 dataModelHighestThroughput.setColumnIdentifiers(headerCourseResults);
-                
                 labelCourseResultResponse.setText("");
                 labelCourseResultResponse.setForeground(Color.BLACK);
-                try { ArrayList<Student> studiesCourse = controller.getAllStudentsStudiesCourse(courseCode);
                 
+                try { ArrayList<Student> studiesCourse = controller.getAllStudentsStudiesCourse(courseCode);
                     if (courseCode.isEmpty()) {
                         labelCourseResultResponse.setText("Fill in course code");
                         labelCourseResultResponse.setForeground(Color.RED);
                         }
-                    
                     else if (studiesCourse.isEmpty()) {
                         labelCourseResultResponse.setText("No students are studying the course");
                         labelCourseResultResponse.setForeground(Color.RED);
-                    
                     } else {
                         for (Student temp : studiesCourse) {
                             dataModelHighestThroughput.addRow(new Object []  { temp.getSsn(), temp.getStudentName(), temp.getAddress( ), temp.getPhoneNumber()});
                        }
                     }
-                   }
-                
-                    
+                }
                     catch (SQLException sqlException) {
                       //labelCourseResultResponse.setText(
                     }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
-                    }
-                   });
-           
+                    }});
 		btnCourseResultGetAllCurrent.setBounds(186, 216, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
-
 		JPanel panel_11 = new JPanel();
 		tabbedPane_1.addTab("Student result", null, panel_11, null);
 		panel_11.setLayout(null);
@@ -987,8 +938,8 @@ public class App {
 		lblSsn_4.setBounds(43, 54, 46, 14);
 		panel_11.add(lblSsn_4);
 
-		//Method to find all grades a student have
-		JButton btnStudentResultGetGrades = new JButton("Get grades"); //Testing testing testing
+		//Button to find all grades a student have
+		JButton btnStudentResultGetGrades = new JButton("Get grades");
 		btnStudentResultGetGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -999,28 +950,23 @@ public class App {
                 labelStudentResultResponse.setText("");
                 labelStudentResultResponse.setForeground(Color.BLACK);
                 
-                try { ArrayList<HasStudied> hs = controller.getStudentAllGrades(ssn);
-                    
+                try { ArrayList<HasStudied> hs = controller.getStudentAllGrades(ssn);  
                 if (ssn.isEmpty()) {
                         labelStudentResultResponse.setForeground(Color.RED);
                         labelStudentResultResponse.setText("Fill in SSN");
                     }
-                
                     else if (hs.isEmpty())  {
                         labelStudentResultResponse.setText("The student has no grades");
                         labelStudentResultResponse.setForeground(Color.RED);
-                    }
-                    
+                    }  
                     else {
                             for (HasStudied temp : hs)
                             dataModelStudentResult.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
                         }
-                    //Bug in the system, can not get response specificaly if the student does not exist compared to if the student does not study any courses
-                        //Hello, test, test
+                    //Bug in the system, can not get response specifically if the student does not exist compared to if the student does not study any courses
                 }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
                 }
             }});
-		
 		btnStudentResultGetGrades.setBounds(74, 88, 108, 23);
 		panel_11.add(btnStudentResultGetGrades);
 	
@@ -1031,7 +977,7 @@ public class App {
 		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
 		panel_11.add(scrollPaneStudentResult);
 		
-		//Method to find all courses a student currently studies
+		//Button to find all courses a student currently studies
 		JButton btnStudentResultGetCurrentCourses = new JButton("Get current courses");
 		btnStudentResultGetCurrentCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1042,31 +988,25 @@ public class App {
                 dataModelStudentResult.setColumnIdentifiers(headerStudentResult);
                 labelStudentResultResponse.setText("");
                 labelStudentResultResponse.setForeground(Color.BLACK);
+               
                 try { ArrayList<Course> studies = controller.getAllCoursesStudies(ssn);
-                
                     if (ssn.isEmpty()) {
                         labelStudentResultResponse.setText("Fill in SSN");
                         labelStudentResultResponse.setForeground(Color.RED);
-                        }
-                    
+                    }
                     else if (studies.isEmpty()) {
                         labelStudentResultResponse.setText("Student does not study any courses");
                         labelStudentResultResponse.setForeground(Color.RED);
-                    
                     } else {
                         for (Course temp : studies) {
                             dataModelStudentResult.addRow(new Object []  { temp.getCourseCode(), temp.getCourseName(), temp.getCredit()});
                        }
                     }
-                   }
-                
-                    
+                   }    
                     catch (SQLException sqlException) {
                       //lblSearchCourseInfoMessage.setText(
                     }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
-                    }
-                   });
-			
+                    }});	
 		btnStudentResultGetCurrentCourses.setBounds(216, 88, 142, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
@@ -1079,9 +1019,11 @@ public class App {
 		lblCourseCode_6.setBounds(505, 109, 89, 14);
 		panel_11.add(lblCourseCode_6);
 		
+		//Button to find a specific students grade from a specific (finished) course
 		JButton btnStudentResultGetGradeCourse = new JButton("Get grade on course");
 		btnStudentResultGetGradeCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String ssn = textFieldStudentResultSsn2.getText();
                 String courseCode = textFieldStudentResultCourseCode.getText();
                 dataModelStudentResult.setRowCount(0);
@@ -1094,28 +1036,19 @@ public class App {
                     HasStudied s = controller.getStudentGradeCourse(ssn, courseCode);
                     if (ssn.isEmpty()|| courseCode.isEmpty() ){  
                         labelStudentResultResponse.setForeground(Color.RED);
-                        labelStudentResultResponse.setText("Fill in all blanks");
-                    
+                        labelStudentResultResponse.setText("Fill in all blanks"); 
                     } else if  (s == null){
                         labelStudentResultResponse.setForeground(Color.RED);
                             labelStudentResultResponse.setText("The student does not study the course");
                     }  else if (s != null) {
-                       //String studentName = controller.getStudent(s.getSsn()).getStudentName();
-                       // String courseName = controller.getCourse(s.getCourseCode()).getCourseName();
                     	HasStudied st =controller.getStudentGradeCourse(ssn, courseCode);
                         dataModelStudentResult.addRow(new Object[] {st.getSsn(),st.getCourseCode(), st.getSemester(), st.getGrade()});
-                        //labelStudentResultResponse.setText("Hej");
-                    } else {
-                        responseLabelFind.setText("");
-                        }
+                    }
                         } catch (SQLException sqlException) {
                             //responseLabelFind.setText(
-                                    //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
-                            /*;*/
+                                    //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"))
                         }
-                    }}
-                    );
-         
+                    }});
 		btnStudentResultGetGradeCourse.setBounds(628, 161, 184, 23);
 		panel_11.add(btnStudentResultGetGradeCourse);
 		
@@ -1143,194 +1076,194 @@ public class App {
 
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
-panel_10.setLayout(null);
+		panel_10.setLayout(null);
     
     
-    JLabel labelTask3Response = new JLabel("*");
-    labelTask3Response.setBounds(156, 427, 254, 14);
-    panel_10.add(labelTask3Response);
+	    JLabel labelTask3Response = new JLabel("*");
+	    labelTask3Response.setBounds(156, 427, 254, 14);
+	    panel_10.add(labelTask3Response);
+	    
+	
+	    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
+	    lblSelectQuestionAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    lblSelectQuestionAnd.setBounds(30, 91, 364, 14);
+	    panel_10.add(lblSelectQuestionAnd);
+	    
+	    JComboBox<String> comboBoxTask3 = new JComboBox<String>();
+	    comboBoxTask3.addItem("1. How much is 100 NOK?");
+		comboBoxTask3.addItem("2. What value is traded for the most amount of SEK?");
+		comboBoxTask3.addItem("3. At which address and in what city is Fotograferna AB located?");
+		comboBoxTask3.addItem("4. Names of all employees who have been ill/sick.");
+		comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
+		comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
+		comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
+	    comboBoxTask3.setBounds(78, 128, 268, 31);
+	    panel_10.add(comboBoxTask3);
     
-
-    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
-    lblSelectQuestionAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
-    lblSelectQuestionAnd.setBounds(30, 91, 364, 14);
-    panel_10.add(lblSelectQuestionAnd);
+	    JButton btnExcelQuestion = new JButton("Excel");
+	    btnExcelQuestion.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent arg0) {
+	            
+	        	int index = comboBoxTask3.getSelectedIndex();
+	            labelTask3Response.setText("");
+	            String fileName = "Excel" + (index + 1) + ".xlsx";
+	            
+	            try {
+	                controller3.openFile(fileName);
+	            } catch (Exception exception) {
+	            	labelTask3Response.setText("File does not exist");
+	            }    
+	        }
+	    });
+	    btnExcelQuestion.setBounds(156, 194, 97, 31);
+	    panel_10.add(btnExcelQuestion);
     
-    JComboBox<String> comboBoxTask3 = new JComboBox<String>();
-    comboBoxTask3.addItem("1. How much is 100 NOK?");
-	comboBoxTask3.addItem("2. What value is traded for the most amount of SEK?");
-	comboBoxTask3.addItem("3. At which address and in what city is Fotograferna AB located?");
-	comboBoxTask3.addItem("4. Names of all employees who have been ill/sick.");
-	comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
-	comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
-	comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
-    comboBoxTask3.setBounds(78, 128, 268, 31);
-    panel_10.add(comboBoxTask3);
+	    JButton btnAccessQuestion = new JButton("Access");
+	    btnAccessQuestion.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	            
+	    		int index = comboBoxTask3.getSelectedIndex();
+	            labelTask3Response.setText("");
+	            String fileName = "Access" + (index + 1) + ".accdb";
+	            
+	            try {
+	                controller3.openFile(fileName);
+	            } catch (Exception exception) {
+	            	labelTask3Response.setText("File does not exist");
+	            }    
+	        }
+	    });    
+	    btnAccessQuestion.setBounds(49, 194, 97, 31);
+	    panel_10.add(btnAccessQuestion);
     
-    JButton btnExcelQuestion = new JButton("Excel");
-    btnExcelQuestion.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent arg0) {
-            int index = comboBoxTask3.getSelectedIndex();
-            labelTask3Response.setText("");
-            
-            String fileName = "Excel" + (index + 1) + ".xlsx";
-            try {
-                controller3.openFile(fileName);
-            } catch (Exception exception) {
-            	labelTask3Response.setText("File does not exist");
-            }    
-        }
-    });
-    btnExcelQuestion.setBounds(156, 194, 97, 31);
-    panel_10.add(btnExcelQuestion);
-    
-    
-    JButton btnAccessQuestion = new JButton("Access");
-    btnAccessQuestion.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-            int index = comboBoxTask3.getSelectedIndex();
-            labelTask3Response.setText("");
-            
-            String fileName = "Access" + (index + 1) + ".accdb";
-            try {
-                controller3.openFile(fileName);
-            } catch (Exception exception) {
-            	labelTask3Response.setText("File does not exist");
-            }    
-        }
-    });
-    		    
-    btnAccessQuestion.setBounds(49, 194, 97, 31);
-    panel_10.add(btnAccessQuestion);
-    
-    JButton btnWordQuestion = new JButton("Word");
-    btnWordQuestion.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-            int index = comboBoxTask3.getSelectedIndex();
-            labelTask3Response.setText("");
-            
-            String fileName = "Word" + (index + 1) + ".docx";
-            try {
-                controller3.openFile(fileName);
-            } catch (Exception exception) {
-            	labelTask3Response.setText("File does not exist");
-            }    
-        }
-    });
+	    JButton btnWordQuestion = new JButton("Word");
+	    btnWordQuestion.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	            
+	    		int index = comboBoxTask3.getSelectedIndex();
+	            labelTask3Response.setText("");
+	            String fileName = "Word" + (index + 1) + ".docx";
+	            
+	            try {
+	                controller3.openFile(fileName);
+	            } catch (Exception exception) {
+	            	labelTask3Response.setText("File does not exist");
+	            }    
+	        }
+	    });
     	
-    btnWordQuestion.setBounds(263, 194, 103, 31);
-    panel_10.add(btnWordQuestion);
-    
-    JButton btnWordReportEmployees = new JButton("Word");
-    btnWordReportEmployees.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-  labelTask3Response.setText("");
-              
+	    btnWordQuestion.setBounds(263, 194, 103, 31);
+	    panel_10.add(btnWordQuestion);
+	    
+	    JButton btnWordReportEmployees = new JButton("Word");
+	    btnWordReportEmployees.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	labelTask3Response.setText("");  
               String fileName = "EmployeeReportWord" + ".docx";
+              
               try {
                   controller3.openFile(fileName);
               } catch (Exception exception) {
               	labelTask3Response.setText("File does not exist");
               }  
-    	}
-    });
-    btnWordReportEmployees.setBounds(754, 157, 103, 31);
-    panel_10.add(btnWordReportEmployees);
+	    	}
+	    });
+	    btnWordReportEmployees.setBounds(754, 157, 103, 31);
+	    panel_10.add(btnWordReportEmployees);
+	    
+	    JButton btnExcelReportEmployees = new JButton("Excel");
+	    btnExcelReportEmployees.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	labelTask3Response.setText("");
+	              String fileName = "EmployeeReportExcel" + ".xlsx";
+	              
+	              try {
+	                  controller3.openFile(fileName);
+	              } catch (Exception exception) {
+	              	labelTask3Response.setText("File does not exist");
+	              }  
+	    	}
+	    });
+	    btnExcelReportEmployees.setBounds(620, 157, 97, 31);
+	    panel_10.add(btnExcelReportEmployees);
     
-    JButton btnExcelReportEmployees = new JButton("Excel");
-    btnExcelReportEmployees.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-  labelTask3Response.setText("");
-              
-              String fileName = "EmployeeReportExcel" + ".xlsx";
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }  
-    	}
-    });
-    btnExcelReportEmployees.setBounds(620, 157, 97, 31);
-    panel_10.add(btnExcelReportEmployees);
+	    JButton btnAccessReportEmployees = new JButton("Access");
+	    btnAccessReportEmployees.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		  labelTask3Response.setText("");
+	              String fileName = "EmployeeReportAccess" + ".accdb";
+	              
+	              try {
+	                  controller3.openFile(fileName);
+	              } catch (Exception exception) {
+	              	labelTask3Response.setText("File does not exist");
+	              }    
+	    	}
+	    });
+	    btnAccessReportEmployees.setBounds(487, 157, 97, 31);
+	    panel_10.add(btnAccessReportEmployees);
     
-    JButton btnAccessReportEmployees = new JButton("Access");
-    btnAccessReportEmployees.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		
-    		  labelTask3Response.setText("");
-              
-              String fileName = "EmployeeReportAccess" + ".accdb";
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }    
-    	}
-    });
-    btnAccessReportEmployees.setBounds(487, 157, 97, 31);
-    panel_10.add(btnAccessReportEmployees);
-    
-    JButton btnWordReportCustomer = new JButton("Word");
-    btnWordReportCustomer.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-  labelTask3Response.setText("");
-              
-              String fileName = "CustomerReportWord" + ".docx";
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }  
-    	}
-    });
-    btnWordReportCustomer.setBounds(754, 294, 103, 31);
-    panel_10.add(btnWordReportCustomer);
-    
-    JButton btnExcelReportCustomer = new JButton("Excel");
-    btnExcelReportCustomer.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-  labelTask3Response.setText("");
-              
-              String fileName = "CustomerReportExcel" + ".xlsx";
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }  
-    	}
-    });
-    btnExcelReportCustomer.setBounds(620, 294, 97, 31);
-    panel_10.add(btnExcelReportCustomer);
-    
-    JButton btnAccessReportCustomers = new JButton("Access");
-    btnAccessReportCustomers.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-  labelTask3Response.setText("");
-              
-              String fileName = "CustomerReportAccess" + ".accdb";
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }  
-    	}
-    });
-    btnAccessReportCustomers.setBounds(487, 294, 97, 31);
-    panel_10.add(btnAccessReportCustomers);
-    
-    JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
-    lblChooseProgramTo.setFont(new Font("Tahoma", Font.BOLD, 12));
-    lblChooseProgramTo.setBounds(541, 91, 283, 14);
-    panel_10.add(lblChooseProgramTo);
-    
-    JLabel lblChooseProgramTo_1 = new JLabel("Choose program to open file All Customers:");
-    lblChooseProgramTo_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-    lblChooseProgramTo_1.setBounds(567, 247, 268, 14);
-    panel_10.add(lblChooseProgramTo_1);
-    
-    JLabel lblSystemMessage = new JLabel("System response:");
-    lblSystemMessage.setBounds(49, 427, 103, 14);
-    panel_10.add(lblSystemMessage);
+	    JButton btnWordReportCustomer = new JButton("Word");
+	    btnWordReportCustomer.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	labelTask3Response.setText("");
+	              String fileName = "CustomerReportWord" + ".docx";
+	              
+	              try {
+	                  controller3.openFile(fileName);
+	              } catch (Exception exception) {
+	              	labelTask3Response.setText("File does not exist");
+	              }  
+	    	}
+	    });
+	    btnWordReportCustomer.setBounds(754, 294, 103, 31);
+	    panel_10.add(btnWordReportCustomer);
+	    
+	    JButton btnExcelReportCustomer = new JButton("Excel");
+	    btnExcelReportCustomer.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	labelTask3Response.setText("");
+	              String fileName = "CustomerReportExcel" + ".xlsx";
+	              
+	              try {
+	                  controller3.openFile(fileName);
+	              } catch (Exception exception) {
+	              	labelTask3Response.setText("File does not exist");
+	              }  
+	    	}
+	    });
+	    btnExcelReportCustomer.setBounds(620, 294, 97, 31);
+	    panel_10.add(btnExcelReportCustomer);
+		    
+	    JButton btnAccessReportCustomers = new JButton("Access");
+	    btnAccessReportCustomers.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	labelTask3Response.setText("");    
+	              String fileName = "CustomerReportAccess" + ".accdb";
+	              
+	              try {
+	                  controller3.openFile(fileName);
+	              } catch (Exception exception) {
+	              	labelTask3Response.setText("File does not exist");
+	              }  
+	    	}
+	    });
+	    btnAccessReportCustomers.setBounds(487, 294, 97, 31);
+	    panel_10.add(btnAccessReportCustomers);
+		    
+	    JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
+	    lblChooseProgramTo.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    lblChooseProgramTo.setBounds(541, 91, 283, 14);
+	    panel_10.add(lblChooseProgramTo);
+	    
+	    JLabel lblChooseProgramTo_1 = new JLabel("Choose program to open file All Customers:");
+	    lblChooseProgramTo_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+	    lblChooseProgramTo_1.setBounds(567, 247, 268, 14);
+	    panel_10.add(lblChooseProgramTo_1);
+	    
+	    JLabel lblSystemMessage = new JLabel("System response:");
+	    lblSystemMessage.setBounds(49, 427, 103, 14);
+	    panel_10.add(lblSystemMessage);
     
   
 }
