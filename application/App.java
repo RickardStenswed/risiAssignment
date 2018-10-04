@@ -1073,6 +1073,58 @@ public class App {
 		JPanel panel_9 = new JPanel();
 		tabbedPane_2.addTab("Assignment 2", null, panel_9, null);
 		panel_9.setLayout(null);
+		
+		JComboBox <String >comboBoxAss2EmployeeTable = new JComboBox<String>();
+		comboBoxAss2EmployeeTable.addItem("");
+		comboBoxAss2EmployeeTable.addItem("Employee");
+		comboBoxAss2EmployeeTable.addItem("Employee Relatives");
+		comboBoxAss2EmployeeTable.addItem("Employee Absence");
+		comboBoxAss2EmployeeTable.addItem("Employee Qualification");
+		comboBoxAss2EmployeeTable.addItem("Statistics Group");
+		comboBoxAss2EmployeeTable.addItem("Portal Setup ");
+		comboBoxAss2EmployeeTable.setBounds(72, 87, 348, 35);
+		panel_9.add(comboBoxAss2EmployeeTable); //Riley har nån jävla string här inne
+		
+		/*JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(549, 159, 259, -37);
+		panel_9.add(comboBox_1);*/
+		
+		JComboBox <String> comboBoxAss2Metadata = new JComboBox <String>();
+		comboBoxAss2Metadata.addItem("");
+		comboBoxAss2Metadata.addItem("All Keys");
+		comboBoxAss2Metadata.addItem("All Indexes");
+		comboBoxAss2Metadata.addItem("All Constraints");
+		comboBoxAss2Metadata.addItem("All tables in the database: Option 1");
+		comboBoxAss2Metadata.addItem("All tables in the database: Option 2");
+		comboBoxAss2Metadata.addItem("All columns for Employee Table: Option 1");
+		comboBoxAss2Metadata.addItem("All columns for Employee Table: Option 2");
+		comboBoxAss2Metadata.addItem("Table with highest number of rows");
+		comboBoxAss2Metadata.setBounds(491, 87, 348, 35);
+		panel_9.add(comboBoxAss2Metadata);
+		
+		JButton btnAss2FindEmployeeTable = new JButton("Find");
+		btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
+		panel_9.add(btnAss2FindEmployeeTable);
+		
+		JButton btnFindAss2FindMetadata = new JButton("Find");
+		btnFindAss2FindMetadata.setBounds(491, 146, 89, 23);
+		panel_9.add(btnFindAss2FindMetadata);
+		
+		JLabel lblSystemResponse_1 = new JLabel("System response:");
+		lblSystemResponse_1.setBounds(31, 450, 122, 14);
+		panel_9.add(lblSystemResponse_1);
+		
+		JScrollPane scrollPaneAssignment2 = new JScrollPane();
+		scrollPaneAssignment2.setBounds(72, 193, 776, 218);
+		panel_9.add(scrollPaneAssignment2);
+		
+		JLabel lblEmployeeAndRelational = new JLabel("Content of Employee related tables");
+		lblEmployeeAndRelational.setBounds(72, 41, 270, 14);
+		panel_9.add(lblEmployeeAndRelational);
+		
+		JLabel lblMetadataForCronus = new JLabel("Metadata for Employee");
+		lblMetadataForCronus.setBounds(491, 41, 132, 14);
+		panel_9.add(lblMetadataForCronus);
 
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
