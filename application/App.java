@@ -19,6 +19,7 @@ public class App {
 	private JTextField textFieldFindStudentSsn;
 	private JTextField textFieldFindCourseCourseCode;
 	private Controller controller = new Controller();
+	private Controller3 controller3 = new Controller3();
 
 	private JTextField textFieldRegStudentSsn;
 	private JTextField textFieldRegStudentName;
@@ -1141,5 +1142,32 @@ public class App {
 
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
-	}
+	
+	
+	
+	 
+    // *************Uppgift 3*******************
+    
+    
+JLabel lblErrorMessage = new JLabel("Error message:");
+    lblErrorMessage.setBounds(215, 154, 46, 14);
+    panel_10.add(lblErrorMessage);
+    
+    JButton btnTestButton = new JButton("Test Button");
+    btnTestButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent arg0) {
+            
+            lblErrorMessage.setText("");
+            
+            String fileName = "Excel" + ".xlsx";
+            try {
+                controller3.openFile(fileName);
+            } catch (Exception exception) {
+                lblErrorMessage.setText("File does not exist");
+            }    
+        }
+    });
+    btnTestButton.setBounds(274, 137, 89, 23);
+    panel_10.add(btnTestButton);
+}
 }
