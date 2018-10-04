@@ -26,6 +26,7 @@ public class Assignment2DAL {
         return rs;
     }    
     
+    //Method for addying the names of the columns
     public Vector<String> getColumnNames(ResultSet rs) throws SQLException {
 		Vector<String> colNames = new Vector<String>();
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -37,7 +38,7 @@ public class Assignment2DAL {
 		return colNames;
 	}
 
-	// Skapar lägger in resultsettet i tablen
+	//Method for addying resultset i default table
 	public void mapMetaArrayVector(ResultSet rs, DefaultTableModel dtm) throws SQLException {
 		ArrayList<Vector<String>> list = new ArrayList<Vector<String>>();
 		Vector<String> columns = getColumnNames(rs);
@@ -60,14 +61,14 @@ public class Assignment2DAL {
 		
 		
 	}
-	// 1. hämta Qualification
+	// Method for getting the employees qualifications
 		public ResultSet getQualification() throws SQLException {
 			String sqlstring = "SELECT [Employee No_], [Line No_], [Qualification Code], [timestamp], [Employee Status] FROM [CRONUS Sverige AB$Employee Qualification]";
 			ResultSet rs = runExecuteQuery(sqlstring);
 			return rs;
 		}
 
-		// 2.Hämta relatives
+		//Method for getting the relatives for the employees
 		public ResultSet getRelatives() throws SQLException {
 			String sqlstring = "SELECT [timestamp], [Relative Code], [First Name], [Last Name], [Birth Date] FROM [CRONUS Sverige AB$Employee Relative]";
 			ResultSet rs = runExecuteQuery(sqlstring);
@@ -81,21 +82,21 @@ public class Assignment2DAL {
 			return rs;
 		}
 
-		// 4.Hämta absence
+		// Method for getting the data about employee absence
 		public ResultSet getAbsence() throws SQLException {
 			String sqlString = "SELECT [timestamp], [Entry No_], [From Date], [To Date], [Description] FROM [CRONUS Sverige AB$Employee Absence]";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// 5.Hämta Portal Setup
+		// Method for getting portal setup
 		public ResultSet getPortalSetup() throws SQLException {
 			String sqlString = "SELECT [timestamp], [Search Limit], [Temp_ Key Index], [Temp_ Table No_], [Temp_ Option Value] FROM  [CRONUS Sverige AB$Employee Portal Setup]";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// 6.hämta Employee
+		// Method for gettinbg data about the employees
 		public ResultSet getEmployee() throws SQLException {
 			String sqlString = "SELECT [timestamp], [No_], [First Name], [Last Name], [Job Title] FROM [CRONUS Sverige AB$Employee]";
 			ResultSet rs = runExecuteQuery(sqlString);
@@ -104,6 +105,8 @@ public class Assignment2DAL {
 		
 		//___________________________________________________________________________________________________
 		
+		
+		//Method for getting metadata about the employeetable
 		public ResultSet getEmployeeMetaData(DefaultTableModel dtm, String table) throws SQLException {
 			String sqlString = "SELECT [TABLE_CATALOG], [TABLE_SCHEMA], [TABLE_NAME],[ORDINAL_POSITION],[DATA_TYPE] FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee "
 					+ table + "'";
@@ -112,7 +115,7 @@ public class Assignment2DAL {
 		}
 			
 
-		// HÄMTA ALLA KOLUMNER 1
+		//Method for getting metadata about the columns
 		public ResultSet getColumns() throws SQLException {
 			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS where table_name = 'CRONUS Sverige AB$Employee'";
 			ResultSet rs = runExecuteQuery(sqlString);
@@ -120,49 +123,49 @@ public class Assignment2DAL {
 
 		}
 
-		// HÄMTA KOLUMNER 2
+		//Another method for getting metadata about the columns
 		public ResultSet getColumnsTwo() throws SQLException {
 			String sqlString = "SELECT * FROM sys.columns where object_id = object_id('CRONUS Sverige AB$Employee')";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTA ALLA INDEX
+		// Method for getting all indexes
 		public ResultSet getIndex() throws SQLException {
 			String sqlString = "SELECT * FROM sys.indexes";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTA ALLA TABLES 1
+		// Method for getting all the tables
 		public ResultSet getTables() throws SQLException {
 			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTA ALLA TABLES 2
+		// Another method for getting all the tables
 		public ResultSet getTablesTwo() throws SQLException {
 			String sqlString = "SELECT * FROM sys.tables";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTA ALLA CONSTRAINTS
+		// Method for getting all the constraints
 		public ResultSet getConstraints() throws SQLException {
 			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTA TABELLNAMN FRÅN TABELL MED FLEST RADER
+		// Method for getting the table and its name with most rows
 		public ResultSet getTableNameMostRows() throws SQLException {
 			String sqlString = "SELECT top 1 [TableName] = so.name, [RowCount] = max(si.rows) FROM sysobjects so, sysindexes si where so.xtype = 'U' and si.id = object_id(so.name) group by so.name order by 2 desc;";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// HÄMTAR ALLA NYCKLAR
+		// Method for getting all keys
 		public ResultSet getAllKeys() throws SQLException {
 			String sqlString = "SELECT * from sys.key_constraints";
 			ResultSet rs = runExecuteQuery(sqlString);

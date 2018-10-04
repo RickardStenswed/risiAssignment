@@ -78,9 +78,24 @@ public class test {
 		
 	//System.out.println();
 		
+		//Assignement 2 methods working
 		//System.out.println(as2.getEmployee());
-		System.out.println(as2.getAllKeys());
+		//System.out.println(as2.getAllKeys());
+		//System.out.println(as2.getAbsence());
+		//System.out.println(as2.getColumns());
+		//System.out.println(as2.getConstraints());
+		//System.out.println(as2.getColumnsTwo());
+		//System.out.println(as2.getPortalSetup());
+	//System.out.println(as2.getQualification());
+	//System.out.println(as2.getRelatives());
+	//System.out.println(as2.getStatisticsGroup());
+		//System.out.println(as2.getTableNameMostRows());
+		System.out.println(as2.getTablesTwo());
+		System.out.println(as2.getTables());
 		
+		
+		//Assignment 2 methods that needs testing
+		//	System.out.println(as2.getEmployeeMetaData(dtm, table));
 		
 	}
 		
