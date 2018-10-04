@@ -1159,9 +1159,10 @@ JLabel lblErrorMessage = new JLabel("Error message:");
             
             lblErrorMessage.setText("");
             
-            String fileName = "Excel" + ".xlsx";
+            String fileName = "Excel" + ".txt";
             try {
                 controller3.openFile(fileName);
+            
             } catch (Exception exception) {
                 lblErrorMessage.setText("File does not exist");
             }    
