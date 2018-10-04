@@ -19,6 +19,7 @@ public class App {
 	private JTextField textFieldFindStudentSsn;
 	private JTextField textFieldFindCourseCourseCode;
 	private Controller controller = new Controller();
+	private Controller2 controller2 = new Controller2();
 	private Controller3 controller3 = new Controller3();
 
 	private JTextField textFieldRegStudentSsn;
