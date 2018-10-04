@@ -15,6 +15,7 @@ public class test {
 		StudentDAL sDAL = new StudentDAL();
 		HasStudiedDAL hsDAL = new HasStudiedDAL();
 		StudiesDAL csDAL = new StudiesDAL();
+		Assignment2DAL as2 = new Assignment2DAL();
 	
 		//	T
 	
@@ -76,6 +77,11 @@ public class test {
 		//System.out.println(hsDAL.getHighestThroughput());
 		
 	//System.out.println();
+		
+		//System.out.println(as2.getEmployee());
+		System.out.println(as2.getAllKeys());
+		
+		
 	}
 		
 
