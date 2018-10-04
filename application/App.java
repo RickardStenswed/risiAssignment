@@ -1143,54 +1143,50 @@ public class App {
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
 panel_10.setLayout(null);
-	
-	
-	
-	 
-    // *************Uppgift 3*******************
     
     
-JLabel lblErrorMessage = new JLabel("Error message:");
-    lblErrorMessage.setBounds(567, 434, 73, 14);
-    panel_10.add(lblErrorMessage);
+    JLabel labelTask3Response = new JLabel("*");
+    labelTask3Response.setBounds(156, 427, 254, 14);
+    panel_10.add(labelTask3Response);
     
-    JButton btnTestButton = new JButton("Test Button");
-    btnTestButton.addActionListener(new ActionListener() {
+
+    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
+    lblSelectQuestionAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
+    lblSelectQuestionAnd.setBounds(29, 91, 364, 14);
+    panel_10.add(lblSelectQuestionAnd);
+    
+    JComboBox<String> comboBoxTask3 = new JComboBox<String>();
+    comboBoxTask3.addItem("1. How much is 100 NOK?");
+	comboBoxTask3.addItem("2. What value is traded for the most amount of SEK?");
+	comboBoxTask3.addItem("3. At which address and in what city is Fotograferna AB located?");
+	comboBoxTask3.addItem("4. Names of all employees who have been ill/sick.");
+	comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
+	comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
+	comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
+    comboBoxTask3.setBounds(78, 128, 268, 31);
+    panel_10.add(comboBoxTask3);
+    
+    JButton btnExcel = new JButton("Excel");
+    btnExcel.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent arg0) {
+            int index = comboBoxTask3.getSelectedIndex();
+            labelTask3Response.setText("");
             
-            lblErrorMessage.setText("");
-            
-            String fileName = "Dokument1" + ".txt";
+            String fileName = "Excel" + (index + 1) + ".xlsx";
             try {
                 controller3.openFile(fileName);
-            
             } catch (Exception exception) {
-                lblErrorMessage.setText("File does not exist");
+            	labelTask3Response.setText("File does not exist");
             }    
         }
     });
-    btnTestButton.setBounds(645, 430, 89, 23);
-    panel_10.add(btnTestButton);
+    btnExcel.setBounds(156, 194, 97, 31);
+    panel_10.add(btnExcel);
     
-    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
-    lblSelectQuestionAnd.setBounds(78, 92, 296, 14);
-    panel_10.add(lblSelectQuestionAnd);
-    
-    JComboBox comboBox = new JComboBox();
-    comboBox.setBounds(78, 128, 268, 31);
-    panel_10.add(comboBox);
     
     JButton btnAccess = new JButton("Access");
     btnAccess.setBounds(49, 194, 97, 31);
     panel_10.add(btnAccess);
-    
-    JButton btnExcel = new JButton("Excel");
-    btnExcel.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent arg0) {
-    	}
-    });
-    btnExcel.setBounds(156, 194, 97, 31);
-    panel_10.add(btnExcel);
     
     JButton btnWord = new JButton("Word");
     btnWord.setBounds(263, 194, 103, 31);
@@ -1221,19 +1217,19 @@ JLabel lblErrorMessage = new JLabel("Error message:");
     panel_10.add(button_5);
     
     JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
-    lblChooseProgramTo.setBounds(567, 92, 229, 14);
+    lblChooseProgramTo.setFont(new Font("Tahoma", Font.BOLD, 12));
+    lblChooseProgramTo.setBounds(541, 91, 283, 14);
     panel_10.add(lblChooseProgramTo);
     
     JLabel lblChooseProgramTo_1 = new JLabel("Choose program to open file All Customers:");
-    lblChooseProgramTo_1.setBounds(567, 247, 229, 14);
+    lblChooseProgramTo_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+    lblChooseProgramTo_1.setBounds(567, 247, 268, 14);
     panel_10.add(lblChooseProgramTo_1);
     
-    JLabel lblSystemMessage = new JLabel("System message:");
-    lblSystemMessage.setBounds(49, 427, 119, 14);
+    JLabel lblSystemMessage = new JLabel("System response:");
+    lblSystemMessage.setBounds(49, 427, 103, 14);
     panel_10.add(lblSystemMessage);
     
-    JLabel label_1 = new JLabel("*");
-    label_1.setBounds(156, 427, 254, 14);
-    panel_10.add(label_1);
+  
 }
 }
