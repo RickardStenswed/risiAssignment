@@ -1142,6 +1142,7 @@ public class App {
 
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
+panel_10.setLayout(null);
 	
 	
 	
@@ -1150,7 +1151,7 @@ public class App {
     
     
 JLabel lblErrorMessage = new JLabel("Error message:");
-    lblErrorMessage.setBounds(215, 154, 46, 14);
+    lblErrorMessage.setBounds(567, 434, 73, 14);
     panel_10.add(lblErrorMessage);
     
     JButton btnTestButton = new JButton("Test Button");
@@ -1159,7 +1160,7 @@ JLabel lblErrorMessage = new JLabel("Error message:");
             
             lblErrorMessage.setText("");
             
-            String fileName = "Excel" + ".txt";
+            String fileName = "Dokument1" + ".txt";
             try {
                 controller3.openFile(fileName);
             
@@ -1168,7 +1169,71 @@ JLabel lblErrorMessage = new JLabel("Error message:");
             }    
         }
     });
-    btnTestButton.setBounds(274, 137, 89, 23);
+    btnTestButton.setBounds(645, 430, 89, 23);
     panel_10.add(btnTestButton);
+    
+    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
+    lblSelectQuestionAnd.setBounds(78, 92, 296, 14);
+    panel_10.add(lblSelectQuestionAnd);
+    
+    JComboBox comboBox = new JComboBox();
+    comboBox.setBounds(78, 128, 268, 31);
+    panel_10.add(comboBox);
+    
+    JButton btnAccess = new JButton("Access");
+    btnAccess.setBounds(49, 194, 97, 31);
+    panel_10.add(btnAccess);
+    
+    JButton btnExcel = new JButton("Excel");
+    btnExcel.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent arg0) {
+    	}
+    });
+    btnExcel.setBounds(156, 194, 97, 31);
+    panel_10.add(btnExcel);
+    
+    JButton btnWord = new JButton("Word");
+    btnWord.setBounds(263, 194, 103, 31);
+    panel_10.add(btnWord);
+    
+    JButton button = new JButton("Word");
+    button.setBounds(754, 157, 103, 31);
+    panel_10.add(button);
+    
+    JButton button_1 = new JButton("Excel");
+    button_1.setBounds(620, 157, 97, 31);
+    panel_10.add(button_1);
+    
+    JButton button_2 = new JButton("Access");
+    button_2.setBounds(487, 157, 97, 31);
+    panel_10.add(button_2);
+    
+    JButton button_3 = new JButton("Word");
+    button_3.setBounds(754, 294, 103, 31);
+    panel_10.add(button_3);
+    
+    JButton button_4 = new JButton("Excel");
+    button_4.setBounds(620, 294, 97, 31);
+    panel_10.add(button_4);
+    
+    JButton button_5 = new JButton("Access");
+    button_5.setBounds(487, 294, 97, 31);
+    panel_10.add(button_5);
+    
+    JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
+    lblChooseProgramTo.setBounds(567, 92, 229, 14);
+    panel_10.add(lblChooseProgramTo);
+    
+    JLabel lblChooseProgramTo_1 = new JLabel("Choose program to open file All Customers:");
+    lblChooseProgramTo_1.setBounds(567, 247, 229, 14);
+    panel_10.add(lblChooseProgramTo_1);
+    
+    JLabel lblSystemMessage = new JLabel("System message:");
+    lblSystemMessage.setBounds(49, 427, 119, 14);
+    panel_10.add(lblSystemMessage);
+    
+    JLabel label_1 = new JLabel("*");
+    label_1.setBounds(156, 427, 254, 14);
+    panel_10.add(label_1);
 }
 }
