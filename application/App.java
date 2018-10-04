@@ -1185,34 +1185,135 @@ panel_10.setLayout(null);
     
     
     JButton btnAccess = new JButton("Access");
+    btnAccess.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+            int index = comboBoxTask3.getSelectedIndex();
+            labelTask3Response.setText("");
+            
+            String fileName = "Access" + (index + 1) + ".accdb";
+            try {
+                controller3.openFile(fileName);
+            } catch (Exception exception) {
+            	labelTask3Response.setText("File does not exist");
+            }    
+        }
+    });
+    		    
     btnAccess.setBounds(49, 194, 97, 31);
     panel_10.add(btnAccess);
     
     JButton btnWord = new JButton("Word");
+    btnWord.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+            int index = comboBoxTask3.getSelectedIndex();
+            labelTask3Response.setText("");
+            
+            String fileName = "Word" + (index + 1) + ".docx";
+            try {
+                controller3.openFile(fileName);
+            } catch (Exception exception) {
+            	labelTask3Response.setText("File does not exist");
+            }    
+        }
+    });
+    	
     btnWord.setBounds(263, 194, 103, 31);
     panel_10.add(btnWord);
     
     JButton button = new JButton("Word");
+    button.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+  labelTask3Response.setText("");
+              
+              String fileName = "EmployeeReportWord" + ".docx";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }  
+    	}
+    });
     button.setBounds(754, 157, 103, 31);
     panel_10.add(button);
     
     JButton button_1 = new JButton("Excel");
+    button_1.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+  labelTask3Response.setText("");
+              
+              String fileName = "EmployeeReportExcel" + ".xlsx";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }  
+    	}
+    });
     button_1.setBounds(620, 157, 97, 31);
     panel_10.add(button_1);
     
     JButton button_2 = new JButton("Access");
+    button_2.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		
+    		  labelTask3Response.setText("");
+              
+              String fileName = "EmployeeReportAccess" + ".accdb";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }    
+    	}
+    });
     button_2.setBounds(487, 157, 97, 31);
     panel_10.add(button_2);
     
     JButton button_3 = new JButton("Word");
+    button_3.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+  labelTask3Response.setText("");
+              
+              String fileName = "CustomerReportWord" + ".docx";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }  
+    	}
+    });
     button_3.setBounds(754, 294, 103, 31);
     panel_10.add(button_3);
     
     JButton button_4 = new JButton("Excel");
+    button_4.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+  labelTask3Response.setText("");
+              
+              String fileName = "CustomerReportExcel" + ".xlsx";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }  
+    	}
+    });
     button_4.setBounds(620, 294, 97, 31);
     panel_10.add(button_4);
     
     JButton button_5 = new JButton("Access");
+    button_5.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+  labelTask3Response.setText("");
+              
+              String fileName = "CustomerReportAccess" + ".accdb";
+              try {
+                  controller3.openFile(fileName);
+              } catch (Exception exception) {
+              	labelTask3Response.setText("File does not exist");
+              }  
+    	}
+    });
     button_5.setBounds(487, 294, 97, 31);
     panel_10.add(button_5);
     
