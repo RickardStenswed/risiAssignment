@@ -3,7 +3,7 @@ package errorhandling;
 public class ErrorResponse {
 	
 	public static String getMessageForErrorCode(int errorCode, String prefix) {
-		String code = "Ett annat fel inträffade";
+		String code = "System failure";
 		
 		//Duplicated Primary Key
 		if (errorCode == 2627) {
@@ -19,14 +19,14 @@ public class ErrorResponse {
 		}
 		//Login failed
 		if(errorCode == 18456) {
-			code = "Inloggning till databasen misslyckades";
+			code = "Login to database failed";
 		}
 		//Too long variable
 		if(errorCode == 8152) {
 			code = "För lång variabel";
 		}
 		if(errorCode  == 0) {
-			code = prefix + " har redan läst kursen";
+			code = prefix + " have already studied the course";
 		}
 		return code;
 	}

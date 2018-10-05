@@ -323,9 +323,15 @@ public class App {
 				responseLabelRegAdd.setForeground(Color.BLACK);
 				
 				try {
+					
+					Course c = controller.getCourse(courseCode);
+					
 				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
+				
+				} else if (c == null ) {
+				responseLabelRegAdd.setText("Course does not exist");
 				
 				} else {
 					controller.addStudentStudies(courseCode, ssn, semester);
@@ -338,7 +344,7 @@ public class App {
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
-						 "APAnsfarmor"));
+						 "Student"));
 					}
 			}
 		});
