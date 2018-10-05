@@ -143,7 +143,7 @@ public class App {
 		textFieldRegStudentPhoneNumber.setColumns(10);
 
 		JLabel responseLabelRegAdd = new JLabel("");
-		responseLabelRegAdd.setBounds(164, 417, 295, 14);
+		responseLabelRegAdd.setBounds(164, 417, 585, 14);
 		panelRegisterAdd.add(responseLabelRegAdd);
 
 		JLabel labelErrorMessage = new JLabel("System response:");
@@ -192,25 +192,26 @@ public class App {
 
 				String ssn = textFieldRegStudentSsn.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-
+				
+				try {
+					Student s = controller.getStudent(ssn);
+					ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
+					
 				if (ssn.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("Please enter student ssn");
-				} else {
-					try {
-						controller.deleteStudent(ssn);
-						responseLabelRegAdd.setForeground(Color.GREEN);
-						responseLabelRegAdd.setText("Student removed");
-						textFieldRegStudentSsn.setText(null);
-						textFieldRegStudentName.setText(null);
-						textFieldRegStudentAddress.setText(null);
-						textFieldRegStudentPhoneNumber.setText(null);
+				} else if (s == null){
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Ssn does not exist");
+				} else if (st != null){
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Student is registered on course. Please remove from course first.");
+				}
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						 responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Student"));
 					}
 				}
-			}
 		});
 		btnRegStudentDelete.setBounds(270, 170, 89, 23);
 		panelRegisterAdd.add(btnRegStudentDelete);
@@ -245,7 +246,7 @@ public class App {
 						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
 					}
 				}
 			}
@@ -260,23 +261,28 @@ public class App {
 				String courseCode = textFieldRegCourseCourseCode.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
 
+				try {
+					Course c = controller.getCourse(courseCode);
+					
 				if (courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("Please enter course code");
-				} else {
-					try {
+				} else if (c == null){
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Course code does not exist");
+				} else {	
 						controller.deleteCourse(courseCode);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Course removed");
 						textFieldRegCourseCourseCode.setText(null);
 						textFieldRegCourseName.setText(null);
 						textFieldRegCourseCredits.setText(null);
+				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "HEJ"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
 					
 					}
-				}
 			}
 		});
 		btnRegCourseDelete.setBounds(270, 371, 89, 23);
