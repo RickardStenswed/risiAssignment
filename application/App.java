@@ -143,11 +143,11 @@ public class App {
 		textFieldRegStudentPhoneNumber.setColumns(10);
 
 		JLabel responseLabelRegAdd = new JLabel("");
-		responseLabelRegAdd.setBounds(164, 417, 585, 14);
+		responseLabelRegAdd.setBounds(185, 417, 564, 14);
 		panelRegisterAdd.add(responseLabelRegAdd);
 
 		JLabel labelErrorMessage = new JLabel("System response:");
-		labelErrorMessage.setBounds(60, 417, 94, 14);
+		labelErrorMessage.setBounds(60, 417, 113, 14);
 		panelRegisterAdd.add(labelErrorMessage);
 
 		JLabel lblName = new JLabel("Name:");
@@ -194,8 +194,6 @@ public class App {
 				responseLabelRegAdd.setForeground(Color.BLACK);
 				
 				try {
-					Student s = controller.getStudent(ssn);
-					//ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
 					
 				if (ssn.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
@@ -798,8 +796,8 @@ public class App {
 		lblCourseCode_5.setBounds(72, 101, 78, 14);
 		panelCourseResult.add(lblCourseCode_5);
 		
-		JLabel labelCourseResultResponse = new JLabel("*");
-		labelCourseResultResponse.setBounds(194, 422, 331, 14);
+		JLabel labelCourseResultResponse = new JLabel("");
+		labelCourseResultResponse.setBounds(172, 422, 353, 14);
 		panelCourseResult.add(labelCourseResultResponse);
 		
 		//Get all grades from a specific student
@@ -833,7 +831,7 @@ public class App {
                    }
            }
        });		
-		btnCourseResultGetAllGrades.setBounds(186, 147, 145, 23);
+		btnCourseResultGetAllGrades.setBounds(180, 147, 160, 23);
 		panelCourseResult.add(btnCourseResultGetAllGrades);
 
 		dataModelHighestThroughput = new DefaultTableModel();
@@ -866,20 +864,16 @@ public class App {
 		btnGet.setBounds(606, 147, 89, 23);
 		panelCourseResult.add(btnGet);
 
-		JScrollPane scrollPaneCourseResultSearchCourseCode = new JScrollPane(tableCourseResult);
-		scrollPaneCourseResultSearchCourseCode.setBounds(72, 250, 325, 148);
-		panelCourseResult.add(scrollPaneCourseResultSearchCourseCode);
-
 		JLabel lblHighestThroughput = new JLabel("Highest throughput:");
 		lblHighestThroughput.setBounds(606, 101, 129, 14);
 		panelCourseResult.add(lblHighestThroughput);
 
 		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane(tableHighestThroughput);
-		scrollPaneCourseResultHighestThroughput.setBounds(499, 250, 325, 148);
+		scrollPaneCourseResultHighestThroughput.setBounds(180, 249, 515, 148);
 		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
 		
 		JLabel lblSystemRespons_1 = new JLabel("System respons:");
-		lblSystemRespons_1.setBounds(60, 422, 124, 14);
+		lblSystemRespons_1.setBounds(60, 422, 104, 14);
 		panelCourseResult.add(lblSystemRespons_1);
 		
 		dataModelCourseResult = new DefaultTableModel();
@@ -917,7 +911,7 @@ public class App {
 		    }
 		}
 		}); 
-		btnCourseResultGetGradePercentage.setBounds(186, 181, 145, 23);
+		btnCourseResultGetGradePercentage.setBounds(180, 181, 160, 23);
 		panelCourseResult.add(btnCourseResultGetGradePercentage);
 		
 		//Button to get all current students from a course
@@ -950,7 +944,7 @@ public class App {
                       labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }
                     }});
-		btnCourseResultGetAllCurrent.setBounds(186, 215, 145, 23);
+		btnCourseResultGetAllCurrent.setBounds(180, 215, 160, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 		JPanel panel_11 = new JPanel();
@@ -967,7 +961,7 @@ public class App {
 		panel_11.add(textFieldStudentResultSsn);
 		textFieldStudentResultSsn.setColumns(10);
 		
-		JLabel labelStudentResultResponse = new JLabel("*");
+		JLabel labelStudentResultResponse = new JLabel("");
 		labelStudentResultResponse.setBounds(164, 406, 313, 20);
 		panel_11.add(labelStudentResultResponse);
 
