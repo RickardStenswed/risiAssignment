@@ -299,12 +299,12 @@ public class App {
 		panelRegisterAdd.add(lblSsn_1);
 
 		textFieldRegStudentStudiesSsn = new JTextField();
-		textFieldRegStudentStudiesSsn.setBounds(561, 40, 136, 20);
+		textFieldRegStudentStudiesSsn.setBounds(561, 40, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentStudiesSsn);
 		textFieldRegStudentStudiesSsn.setColumns(10);
 
 		textFieldRegStudentStudiesCourseCode = new JTextField();
-		textFieldRegStudentStudiesCourseCode.setBounds(561, 71, 136, 20);
+		textFieldRegStudentStudiesCourseCode.setBounds(561, 71, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentStudiesCourseCode);
 		textFieldRegStudentStudiesCourseCode.setColumns(10);
 
@@ -313,7 +313,7 @@ public class App {
 		panelRegisterAdd.add(lblCourseCode_1);
 
 		textFieldRegStudentStudiesSemester = new JTextField();
-		textFieldRegStudentStudiesSemester.setBounds(561, 102, 136, 20);
+		textFieldRegStudentStudiesSemester.setBounds(561, 102, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentStudiesSemester);
 		textFieldRegStudentStudiesSemester.setColumns(10);
 
@@ -414,17 +414,17 @@ public class App {
 		panelRegisterAdd.add(lblRegisterStudentTo_1);
 
 		textFieldRegStudentHasStudiedSsn = new JTextField();
-		textFieldRegStudentHasStudiedSsn.setBounds(561, 245, 136, 20);
+		textFieldRegStudentHasStudiedSsn.setBounds(561, 245, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentHasStudiedSsn);
 		textFieldRegStudentHasStudiedSsn.setColumns(10);
 
 		textFieldRegStudentHasStudiedCourseCode = new JTextField();
-		textFieldRegStudentHasStudiedCourseCode.setBounds(561, 276, 136, 20);
+		textFieldRegStudentHasStudiedCourseCode.setBounds(561, 276, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentHasStudiedCourseCode);
 		textFieldRegStudentHasStudiedCourseCode.setColumns(10);
 
 		textFieldRegStudentHasStudiedSemester = new JTextField();
-		textFieldRegStudentHasStudiedSemester.setBounds(561, 307, 136, 20);
+		textFieldRegStudentHasStudiedSemester.setBounds(561, 307, 127, 20);
 		panelRegisterAdd.add(textFieldRegStudentHasStudiedSemester);
 		textFieldRegStudentHasStudiedSemester.setColumns(10);
 
@@ -771,7 +771,7 @@ public class App {
 		panelFind.add(scrollPaneFindStudent);
 
 		JScrollPane scrollPaneFindCourse = new JScrollPane(tableCourseCode);
-		scrollPaneFindCourse.setBounds(487, 211, 346, 147);
+		scrollPaneFindCourse.setBounds(462, 211, 349, 147);
 		panelFind.add(scrollPaneFindCourse);
 		
 		JLabel lblSystemResponse = new JLabel("System response:");
@@ -788,7 +788,7 @@ public class App {
 		panelCourseResult.add(lblCourseResult);
 
 		textFieldCourseResultCourseCode = new JTextField();
-		textFieldCourseResultCourseCode.setBounds(186, 98, 145, 20);
+		textFieldCourseResultCourseCode.setBounds(180, 98, 89, 20);
 		panelCourseResult.add(textFieldCourseResultCourseCode);
 		textFieldCourseResultCourseCode.setColumns(10);
 
@@ -861,11 +861,11 @@ public class App {
 				}
 			}
 		});
-		btnGet.setBounds(606, 147, 89, 23);
+		btnGet.setBounds(603, 132, 89, 23);
 		panelCourseResult.add(btnGet);
 
 		JLabel lblHighestThroughput = new JLabel("Highest throughput:");
-		lblHighestThroughput.setBounds(606, 101, 129, 14);
+		lblHighestThroughput.setBounds(603, 101, 129, 14);
 		panelCourseResult.add(lblHighestThroughput);
 
 		JScrollPane scrollPaneCourseResultHighestThroughput = new JScrollPane(tableHighestThroughput);
@@ -953,11 +953,11 @@ public class App {
 
 		JLabel lblStudentResult = new JLabel("Student result");
 		lblStudentResult.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblStudentResult.setBounds(150, 16, 100, 14);
+		lblStudentResult.setBounds(377, 16, 100, 14);
 		panel_11.add(lblStudentResult);
 
 		textFieldStudentResultSsn = new JTextField();
-		textFieldStudentResultSsn.setBounds(164, 51, 86, 20);
+		textFieldStudentResultSsn.setBounds(185, 86, 100, 20);
 		panel_11.add(textFieldStudentResultSsn);
 		textFieldStudentResultSsn.setColumns(10);
 		
@@ -966,7 +966,7 @@ public class App {
 		panel_11.add(labelStudentResultResponse);
 
 		JLabel lblSsn_4 = new JLabel("Ssn:");
-		lblSsn_4.setBounds(43, 54, 46, 14);
+		lblSsn_4.setBounds(129, 89, 46, 14);
 		panel_11.add(lblSsn_4);
 
 		//Button to find all grades a student have
@@ -998,14 +998,14 @@ public class App {
                 }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
                 }
             }});
-		btnStudentResultGetGrades.setBounds(74, 88, 108, 23);
+		btnStudentResultGetGrades.setBounds(184, 127, 180, 23);
 		panel_11.add(btnStudentResultGetGrades);
 	
 		dataModelStudentResult = new DefaultTableModel();
 		tableStudentResult = new JTable(dataModelStudentResult);
 		
 		JScrollPane scrollPaneStudentResult = new JScrollPane(tableStudentResult); //Vilken JTable ska in här??
-		scrollPaneStudentResult.setBounds(66, 217, 330, 165);
+		scrollPaneStudentResult.setBounds(184, 214, 544, 165);
 		panel_11.add(scrollPaneStudentResult);
 		
 		//Button to find all courses a student currently studies
@@ -1041,16 +1041,16 @@ public class App {
                     }
 			});
 		
-		btnStudentResultGetCurrentCourses.setBounds(216, 88, 180, 23);
+		btnStudentResultGetCurrentCourses.setBounds(184, 161, 180, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
 		textFieldStudentResultCourseCode = new JTextField();
-		textFieldStudentResultCourseCode.setBounds(673, 106, 86, 20);
+		textFieldStudentResultCourseCode.setBounds(628, 128, 100, 20);
 		panel_11.add(textFieldStudentResultCourseCode);
 		textFieldStudentResultCourseCode.setColumns(10);
 		
 		JLabel lblCourseCode_6 = new JLabel("Course Code");
-		lblCourseCode_6.setBounds(505, 109, 89, 14);
+		lblCourseCode_6.setBounds(546, 131, 81, 14);
 		panel_11.add(lblCourseCode_6);
 		
 		//Button to find a specific students grade from a specific (finished) course
@@ -1082,21 +1082,21 @@ public class App {
                             responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                         }
                     }});
-		btnStudentResultGetGradeCourse.setBounds(628, 161, 184, 23);
+		btnStudentResultGetGradeCourse.setBounds(546, 161, 184, 23);
 		panel_11.add(btnStudentResultGetGradeCourse);
 		
 		textFieldStudentResultSsn2 = new JTextField();
-		textFieldStudentResultSsn2.setBounds(673, 64, 86, 20);
+		textFieldStudentResultSsn2.setBounds(627, 86, 101, 20);
 		panel_11.add(textFieldStudentResultSsn2);
 		textFieldStudentResultSsn2.setColumns(10);
 		
 		JLabel lblSsn_5 = new JLabel("Ssn:");
-		lblSsn_5.setBounds(518, 67, 46, 14);
+		lblSsn_5.setBounds(548, 89, 46, 14);
 		panel_11.add(lblSsn_5);
 		
 		JLabel lblGradeForCourse = new JLabel("Student grade on course");
 		lblGradeForCourse.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGradeForCourse.setBounds(628, 13, 184, 23);
+		lblGradeForCourse.setBounds(593, 40, 184, 23);
 		panel_11.add(lblGradeForCourse);
 		
 		JLabel lblSystemRespons = new JLabel("System respons:");
