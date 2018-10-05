@@ -8,7 +8,7 @@ public class Assignment3DAL {
 	public Assignment3DAL() {
 	}
 		public void openFile(String fileName) throws Exception {
-			String path = "C:\\Users\\Administrator\\";
+			String path = "C:\\Users\\Administrator\\eclipse-workspace\\AssignmentFiles\\";
 			File filePath = new File(path + fileName);
 			Desktop.getDesktop().open(filePath);
 			
