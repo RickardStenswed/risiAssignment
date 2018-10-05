@@ -10,6 +10,8 @@ import java.util.*;
 import model.*;
 import dal.*;
 import controller.*;
+import errorhandling.errorResponse;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,6 +58,7 @@ public class App {
 	private Controller controller = new Controller();
 	private Controller2 controller2 = new Controller2();
 	private Controller3 controller3 = new Controller3();
+	
 	
 	/**
 	 * Launch the application.
@@ -202,8 +205,7 @@ public class App {
 						textFieldRegStudentPhoneNumber.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						 responseLabelRegAdd.setText(errorResponse.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
 					}
 				}
 			}
@@ -270,8 +272,8 @@ public class App {
 						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten")); Hola
+						responseLabelRegAdd.setText(errorResponse.getMessageForErrorCode(sq.getErrorCode(), "HEJ"));
+					
 					}
 				}
 			}
@@ -1187,7 +1189,7 @@ public class App {
 							controller2.updateTableNameMostRows(dataModelAss2);
 						}
 					} catch (SQLException sqlException) {
-						//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
+						//labelAss2Response.setText(errorResponse.getMessageForErrorCode(sqlException.getErrorCode()));
 						
 						
 						
