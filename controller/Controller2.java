@@ -87,11 +87,6 @@ public class Controller2 {
 		ass2DAL.mapMetaArrayVector(rs, dtm);
 	}
 
-	
-
-	
-
-
 	public void updateEmployeeMetaData(DefaultTableModel dtm, String table) throws SQLException {
 		ResultSet rs = ass2DAL.getEmployeeMetaData(dtm, table);
 		ass2DAL.mapMetaArrayVector(rs, dtm);

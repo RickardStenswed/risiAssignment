@@ -1111,12 +1111,6 @@ public class App {
 		dataModelAss2 = new DefaultTableModel();
 		tableAss2 = new JTable(dataModelAss2);
 		
-		comboBoxAss2EmployeeTable.addItem("Employee");
-		comboBoxAss2EmployeeTable.addItem("Employee Relatives");
-		comboBoxAss2EmployeeTable.addItem("Employee Absence");
-		comboBoxAss2EmployeeTable.addItem("Employee Qualification");
-		comboBoxAss2EmployeeTable.addItem("Statistics Group");
-		comboBoxAss2EmployeeTable.addItem("Portal Setup ");
 		
 		JButton btnAss2FindEmployeeTable = new JButton("Get table");
 		btnAss2FindEmployeeTable.addActionListener(new ActionListener() {
@@ -1230,7 +1224,9 @@ public class App {
 				labelAss2Response.setText(null);
 				dataModelAss2.setRowCount(0);
 				if (choosenTableMetaData.equals("")) {
-					labelAss2Response.setText("Choose a table");
+					labelAss2Response.setText("Choose a table for metadata");
+					labelAss2Response.setForeground(Color.RED);
+					
 				} else {
 					try {
 						if (choosenTableMetaData.equals ("Employee")) {
