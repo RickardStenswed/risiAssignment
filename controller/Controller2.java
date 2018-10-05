@@ -47,6 +47,31 @@ public class Controller2 {
 	
 	//Methods for getting metadata
 	
+	public void updateAllKeys(DefaultTableModel dtm) throws SQLException {
+		ResultSet rs = ass2DAL.getAllKeys();
+		ass2DAL.mapMetaArrayVector(rs, dtm);
+	}
+	
+	public void updateIndexes(DefaultTableModel dtm) throws SQLException {
+		ResultSet rs = ass2DAL.getIndex();
+		ass2DAL.mapMetaArrayVector(rs, dtm);
+	}
+	
+	public void updateConstraints(DefaultTableModel dtm) throws SQLException {
+		ResultSet rs = ass2DAL.getConstraints();
+		ass2DAL.mapMetaArrayVector(rs, dtm);
+	}
+	
+	public void updateTables(DefaultTableModel dtm) throws SQLException {
+		ResultSet rs = ass2DAL.getTables();
+		ass2DAL.mapMetaArrayVector(rs, dtm);
+	}
+	
+	public void updateTablesTwo(DefaultTableModel dtm) throws SQLException {
+		ResultSet rs = ass2DAL.getTablesTwo();
+		ass2DAL.mapMetaArrayVector(rs, dtm);
+	}
+	
 	public void updateColumns(DefaultTableModel dtm) throws SQLException {
 		ResultSet rs = ass2DAL.getColumns();
 		ass2DAL.mapMetaArrayVector(rs, dtm);
@@ -56,36 +81,16 @@ public class Controller2 {
 		ResultSet rs = ass2DAL.getColumnsTwo();
 		ass2DAL.mapMetaArrayVector(rs, dtm);
 	}
-
-	public void updateIndexes(DefaultTableModel dtm) throws SQLException {
-		ResultSet rs = ass2DAL.getIndex();
-		ass2DAL.mapMetaArrayVector(rs, dtm);
-	}
-
-	public void updateConstraints(DefaultTableModel dtm) throws SQLException {
-		ResultSet rs = ass2DAL.getConstraints();
-		ass2DAL.mapMetaArrayVector(rs, dtm);
-	}
-
+	
 	public void updateTableNameMostRows(DefaultTableModel dtm) throws SQLException {
 		ResultSet rs = ass2DAL.getTableNameMostRows();
 		ass2DAL.mapMetaArrayVector(rs, dtm);
 	}
 
-	public void updateTables(DefaultTableModel dtm) throws SQLException {
-		ResultSet rs = ass2DAL.getTables();
-		ass2DAL.mapMetaArrayVector(rs, dtm);
-	}
+	
 
-	public void updateTables2(DefaultTableModel dtm) throws SQLException {
-		ResultSet rs = ass2DAL.getTablesTwo();
-		ass2DAL.mapMetaArrayVector(rs, dtm);
-	}
+	
 
-	public void updateAllKeys(DefaultTableModel dtm) throws SQLException {
-		ResultSet rs = ass2DAL.getAllKeys();
-		ass2DAL.mapMetaArrayVector(rs, dtm);
-	}
 
 	public void updateEmployeeMetaData(DefaultTableModel dtm, String table) throws SQLException {
 		ResultSet rs = ass2DAL.getEmployeeMetaData(dtm, table);
