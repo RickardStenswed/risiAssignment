@@ -112,11 +112,13 @@ public class App {
 		panelRegisterAdd.add(lblNewLabel);
 
 		JComboBox<String> comboBoxGrade = new JComboBox<String>();
+		comboBoxGrade.addItem("");
 		comboBoxGrade.addItem("A");
 		comboBoxGrade.addItem("B");
 		comboBoxGrade.addItem("C");
 		comboBoxGrade.addItem("D");
 		comboBoxGrade.addItem("F");
+		comboBoxGrade.addItem("U");
 		comboBoxGrade.setBounds(561, 338, 154, 20);
 		panelRegisterAdd.add(comboBoxGrade);
 
@@ -323,15 +325,20 @@ public class App {
 				responseLabelRegAdd.setForeground(Color.BLACK);
 				
 				try {
-					
+					Student s = controller.getStudent(ssn);
 					Course c = controller.getCourse(courseCode);
 					
 				if (ssn.isEmpty() || courseCode.isEmpty() || semester.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("All fields must be filled in");
+					responseLabelRegAdd.setText("SSN and Course Code must be filled in");
 				
+				} else if (s == null ) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Student does not exist");
+					
 				} else if (c == null ) {
-				responseLabelRegAdd.setText("Course does not exist");
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Course does not exist");
 				
 				} else {
 					controller.addStudentStudies(courseCode, ssn, semester);
@@ -361,15 +368,28 @@ public class App {
 				responseLabelRegAdd.setForeground(Color.BLACK);
 				
 				try {
+					Student s = controller.getStudent(ssn);
+					Course c = controller.getCourse(courseCode);
+					
 				if (ssn.isEmpty() || courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("Ssn and Course code must be filled in");
+					responseLabelRegAdd.setText("SSN and Course Code must be filled in");
+					
+				} else if (s == null) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Student does not exixst");
+					
+				} else if (c == null) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Course does not exixst");
+					
 				} else {
 						controller.deleteStudentStudies(courseCode, ssn);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Student removed");
 						textFieldRegStudentStudiesSsn.setText(null);
 						textFieldRegStudentStudiesCourseCode.setText(null);
+						textFieldRegStudentStudiesSemester.setText(null);
 				}
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
@@ -432,6 +452,7 @@ public class App {
 				if ( courseCode.isEmpty() || ssn.isEmpty() || grade.isEmpty() || semester.isEmpty() ) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
+					
 				} else {	
 					controller.addStudentHasStudied(courseCode, ssn, grade, semester);
 						responseLabelRegAdd.setForeground(Color.GREEN);
@@ -788,7 +809,7 @@ public class App {
                    try {  
                        ArrayList<HasStudied> hs = controller.getAllStudentsGradesCourse(courseCode);
                    if (courseCode.isEmpty()) {
-                       labelCourseResultResponse.setText("All fields must be filled in");
+                       labelCourseResultResponse.setText("Course Code must be filled in");
                        labelCourseResultResponse.setForeground(Color.RED);
                    } else if (hs.isEmpty()) {
                        labelCourseResultResponse.setText("Course does not have any grades");

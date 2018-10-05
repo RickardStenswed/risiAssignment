@@ -14,7 +14,7 @@ public class ErrorResponse {
 			if(prefix == "add course") {
 				code = "Kursen får max ha 45 poäng";
 			}else {
-				code = prefix + " does not exist";
+				code = prefix + " hejaheja";
 			}
 		}
 		//Login failed
