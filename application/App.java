@@ -10,7 +10,7 @@ import java.util.*;
 import model.*;
 import dal.*;
 import controller.*;
-import errorhandling.errorResponse;
+import errorhandling.ErrorResponse;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,7 +103,7 @@ public class App {
 		tabbedPane_2.addTab("Assignment 1", null, tabbedPane_1, null);
 
 		JPanel panelRegisterAdd = new JPanel();
-		tabbedPane_1.addTab("Register / Add", null, panelRegisterAdd, null);
+		tabbedPane_1.addTab("Register / Delete", null, panelRegisterAdd, null);
 		panelRegisterAdd.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Register student");
@@ -205,7 +205,7 @@ public class App {
 						textFieldRegStudentPhoneNumber.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						 responseLabelRegAdd.setText(errorResponse.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+						 responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Student"));
 					}
 				}
 			}
@@ -243,8 +243,7 @@ public class App {
 						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
 					}
 				}
 			}
@@ -272,7 +271,7 @@ public class App {
 						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						responseLabelRegAdd.setText(errorResponse.getMessageForErrorCode(sq.getErrorCode(), "HEJ"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "HEJ"));
 					
 					}
 				}
@@ -338,8 +337,8 @@ public class App {
 				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
+						 "APAnsfarmor"));
 					}
 			}
 		});
@@ -368,8 +367,8 @@ public class App {
 				}
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
+						"Student"));
 					}
 			}
 		});
@@ -437,8 +436,8 @@ public class App {
 				}	
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
+					 "Student"));
 					}
 				}
 		});
@@ -482,8 +481,8 @@ public class App {
 						textFieldRegStudentPhoneNumber.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						// responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
-						// "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
+						"Student"));
 					}
 				}
 			}
@@ -565,9 +564,9 @@ public class App {
 						}
 					}
 				} catch (SQLException sqlException) {
-					// responseLabelFind.setForeground(Color.RED);
-					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
+					responseLabelFind.setForeground(Color.RED);
+					responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(),
+					 ""));
 				}
 			}
 		});
@@ -608,9 +607,9 @@ public class App {
 						}
 					}
 				} catch (SQLException sqlException) {
-					// responseLabelFind.setForeground(Color.RED);
-					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
+					responseLabelFind.setForeground(Color.RED);
+					responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(),
+					""));
 				}
 			}
 		});
@@ -655,8 +654,7 @@ public class App {
                         responseLabelFind.setText("The student studies the course");
                     } 
                   } catch (SQLException sqlException) {
-                        //responseLabelFind.setText(
-                                //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                        responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     	/*;*/
                     }
             }} );
@@ -694,9 +692,9 @@ public class App {
 						temp.getAddress(), temp.getPhoneNumber() });
 					}
 				} catch (SQLException sqlException) {
-					// responseLabelFind.setForeground(Color.RED);
-					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
+					responseLabelFind.setForeground(Color.RED);
+					responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(),
+					""));
 				}
 			}
 		});
@@ -721,9 +719,9 @@ public class App {
 								temp.getCredit() });
 					}
 				} catch (SQLException sqlException) {
-					// responseLabelFind.setForeground(Color.RED);
-					// responseLabelFind.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
+					responseLabelFind.setForeground(Color.RED);
+					responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(),
+				 ""));
 				}
 			}
 		});	
@@ -794,8 +792,8 @@ public class App {
                        dataModelHighestThroughput.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
                        }
                    } catch (SQLException sq) {
-                       // responseLabelRegAdd.setForeground(Color.RED);
-                       // responseLabelRegAdd.setText(ErrorCodeMapper.getMessageForErrorCode(sq.getErrorCode(),
+                       responseLabelRegAdd.setForeground(Color.RED);
+                       responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "vem är här?"));
                    }
            }
        });		
@@ -824,8 +822,8 @@ public class App {
 					}
 				} catch (SQLException sqlException) {
 					sqlException.printStackTrace();
-					// lblShowFlow.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(),
-					// ""));
+					 labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(),
+					""));
 				}
 			}
 		});
@@ -873,14 +871,13 @@ public class App {
 		                labelCourseResultResponse.setForeground(Color.RED);
 		            } else {
 		                for (Map.Entry<String, String> entry : tmp.entrySet()) {
-		                    //String grade = entry.getKey();
-		                    //String percent = entry.getValue() + "%";
+		                    
 		                    dataModelHighestThroughput.addRow(new Object[] { entry.getKey(), entry.getValue() + "%" });
 		                }
 		            }
 		        }
 		    } catch (SQLException sqlException) {
-		       // labelCourseResult.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), ""));
+		       labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), ""));
 		    }
 		}
 		}); 
@@ -914,8 +911,8 @@ public class App {
                     }
                 }
                     catch (SQLException sqlException) {
-                      //labelCourseResultResponse.setText(
-                    }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                      labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                    }
                     }});
 		btnCourseResultGetAllCurrent.setBounds(186, 215, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
@@ -1008,9 +1005,12 @@ public class App {
                     }
                    }    
                     catch (SQLException sqlException) {
-                      //lblSearchCourseInfoMessage.setText(
-                    }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
-                    }});	
+                    labelStudentResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
+                    }
+                
+                    }
+			});
+		
 		btnStudentResultGetCurrentCourses.setBounds(216, 88, 180, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
@@ -1049,8 +1049,7 @@ public class App {
                         dataModelStudentResult.addRow(new Object[] {st.getSsn(),st.getCourseCode(), st.getSemester(), st.getGrade()});
                     }
                         } catch (SQLException sqlException) {
-                            //responseLabelFind.setText(
-                                    //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"))
+                            responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                         }
                     }});
 		btnStudentResultGetGradeCourse.setBounds(628, 161, 184, 23);
@@ -1144,7 +1143,7 @@ public class App {
 								controller2.updatePortalSetup(dataModelAss2);
 						}
 					} catch (SQLException sqlException) {
-						//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
+						labelAss2Response.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "System failure"));
 					}
 			}
 			}
@@ -1237,7 +1236,7 @@ public class App {
 							controller2.updateEmployeeMetaData(dataModelAss2, choosenTableMetaData);
 							}
 						}  catch (SQLException sqlException) {
-							//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
+							labelAss2Response.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "System failure"));
 						}
 					}
 				}

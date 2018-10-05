@@ -1,20 +1,20 @@
 package errorhandling;
 
-public class errorResponse {
+public class ErrorResponse {
 	
 	public static String getMessageForErrorCode(int errorCode, String prefix) {
 		String code = "Ett annat fel inträffade";
 		
 		//Duplicated Primary Key
 		if (errorCode == 2627) {
-			code = prefix + " finns redan registrerad";
+			code = prefix + " is already registred";
 		}
 		//Om personen/kursen ej finns och man försöker lägga till den i Studied/Studies
 		if(errorCode == 547) {
 			if(prefix == "add course") {
 				code = "Kursen får max ha 45 poäng";
 			}else {
-				code = prefix + " finns inte";
+				code = prefix + " does not exist";
 			}
 		}
 		//Login failed
