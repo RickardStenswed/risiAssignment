@@ -108,66 +108,65 @@ public class Assignment2DAL {
 		
 		//Method for getting metadata about the employeetable
 		public ResultSet getEmployeeMetaData(DefaultTableModel dtm, String table) throws SQLException {
-			String sqlString = "SELECT [TABLE_CATALOG], [TABLE_SCHEMA], [TABLE_NAME],[ORDINAL_POSITION],[DATA_TYPE] FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee "
+			String sqlString = "SELECT [TABLE_CATALOG], [TABLE_SCHEMA], [TABLE_NAME],[ORDINAL_POSITION],[DATA_TYPE] FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CRONUS Sverige AB$Employee "
 					+ table + "'";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 			
 
-		//Method for getting metadata about the columns
 		public ResultSet getColumns() throws SQLException {
-			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS where table_name = 'CRONUS Sverige AB$Employee'";
+			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'CRONUS Sverige AB$Employee'";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 
 		}
 
-		//Another method for getting metadata about the columns
+		
 		public ResultSet getColumnsTwo() throws SQLException {
-			String sqlString = "SELECT * FROM sys.columns where object_id = object_id('CRONUS Sverige AB$Employee')";
+			String sqlString = "SELECT * FROM sys.columns WHERE object_id = object_id('CRONUS Sverige AB$Employee')";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Method for getting all indexes
+		
 		public ResultSet getIndex() throws SQLException {
 			String sqlString = "SELECT * FROM sys.indexes";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Method for getting all the tables
+		
 		public ResultSet getTables() throws SQLException {
 			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Another method for getting all the tables
+	
 		public ResultSet getTablesTwo() throws SQLException {
 			String sqlString = "SELECT * FROM sys.tables";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Method for getting all the constraints
+	
 		public ResultSet getConstraints() throws SQLException {
 			String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Method for getting the table and its name with most rows
+		
 		public ResultSet getTableNameMostRows() throws SQLException {
-			String sqlString = "SELECT top 1 [TableName] = so.name, [RowCount] = max(si.rows) FROM sysobjects so, sysindexes si where so.xtype = 'U' and si.id = object_id(so.name) group by so.name order by 2 desc;";
+			String sqlString = "SELECT top 1 [TableName] = so.name, [RowCount] = max(si.rows) FROM sysobjects so, sysindexes si WHERE so.xtype = 'U' AND si.id = object_id(so.name) GROUP BY so.name ORDER BY 2 desc;";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}
 
-		// Method for getting all keys
+		
 		public ResultSet getAllKeys() throws SQLException {
-			String sqlString = "SELECT * from sys.key_constraints";
+			String sqlString = "SELECT * FROM sys.key_constraints";
 			ResultSet rs = runExecuteQuery(sqlString);
 			return rs;
 		}

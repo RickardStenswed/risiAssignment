@@ -1117,10 +1117,10 @@ public class App {
 		comboBoxAss2EmployeeTable.addItem("Statistics Group");
 		comboBoxAss2EmployeeTable.addItem("Portal Setup ");*/
 		
-		JButton btnAss2FindEmployeeTable = new JButton("Get table");
+		/*JButton btnAss2FindEmployeeTable = new JButton("Get table");
 		btnAss2FindEmployeeTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String chosenTable = (String) comboBoxAss2EmployeeTable.getSelectedItem();
+				/*String chosenTable = (String) comboBoxAss2EmployeeTable.getSelectedItem();
 				dataModelAss2.setRowCount(0);
 				labelAss2Response.setText(null);
 				if (chosenTable.equals("")) {
@@ -1134,9 +1134,10 @@ public class App {
 				}
 				
 			}
-		});
-		btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
-		panel_9.add(btnAss2FindEmployeeTable);
+		});*/
+				
+		/*btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
+		panel_9.add(btnAss2FindEmployeeTable);*/
 		
 		JButton btnFindAss2FindMetadata = new JButton("Get metadata");
 		btnFindAss2FindMetadata.setBounds(491, 146, 114, 23);
