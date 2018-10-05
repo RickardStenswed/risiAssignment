@@ -1110,17 +1110,18 @@ public class App {
 		
 		dataModelAss2 = new DefaultTableModel();
 		tableAss2 = new JTable(dataModelAss2);
-		/*comboBoxAss2EmployeeTable.addItem("Employee");
+		
+		comboBoxAss2EmployeeTable.addItem("Employee");
 		comboBoxAss2EmployeeTable.addItem("Employee Relatives");
 		comboBoxAss2EmployeeTable.addItem("Employee Absence");
 		comboBoxAss2EmployeeTable.addItem("Employee Qualification");
 		comboBoxAss2EmployeeTable.addItem("Statistics Group");
-		comboBoxAss2EmployeeTable.addItem("Portal Setup ");*/
+		comboBoxAss2EmployeeTable.addItem("Portal Setup ");
 		
-		/*JButton btnAss2FindEmployeeTable = new JButton("Get table");
+		JButton btnAss2FindEmployeeTable = new JButton("Get table");
 		btnAss2FindEmployeeTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*String chosenTable = (String) comboBoxAss2EmployeeTable.getSelectedItem();
+				String chosenTable = (String) comboBoxAss2EmployeeTable.getSelectedItem();
 				dataModelAss2.setRowCount(0);
 				labelAss2Response.setText(null);
 				if (chosenTable.equals("")) {
@@ -1128,16 +1129,33 @@ public class App {
 					labelAss2Response.setForeground(Color.RED);
 				} else {
 					try {
-						if (chosenTable == "Employee" ) //Måste göra controllern
+						if (chosenTable == "Employee" ) { 
+							controller2.updateEmployee(dataModelAss2);
+						
+						} else if (chosenTable == "Employee Relatives") {
+							controller2.updateRelatives(dataModelAss2);
+						
+						} else if (chosenTable == "Employee Absence") {
+							controller2.updateAbsence(dataModelAss2);
+						
+						} else if (chosenTable == "Employee Qualification") {
+							controller2.updateQualification(dataModelAss2);
+				        
+						} else if (chosenTable == "Statistics Group") {
+							controller2.updateStatisticsGroup(dataModelAss2);
 							
+						} else if (chosenTable == "Portal Setup") {
+								controller2.updatePortalSetup(dataModelAss2);
+						}
+					} catch (SQLException sqlException) {
+						//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
 					}
-				}
-				
 			}
-		});*/
+			}
+		});
 				
-		/*btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
-		panel_9.add(btnAss2FindEmployeeTable);*/
+		btnAss2FindEmployeeTable.setBounds(72, 146, 89, 23);
+		panel_9.add(btnAss2FindEmployeeTable);
 		
 		JButton btnFindAss2FindMetadata = new JButton("Get metadata");
 		btnFindAss2FindMetadata.setBounds(491, 146, 114, 23);
@@ -1147,17 +1165,43 @@ public class App {
 		lblSystemResponse_1.setBounds(31, 450, 114, 14);
 		panel_9.add(lblSystemResponse_1);
 		
-		JScrollPane scrollPaneAssignment2 = new JScrollPane();
+		JScrollPane scrollPaneAssignment2 = new JScrollPane(tableAss2);
 		scrollPaneAssignment2.setBounds(72, 193, 776, 218);
 		panel_9.add(scrollPaneAssignment2);
 		
-		JLabel lblEmployeeAndRelational = new JLabel("Content of Employee related tables");
+		JLabel lblEmployeeAndRelational = new JLabel("Content and metadata of Employee and related tables");
 		lblEmployeeAndRelational.setBounds(72, 41, 270, 14);
 		panel_9.add(lblEmployeeAndRelational);
 		
-		JLabel lblMetadataForCronus = new JLabel("Metadata for Employee");
+		JLabel lblMetadataForCronus = new JLabel("Metadata of Cronus");
 		lblMetadataForCronus.setBounds(491, 41, 132, 14);
 		panel_9.add(lblMetadataForCronus);
+		
+		JButton btnNewButton = new JButton("Get metadata");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String choosenTableMetaData = (String) comboBoxAss2EmployeeTable.getSelectedItem();
+				labelAss2Response.setText(null);
+				dataModelAss2.setRowCount(0);
+				if (choosenTableMetaData.equals("")) {
+					labelAss2Response.setText("Choose a table");
+				} else {
+					try {
+						if (choosenTableMetaData.equals ("Employee")) {
+							controller2.updateEmployeeMetaData(dataModelAss2, "");
+						} else { 
+							controller2.updateEmployeeMetaData(dataModelAss2, choosenTableMetaData);
+							}
+						}  catch (SQLException sqlException) {
+							//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
+						}
+					}
+				}
+				
+			
+		});
+		btnNewButton.setBounds(283, 133, 114, 23);
+		panel_9.add(btnNewButton);
 
 		JPanel panel_10 = new JPanel();
 		tabbedPane_2.addTab("Assignment 3", null, panel_10, null);
