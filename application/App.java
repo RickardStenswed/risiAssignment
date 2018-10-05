@@ -195,17 +195,20 @@ public class App {
 				
 				try {
 					Student s = controller.getStudent(ssn);
-					ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
+					//ArrayList<Course> st = controller.getAllCoursesStudies(ssn);
 					
 				if (ssn.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("Please enter student ssn");
-				} else if (s == null){
-					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("Ssn does not exist");
-				} else if (st != null){
-					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("Student is registered on course. Please remove from course first.");
+				
+				} else {	
+					controller.deleteStudent(ssn);
+					responseLabelRegAdd.setForeground(Color.GREEN);
+					responseLabelRegAdd.setText("Student removed");
+					textFieldRegStudentSsn.setText(null);
+					textFieldRegStudentName.setText(null);
+					textFieldRegStudentAddress.setText(null);
+					textFieldRegStudentPhoneNumber.setText(null);
 				}
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);

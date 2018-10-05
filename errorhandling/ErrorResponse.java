@@ -14,7 +14,7 @@ public class ErrorResponse {
 			if(prefix == "add course") {
 				code = "Kursen får max ha 45 poäng";
 			}else {
-				code = prefix + " can not be deleted";
+				code = prefix + " can not be deleted. " + prefix + " is existing in another table";
 			}
 		}
 		//Login failed
