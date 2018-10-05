@@ -915,7 +915,7 @@ public class App {
                       //labelCourseResultResponse.setText(
                     }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }});
-		btnCourseResultGetAllCurrent.setBounds(173, 216, 174, 23);
+		btnCourseResultGetAllCurrent.setBounds(186, 215, 145, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 		JPanel panel_11 = new JPanel();
@@ -924,7 +924,7 @@ public class App {
 
 		JLabel lblStudentResult = new JLabel("Student result");
 		lblStudentResult.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblStudentResult.setBounds(95, 11, 100, 14);
+		lblStudentResult.setBounds(150, 16, 100, 14);
 		panel_11.add(lblStudentResult);
 
 		textFieldStudentResultSsn = new JTextField();
@@ -1064,8 +1064,8 @@ public class App {
 		panel_11.add(lblSsn_5);
 		
 		JLabel lblGradeForCourse = new JLabel("Student grade on course");
-		lblGradeForCourse.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblGradeForCourse.setBounds(628, 12, 184, 23);
+		lblGradeForCourse.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblGradeForCourse.setBounds(628, 13, 184, 23);
 		panel_11.add(lblGradeForCourse);
 		
 		JLabel lblSystemRespons = new JLabel("System respons:");
