@@ -1158,8 +1158,52 @@ public class App {
 		panel_9.add(btnAss2FindEmployeeTable);
 		
 		JButton btnFindAss2FindMetadata = new JButton("Get metadata");
+		btnFindAss2FindMetadata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String chosenMetadata = (String)comboBoxAss2Metadata.getSelectedItem();
+				labelAss2Response.setText("");
+				dataModelAss2.setRowCount(0);
+				if (chosenMetadata.equals("")) {
+					labelAss2Response.setText("Choose Metadata");
+					labelAss2Response.setForeground(Color.RED);
+				} else {
+					try {
+						if (chosenMetadata == "All Keys") {
+							controller2.updateAllKeys(dataModelAss2);
+							
+						} else if (chosenMetadata == "All Indexes") {
+							controller2.updateIndexes(dataModelAss2);
+							
+						} else if (chosenMetadata == "All Constraints") {
+							controller2.updateConstraints(dataModelAss2);
+							
+						} else if (chosenMetadata == "All tables in the database: Option 1") {
+							controller2.updateTables(dataModelAss2);
+							
+						} else if (chosenMetadata == "All tables in the database: Option 2") {
+							controller2.updateTablesTwo(dataModelAss2);
+							
+						} else if (chosenMetadata == "All columns for Employee Table: Option 1") {
+							controller2.updateColumns(dataModelAss2);
+							
+						} else if (chosenMetadata == "All columns for Employee Table: Option 2") {
+							controller2.updateColumnsTwo(dataModelAss2);
+							
+						} else if (chosenMetadata == "Table with highest number of rows") {
+							controller2.updateTableNameMostRows(dataModelAss2);
+						}
+					} catch (SQLException sqlException) {
+						//labelAss2Response.setText(ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode()));
+						
+						
+						
+					}
+				}
+			}
+		});
 		btnFindAss2FindMetadata.setBounds(491, 146, 114, 23);
 		panel_9.add(btnFindAss2FindMetadata);
+		
 		
 		JLabel lblSystemResponse_1 = new JLabel("System response:");
 		lblSystemResponse_1.setBounds(31, 450, 114, 14);
@@ -1200,7 +1244,7 @@ public class App {
 				
 			
 		});
-		btnNewButton.setBounds(283, 133, 114, 23);
+		btnNewButton.setBounds(189, 146, 114, 23);
 		panel_9.add(btnNewButton);
 
 		JPanel panel_10 = new JPanel();
