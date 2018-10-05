@@ -245,7 +245,7 @@ public class App {
 						textFieldRegCourseCredits.setText(null);
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
-						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Studenten"));
+						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
 					}
 				}
 			}
