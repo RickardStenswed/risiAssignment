@@ -915,7 +915,7 @@ public class App {
                       //labelCourseResultResponse.setText(
                     }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }});
-		btnCourseResultGetAllCurrent.setBounds(186, 216, 145, 23);
+		btnCourseResultGetAllCurrent.setBounds(173, 216, 174, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 		JPanel panel_11 = new JPanel();
@@ -1009,7 +1009,7 @@ public class App {
                       //lblSearchCourseInfoMessage.setText(
                     }         //ErrorCodeMapper.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }});	
-		btnStudentResultGetCurrentCourses.setBounds(216, 88, 142, 23);
+		btnStudentResultGetCurrentCourses.setBounds(216, 88, 180, 23);
 		panel_11.add(btnStudentResultGetCurrentCourses);
 		
 		textFieldStudentResultCourseCode = new JTextField();
