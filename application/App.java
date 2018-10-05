@@ -1214,10 +1214,12 @@ public class App {
 		panel_9.add(scrollPaneAssignment2);
 		
 		JLabel lblEmployeeAndRelational = new JLabel("Content and metadata of Employee and related tables");
-		lblEmployeeAndRelational.setBounds(72, 41, 270, 14);
+		lblEmployeeAndRelational.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEmployeeAndRelational.setBounds(72, 41, 348, 14);
 		panel_9.add(lblEmployeeAndRelational);
 		
 		JLabel lblMetadataForCronus = new JLabel("Metadata of Cronus");
+		lblMetadataForCronus.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblMetadataForCronus.setBounds(491, 41, 132, 14);
 		panel_9.add(lblMetadataForCronus);
 		
@@ -1270,7 +1272,7 @@ public class App {
 		comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
 		comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
 		comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
-	    comboBoxTask3.setBounds(78, 128, 268, 31);
+	    comboBoxTask3.setBounds(30, 128, 268, 31);
 	    panel_10.add(comboBoxTask3);
     
 	    JButton btnExcelQuestion = new JButton("Excel");
@@ -1288,7 +1290,7 @@ public class App {
 	            }    
 	        }
 	    });
-	    btnExcelQuestion.setBounds(156, 194, 97, 31);
+	    btnExcelQuestion.setBounds(160, 194, 97, 31);
 	    panel_10.add(btnExcelQuestion);
     
 	    JButton btnAccessQuestion = new JButton("Access");
@@ -1306,43 +1308,8 @@ public class App {
 	            }    
 	        }
 	    });    
-	    btnAccessQuestion.setBounds(49, 194, 97, 31);
+	    btnAccessQuestion.setBounds(30, 194, 97, 31);
 	    panel_10.add(btnAccessQuestion);
-    
-	    JButton btnWordQuestion = new JButton("Word");
-	    btnWordQuestion.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	            
-	    		int index = comboBoxTask3.getSelectedIndex();
-	            labelTask3Response.setText("");
-	            String fileName = "Word" + (index + 1) + ".docx";
-	            
-	            try {
-	                controller3.openFile(fileName);
-	            } catch (Exception exception) {
-	            	labelTask3Response.setText("File does not exist");
-	            }    
-	        }
-	    });
-    	
-	    btnWordQuestion.setBounds(263, 194, 103, 31);
-	    panel_10.add(btnWordQuestion);
-	    
-	    JButton btnWordReportEmployees = new JButton("Word");
-	    btnWordReportEmployees.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    	labelTask3Response.setText("");  
-              String fileName = "EmployeeReportWord" + ".docx";
-              
-              try {
-                  controller3.openFile(fileName);
-              } catch (Exception exception) {
-              	labelTask3Response.setText("File does not exist");
-              }  
-	    	}
-	    });
-	    btnWordReportEmployees.setBounds(754, 157, 103, 31);
-	    panel_10.add(btnWordReportEmployees);
 	    
 	    JButton btnExcelReportEmployees = new JButton("Excel");
 	    btnExcelReportEmployees.addActionListener(new ActionListener() {
@@ -1357,7 +1324,7 @@ public class App {
 	              }  
 	    	}
 	    });
-	    btnExcelReportEmployees.setBounds(620, 157, 97, 31);
+	    btnExcelReportEmployees.setBounds(672, 140, 97, 31);
 	    panel_10.add(btnExcelReportEmployees);
     
 	    JButton btnAccessReportEmployees = new JButton("Access");
@@ -1373,24 +1340,8 @@ public class App {
 	              }    
 	    	}
 	    });
-	    btnAccessReportEmployees.setBounds(487, 157, 97, 31);
+	    btnAccessReportEmployees.setBounds(541, 140, 97, 31);
 	    panel_10.add(btnAccessReportEmployees);
-    
-	    JButton btnWordReportCustomer = new JButton("Word");
-	    btnWordReportCustomer.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    	labelTask3Response.setText("");
-	              String fileName = "CustomerReportWord" + ".docx";
-	              
-	              try {
-	                  controller3.openFile(fileName);
-	              } catch (Exception exception) {
-	              	labelTask3Response.setText("File does not exist");
-	              }  
-	    	}
-	    });
-	    btnWordReportCustomer.setBounds(754, 294, 103, 31);
-	    panel_10.add(btnWordReportCustomer);
 	    
 	    JButton btnExcelReportCustomer = new JButton("Excel");
 	    btnExcelReportCustomer.addActionListener(new ActionListener() {
@@ -1405,7 +1356,7 @@ public class App {
 	              }  
 	    	}
 	    });
-	    btnExcelReportCustomer.setBounds(620, 294, 97, 31);
+	    btnExcelReportCustomer.setBounds(672, 294, 97, 31);
 	    panel_10.add(btnExcelReportCustomer);
 		    
 	    JButton btnAccessReportCustomers = new JButton("Access");
@@ -1421,7 +1372,7 @@ public class App {
 	              }  
 	    	}
 	    });
-	    btnAccessReportCustomers.setBounds(487, 294, 97, 31);
+	    btnAccessReportCustomers.setBounds(541, 294, 97, 31);
 	    panel_10.add(btnAccessReportCustomers);
 		    
 	    JLabel lblChooseProgramTo = new JLabel("Choose program to open file All Employees:");
@@ -1431,7 +1382,7 @@ public class App {
 	    
 	    JLabel lblChooseProgramTo_1 = new JLabel("Choose program to open file All Customers:");
 	    lblChooseProgramTo_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    lblChooseProgramTo_1.setBounds(567, 247, 268, 14);
+	    lblChooseProgramTo_1.setBounds(541, 248, 268, 14);
 	    panel_10.add(lblChooseProgramTo_1);
 	    
 	    JLabel lblSystemMessage = new JLabel("System response:");
