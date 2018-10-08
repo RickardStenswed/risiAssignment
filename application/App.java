@@ -1029,7 +1029,7 @@ public class App {
 		dataModelStudentResult = new DefaultTableModel();
 		tableStudentResult = new JTable(dataModelStudentResult);
 		
-		JScrollPane scrollPaneStudentResult = new JScrollPane(tableStudentResult); //Vilken JTable ska in här??
+		JScrollPane scrollPaneStudentResult = new JScrollPane(tableStudentResult);
 		scrollPaneStudentResult.setBounds(184, 214, 544, 165);
 		panel_11.add(scrollPaneStudentResult);
 		
@@ -1148,10 +1148,6 @@ public class App {
 		comboBoxAss2EmployeeTable.setBounds(72, 87, 348, 35);
 		panel_9.add(comboBoxAss2EmployeeTable); //Riley har nån jävla string här inne
 		
-		/*JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(549, 159, 259, -37);
-		panel_9.add(comboBox_1);*/
-		
 		JLabel labelAss2Response = new JLabel("");
 		labelAss2Response.setBounds(164, 450, 682, 14);
 		panel_9.add(labelAss2Response);
@@ -1230,6 +1226,7 @@ public class App {
 				String chosenMetadata = (String)comboBoxAss2Metadata.getSelectedItem();
 				labelAss2Response.setText("");
 				dataModelAss2.setRowCount(0);
+				
 				if (chosenMetadata.equals("")) {
 					labelAss2Response.setText("Choose Metadata");
 					labelAss2Response.setForeground(Color.RED);
@@ -1275,11 +1272,7 @@ public class App {
 							labelAss2Response.setText("Metadata collected");
 							labelAss2Response.setForeground(Color.GREEN);
 						}
-					} catch (SQLException sqlException) {
-						//labelAss2Response.setText(errorResponse.getMessageForErrorCode(sqlException.getErrorCode()));
-						
-						
-						
+					} catch (SQLException sqlException) {						
 					}
 				}
 			}
@@ -1312,6 +1305,7 @@ public class App {
 				String choosenTableMetaData = (String) comboBoxAss2EmployeeTable.getSelectedItem();
 				labelAss2Response.setText(null);
 				dataModelAss2.setRowCount(0);
+				
 				if (choosenTableMetaData.equals("")) {
 					labelAss2Response.setText("Choose a table for metadata");
 					labelAss2Response.setForeground(Color.RED);
@@ -1332,8 +1326,6 @@ public class App {
 						}
 					}
 				}
-				
-			
 		});
 		btnNewButton.setBounds(189, 146, 114, 23);
 		panel_9.add(btnNewButton);
