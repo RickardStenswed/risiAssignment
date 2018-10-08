@@ -229,26 +229,33 @@ public class App {
 				String courseName = textFieldRegCourseName.getText();
 				String credit = textFieldRegCourseCredits.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-
+				double cred = Double.parseDouble(credit);
+				cred = Double.parseDouble(credit);
+				
 				if (courseCode.isEmpty() || courseName.isEmpty() || credit.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
+				} else if (cred > 45) {
+					responseLabelRegAdd.setText("Course can not have more than 45 credits");
+					responseLabelRegAdd.setForeground(Color.RED);
+				
 				} else {
 					try {
-
-						double cred = Double.parseDouble(credit);
-						cred = Double.parseDouble(credit);
-
 						controller.addCourse(courseCode, courseName, cred);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Course registered");
 						textFieldRegCourseCourseCode.setText(null);
 						textFieldRegCourseName.setText(null);
 						textFieldRegCourseCredits.setText(null);
+					
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
-					}
+					
+					} catch (NumberFormatException nrE) {
+							responseLabelRegAdd.setForeground(Color.RED);
+							responseLabelRegAdd.setText("Poäng får bara vara siffror och decimaltecken '.'	");
+				}
 				}
 			}
 		});
