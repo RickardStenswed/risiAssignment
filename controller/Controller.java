@@ -3,6 +3,7 @@ package controller;
 import java.util.*;
 import java.sql.*;
 import model.*;
+import utils.ResponseTime;
 import dal.*;
 
 
@@ -13,10 +14,14 @@ public class Controller {
 	HasStudiedDAL hasStudiedDAL = new HasStudiedDAL();
 	StudiesDAL studiesDAL = new StudiesDAL();
 	
+	ResponseTime responseTimer = new ResponseTime();
 	// ADD METHODS
 		
-	public void addStudent(String ssn, String studentName, String address, String phoneNumber) throws SQLException {
+	public void addStudent(String ssn, String studentName, String address, String phoneNumber) throws SQLException { 
+		responseTimer.start();
 		studentDAL.addStudent(ssn, studentName, address, phoneNumber);
+		responseTimer.stop();
+		
 	} 
 	
 	public void addCourse(String courseCode, String courseName, double credit) throws SQLException {
