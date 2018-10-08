@@ -98,7 +98,8 @@ public class StudiesDAL {
 		runExecuteUpdate(sqlString);
 		con.close();
 	}
-
+	
+	// Add a course to a student that a student studies
 	public void addStudentStudies(String courseCode, String ssn, String semester) throws SQLException, RuntimeException {
 		
 		double totCreditsSemester = hasStudiedDAL.controlTotalCreditsSemester(ssn, semester); 

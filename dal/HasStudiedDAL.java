@@ -51,8 +51,7 @@ import connection.DBconnection;
             }
      
         
-        //Gets all students and their grade from a specific course
-        
+        //Gets all students and their grade from a specific course 
         public ArrayList<HasStudied>getAllStudentsGradesCourse (String courseCode)throws SQLException {
             ArrayList<HasStudied> studentsGrades = new ArrayList <HasStudied>();
             String sqlString = "SELECT * FROM HasStudied WHERE courseCode = '" + courseCode + "'";
@@ -71,8 +70,7 @@ import connection.DBconnection;
                     
             }
             
-            //Gets all grades a specific student has
-        
+        //Gets all grades a specific student has
         public ArrayList<HasStudied>getStudentAllGrades (String ssn)throws SQLException {
             ArrayList<HasStudied> studentAllGrades = new ArrayList <HasStudied>();
             String sqlString = "SELECT * FROM HasStudied WHERE ssn = '" + ssn + "'";
@@ -90,8 +88,7 @@ import connection.DBconnection;
             
         }
         
-     // Gets grades % from a certain course
-        
+        // Gets grades % from a certain course
         public HashMap<String, String> getGradePercentage (String courseCode) throws SQLException {
             HashMap<String, String> map = new HashMap<String, String>();
             
@@ -110,7 +107,6 @@ import connection.DBconnection;
         }
         
         //Get top 10 throughput (which courses have the most passed students)
-        
         public HashMap<String, String>getHighestThroughput() throws SQLException {
             HashMap<String, String> map = new HashMap<String, String>();
             
@@ -154,30 +150,30 @@ import connection.DBconnection;
        }
    
         
-    
-    //Register student to a completed course AND eliminates student from the course he or she has ended
-    
-    public void addStudentHasStudied (String courseCode, String ssn, String semester, String grade) throws SQLException, RuntimeException {
-       
-    	double totalCreditThisSemester = controlTotalCreditsSemester(ssn, semester);
-        double credit = courseDAL.getCourse(courseCode).getCredit();
-        double totalCredit = credit + totalCreditThisSemester;
-        
-        //Checking if the student is allowed to take the course (must be less than 45 p)
-        
-        if (totalCredit <=45) {
-            String sqlString = "INSERT INTO HasStudied VALUES ('" + courseCode + "', '" + ssn + "', '" + semester + "', '" + grade + "');";
-            runExecuteUpdate(sqlString);
-            
-            String sqlString2 = "DELETE FROM Studies WHERE ssn = '" + ssn + "' AND courseCode = '" + courseCode + "';";
-            runExecuteUpdate(sqlString2);
-        }
-        else {
-            throw new RuntimeException();
-            
-             }
-         
-        con.close();
-    } }
-
-
+	    
+	    //Register student to a completed course AND eliminates student from the course he or she has ended
+	    
+	    public void addStudentHasStudied (String courseCode, String ssn, String semester, String grade) throws SQLException, RuntimeException {
+	       
+	    	double totalCreditThisSemester = controlTotalCreditsSemester(ssn, semester);
+	        double credit = courseDAL.getCourse(courseCode).getCredit();
+	        double totalCredit = credit + totalCreditThisSemester;
+	        
+	        //Checking if the student is allowed to take the course (must be less than 45 p)
+	        
+	        if (totalCredit <=45) {
+	            String sqlString = "INSERT INTO HasStudied VALUES ('" + courseCode + "', '" + ssn + "', '" + semester + "', '" + grade + "');";
+	            runExecuteUpdate(sqlString);
+	            
+	            String sqlString2 = "DELETE FROM Studies WHERE ssn = '" + ssn + "' AND courseCode = '" + courseCode + "';";
+	            runExecuteUpdate(sqlString2);
+	        }
+	        else {
+	            throw new RuntimeException();
+	            
+	             }
+	         
+	        con.close();
+	    } }
+	
+	
