@@ -143,7 +143,7 @@ public class App {
 		textFieldRegStudentPhoneNumber.setColumns(10);
 
 		JLabel responseLabelRegAdd = new JLabel("");
-		responseLabelRegAdd.setBounds(185, 417, 564, 14);
+		responseLabelRegAdd.setBounds(185, 417, 678, 14);
 		panelRegisterAdd.add(responseLabelRegAdd);
 
 		JLabel labelErrorMessage = new JLabel("System response:");
@@ -391,6 +391,7 @@ public class App {
 				try {
 					Student s = controller.getStudent(ssn);
 					Course c = controller.getCourse(courseCode);
+					Student st = controller.getStudentStudiesCourse(ssn, courseCode);
 					
 				if (ssn.isEmpty() || courseCode.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
@@ -402,7 +403,11 @@ public class App {
 					
 				} else if (c == null) {
 					responseLabelRegAdd.setForeground(Color.RED);
-					responseLabelRegAdd.setText("Course does not exixst");
+					responseLabelRegAdd.setText("Course does not exist");
+					
+				} else if (st == null) {
+					responseLabelRegAdd.setForeground(Color.RED);
+					responseLabelRegAdd.setText("Student is not registered on this course");
 					
 				} else {
 						controller.deleteStudentStudies(courseCode, ssn);
@@ -563,7 +568,7 @@ public class App {
 		panelFind.add(lblCourseCode2);
 
 		JLabel responseLabelFind = new JLabel("");
-		responseLabelFind.setBounds(178, 398, 286, 20);
+		responseLabelFind.setBounds(178, 398, 633, 20);
 		panelFind.add(responseLabelFind);
 
 		textFieldFindStudentSsn = new JTextField();
@@ -670,7 +675,7 @@ public class App {
 		panelFind.add(lblCourseCode_3);
 
 		JLabel lblCheckIfStudent = new JLabel("Check if Student studies a course");
-		lblCheckIfStudent.setBounds(209, 44, 166, 23);
+		lblCheckIfStudent.setBounds(195, 44, 237, 23);
 		panelFind.add(lblCheckIfStudent);
 
 		textFieldFindStudentCheckSsn = new JTextField();
@@ -706,11 +711,11 @@ public class App {
 		panelFind.add(btnFindStudentCheck);
 
 		JLabel label = new JLabel("Ssn:");
-		label.setBounds(209, 81, 46, 14);
+		label.setBounds(195, 81, 46, 14);
 		panelFind.add(label);
 
 		JLabel lblCourseCode_4 = new JLabel("Course code:");
-		lblCourseCode_4.setBounds(209, 112, 71, 14);
+		lblCourseCode_4.setBounds(195, 112, 103, 14);
 		panelFind.add(lblCourseCode_4);
 
 		textFieldFindStudentCheckCourseCode = new JTextField();
@@ -809,7 +814,7 @@ public class App {
 		panelCourseResult.add(lblCourseCode_5);
 		
 		JLabel labelCourseResultResponse = new JLabel("");
-		labelCourseResultResponse.setBounds(172, 422, 353, 14);
+		labelCourseResultResponse.setBounds(172, 422, 688, 14);
 		panelCourseResult.add(labelCourseResultResponse);
 		
 		//Get all grades from a specific student
@@ -845,7 +850,7 @@ public class App {
                    }
            }
        });		
-		btnCourseResultGetAllGrades.setBounds(180, 147, 176, 23);
+		btnCourseResultGetAllGrades.setBounds(180, 132, 176, 23);
 		panelCourseResult.add(btnCourseResultGetAllGrades);
 
 		dataModelHighestThroughput = new DefaultTableModel();
@@ -886,7 +891,7 @@ public class App {
 		scrollPaneCourseResultHighestThroughput.setBounds(180, 249, 515, 148);
 		panelCourseResult.add(scrollPaneCourseResultHighestThroughput);
 		
-		JLabel lblSystemRespons_1 = new JLabel("System respons:");
+		JLabel lblSystemRespons_1 = new JLabel("System response:");
 		lblSystemRespons_1.setBounds(60, 422, 104, 14);
 		panelCourseResult.add(lblSystemRespons_1);
 		
@@ -927,7 +932,7 @@ public class App {
 		    }
 		}
 		}); 
-		btnCourseResultGetGradePercentage.setBounds(180, 181, 176, 23);
+		btnCourseResultGetGradePercentage.setBounds(180, 166, 176, 23);
 		panelCourseResult.add(btnCourseResultGetGradePercentage);
 		
 		//Button to get all current students from a course
@@ -962,7 +967,7 @@ public class App {
                       labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }
                     }});
-		btnCourseResultGetAllCurrent.setBounds(180, 215, 176, 23);
+		btnCourseResultGetAllCurrent.setBounds(180, 200, 176, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 		JPanel panel_11 = new JPanel();
@@ -980,7 +985,7 @@ public class App {
 		textFieldStudentResultSsn.setColumns(10);
 		
 		JLabel labelStudentResultResponse = new JLabel("");
-		labelStudentResultResponse.setBounds(164, 406, 313, 20);
+		labelStudentResultResponse.setBounds(164, 406, 652, 20);
 		panel_11.add(labelStudentResultResponse);
 
 		JLabel lblSsn_4 = new JLabel("Ssn:");
@@ -1124,7 +1129,7 @@ public class App {
 		lblGradeForCourse.setBounds(593, 40, 184, 23);
 		panel_11.add(lblGradeForCourse);
 		
-		JLabel lblSystemRespons = new JLabel("System respons:");
+		JLabel lblSystemRespons = new JLabel("System response:");
 		lblSystemRespons.setBounds(43, 412, 111, 14);
 		panel_11.add(lblSystemRespons);
 
@@ -1147,8 +1152,8 @@ public class App {
 		comboBox_1.setBounds(549, 159, 259, -37);
 		panel_9.add(comboBox_1);*/
 		
-		JLabel labelAss2Response = new JLabel("*");
-		labelAss2Response.setBounds(164, 450, 302, 14);
+		JLabel labelAss2Response = new JLabel("");
+		labelAss2Response.setBounds(164, 450, 682, 14);
 		panel_9.add(labelAss2Response);
 		
 		JComboBox <String> comboBoxAss2Metadata = new JComboBox <String>();
@@ -1181,21 +1186,33 @@ public class App {
 					try {
 						if (chosenTable == "Employee" ) { 
 							controller2.updateEmployee(dataModelAss2);
+							labelAss2Response.setText("Table collected");
+							labelAss2Response.setForeground(Color.GREEN);
 						
 						} else if (chosenTable == "Employee Relatives") {
 							controller2.updateRelatives(dataModelAss2);
+							labelAss2Response.setText("Table collected");
+							labelAss2Response.setForeground(Color.GREEN);
 						
 						} else if (chosenTable == "Employee Absence") {
 							controller2.updateAbsence(dataModelAss2);
+							labelAss2Response.setText("Table collected");
+							labelAss2Response.setForeground(Color.GREEN);
 						
 						} else if (chosenTable == "Employee Qualification") {
 							controller2.updateQualification(dataModelAss2);
+							labelAss2Response.setText("Table collected");
+							labelAss2Response.setForeground(Color.GREEN);
 				        
 						} else if (chosenTable == "Statistics Group") {
 							controller2.updateStatisticsGroup(dataModelAss2);
+							labelAss2Response.setText("Table collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenTable == "Portal Setup") {
 								controller2.updatePortalSetup(dataModelAss2);
+								labelAss2Response.setText("Table collected");
+								labelAss2Response.setForeground(Color.GREEN);
 						}
 					} catch (SQLException sqlException) {
 						labelAss2Response.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "System failure"));
@@ -1220,27 +1237,43 @@ public class App {
 					try {
 						if (chosenMetadata == "All Keys") {
 							controller2.updateAllKeys(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All Indexes") {
 							controller2.updateIndexes(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All Constraints") {
 							controller2.updateConstraints(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All tables in the database: Option 1") {
 							controller2.updateTables(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All tables in the database: Option 2") {
 							controller2.updateTablesTwo(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All columns for Employee Table: Option 1") {
 							controller2.updateColumns(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "All columns for Employee Table: Option 2") {
 							controller2.updateColumnsTwo(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							
 						} else if (chosenMetadata == "Table with highest number of rows") {
 							controller2.updateTableNameMostRows(dataModelAss2);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 						}
 					} catch (SQLException sqlException) {
 						//labelAss2Response.setText(errorResponse.getMessageForErrorCode(sqlException.getErrorCode()));
@@ -1287,8 +1320,12 @@ public class App {
 					try {
 						if (choosenTableMetaData.equals ("Employee")) {
 							controller2.updateEmployeeMetaData(dataModelAss2, "");
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 						} else { 
 							controller2.updateEmployeeMetaData(dataModelAss2, choosenTableMetaData);
+							labelAss2Response.setText("Metadata collected");
+							labelAss2Response.setForeground(Color.GREEN);
 							}
 						}  catch (SQLException sqlException) {
 							labelAss2Response.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "System failure"));
@@ -1306,14 +1343,14 @@ public class App {
 		panel_10.setLayout(null);
     
     
-	    JLabel labelTask3Response = new JLabel("*");
-	    labelTask3Response.setBounds(156, 427, 254, 14);
+	    JLabel labelTask3Response = new JLabel("");
+	    labelTask3Response.setBounds(156, 427, 666, 14);
 	    panel_10.add(labelTask3Response);
 	    
 	
 	    JLabel lblSelectQuestionAnd = new JLabel("Select question and choose a program to open file with");
 	    lblSelectQuestionAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    lblSelectQuestionAnd.setBounds(30, 91, 364, 14);
+	    lblSelectQuestionAnd.setBounds(21, 91, 364, 14);
 	    panel_10.add(lblSelectQuestionAnd);
 	    
 	    JComboBox<String> comboBoxTask3 = new JComboBox<String>();
@@ -1324,7 +1361,7 @@ public class App {
 		comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
 		comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
 		comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
-	    comboBoxTask3.setBounds(30, 128, 436, 31);
+	    comboBoxTask3.setBounds(21, 128, 462, 31);
 	    panel_10.add(comboBoxTask3);
     
 	    JButton btnExcelQuestion = new JButton("Excel");
@@ -1342,7 +1379,7 @@ public class App {
 	            }    
 	        }
 	    });
-	    btnExcelQuestion.setBounds(160, 194, 97, 31);
+	    btnExcelQuestion.setBounds(151, 194, 97, 31);
 	    panel_10.add(btnExcelQuestion);
     
 	    JButton btnAccessQuestion = new JButton("Access");
@@ -1360,7 +1397,7 @@ public class App {
 	            }    
 	        }
 	    });    
-	    btnAccessQuestion.setBounds(30, 194, 97, 31);
+	    btnAccessQuestion.setBounds(21, 194, 97, 31);
 	    panel_10.add(btnAccessQuestion);
 	    
 	    JButton btnExcelReportEmployees = new JButton("Excel");
