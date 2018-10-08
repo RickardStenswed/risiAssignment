@@ -186,6 +186,7 @@ public class App {
 		panelRegisterAdd.add(textFieldRegCourseCredits);
 		textFieldRegCourseCredits.setColumns(10);
 
+		//Button to delete student
 		JButton btnRegStudentDelete = new JButton("Delete");
 		btnRegStudentDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,6 +222,7 @@ public class App {
 		lblCredits.setBounds(60, 310, 46, 14);
 		panelRegisterAdd.add(lblCredits);
 
+		//Button to add course
 		JButton btnRegCourseAdd = new JButton("Add");
 		btnRegCourseAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -229,8 +231,6 @@ public class App {
 				String courseName = textFieldRegCourseName.getText();
 				String credit = textFieldRegCourseCredits.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-				//double cred = Double.parseDouble(credit);
-				//cred = Double.parseDouble(credit);
 				
 				try {
 					double cred = Double.parseDouble(credit);
@@ -245,8 +245,6 @@ public class App {
 					responseLabelRegAdd.setForeground(Color.RED);
 				
 				} else {
-	
-						
 						controller.addCourse(courseCode, courseName, cred);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Course registered");
@@ -268,6 +266,7 @@ public class App {
 		btnRegCourseAdd.setBounds(164, 371, 89, 23);
 		panelRegisterAdd.add(btnRegCourseAdd);
 
+		//Button to delete course
 		JButton btnRegCourseDelete = new JButton("Delete");
 		btnRegCourseDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -295,7 +294,6 @@ public class App {
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
-					
 					}
 			}
 		});
@@ -592,12 +590,11 @@ public class App {
 				dataModelCourseCode.setRowCount(0);
 				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
 				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
+				
 				try {
-					if (courseCode.isEmpty()) {
-						
+					if (courseCode.isEmpty()) {	
 						responseLabelFind.setForeground(Color.RED);
 						responseLabelFind.setText("Fill in blank");
-
 					} else {
 						responseLabelFind.setText(null);
 						Course c = controller.getCourse(courseCode);
@@ -639,9 +636,7 @@ public class App {
 				dataModelSsnStudent.setColumnIdentifiers(headerFindStudent);
 				
 				try {
-					if (ssn.isEmpty()) {
-
-					
+					if (ssn.isEmpty()) {					
 						responseLabelFind.setForeground(Color.RED);
 						responseLabelFind.setText("Fill in blanks");
 					} else {
@@ -705,7 +700,6 @@ public class App {
                     } 
                   } catch (SQLException sqlException) {
                         responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
-                    	/*;*/
                     }
             }} );
 		btnFindStudentCheck.setBounds(301, 160, 89, 23);
@@ -757,7 +751,6 @@ public class App {
 		JButton btnFindCourseFindAll = new JButton("Find all");
 		btnFindCourseFindAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				
 				dataModelCourseCode.setRowCount(0);
 				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
