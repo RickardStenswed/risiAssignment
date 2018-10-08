@@ -229,18 +229,22 @@ public class App {
 				String courseName = textFieldRegCourseName.getText();
 				String credit = textFieldRegCourseCredits.getText();
 				responseLabelRegAdd.setForeground(Color.BLACK);
-				double cred = Double.parseDouble(credit);
-				cred = Double.parseDouble(credit);
+				//double cred = Double.parseDouble(credit);
+				//cred = Double.parseDouble(credit);
 				
 				if (courseCode.isEmpty() || courseName.isEmpty() || credit.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
-				} else if (cred > 45) {
+				//} else if (cred > 45) {
 					responseLabelRegAdd.setText("Course can not have more than 45 credits");
 					responseLabelRegAdd.setForeground(Color.RED);
 				
 				} else {
 					try {
+						
+						double cred = Double.parseDouble(credit);
+						cred = Double.parseDouble(credit);
+						
 						controller.addCourse(courseCode, courseName, cred);
 						responseLabelRegAdd.setForeground(Color.GREEN);
 						responseLabelRegAdd.setText("Course registered");
@@ -487,10 +491,6 @@ public class App {
 		});
 		btnRegStudentHasStudiedAdd.setBounds(561, 371, 89, 23);
 		panelRegisterAdd.add(btnRegStudentHasStudiedAdd);
-
-		JList list = new JList();
-		list.setBounds(392, 276, -50, -41);
-		panelRegisterAdd.add(list);
 
 		JLabel lblSsn = new JLabel("Ssn:");
 		lblSsn.setBounds(60, 43, 46, 14);
@@ -1309,7 +1309,7 @@ public class App {
 		comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
 		comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
 		comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
-	    comboBoxTask3.setBounds(30, 128, 268, 31);
+	    comboBoxTask3.setBounds(30, 128, 345, 31);
 	    panel_10.add(comboBoxTask3);
     
 	    JButton btnExcelQuestion = new JButton("Excel");
