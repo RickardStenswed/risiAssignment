@@ -232,18 +232,20 @@ public class App {
 				//double cred = Double.parseDouble(credit);
 				//cred = Double.parseDouble(credit);
 				
+				try {
+					double cred = Double.parseDouble(credit);
+					cred = Double.parseDouble(credit);
+					
 				if (courseCode.isEmpty() || courseName.isEmpty() || credit.isEmpty()) {
 					responseLabelRegAdd.setForeground(Color.RED);
 					responseLabelRegAdd.setText("All fields must be filled in");
-				//} else if (cred > 45) {
+				
+				} else if (cred > 45) {
 					responseLabelRegAdd.setText("Course can not have more than 45 credits");
 					responseLabelRegAdd.setForeground(Color.RED);
 				
 				} else {
-					try {
-						
-						double cred = Double.parseDouble(credit);
-						cred = Double.parseDouble(credit);
+	
 						
 						controller.addCourse(courseCode, courseName, cred);
 						responseLabelRegAdd.setForeground(Color.GREEN);
@@ -251,17 +253,17 @@ public class App {
 						textFieldRegCourseCourseCode.setText(null);
 						textFieldRegCourseName.setText(null);
 						textFieldRegCourseCredits.setText(null);
-					
+				}
 					} catch (SQLException sq) {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "Course"));
 					
 					} catch (NumberFormatException nrE) {
 							responseLabelRegAdd.setForeground(Color.RED);
-							responseLabelRegAdd.setText("Poäng får bara vara siffror och decimaltecken '.'	");
+							responseLabelRegAdd.setText("Credits can only be numbers and '.'	");
 				}
 				}
-			}
+			
 		});
 		btnRegCourseAdd.setBounds(164, 371, 89, 23);
 		panelRegisterAdd.add(btnRegCourseAdd);
@@ -734,6 +736,8 @@ public class App {
 					for (Student temp : allStudents) {
 						dataModelSsnStudent.addRow(new Object[] { temp.getSsn(), temp.getStudentName(),
 						temp.getAddress(), temp.getPhoneNumber() });
+						responseLabelFind.setText("All Students collected");
+						responseLabelFind.setForeground(Color.GREEN);
 					}
 				} catch (SQLException sqlException) {
 					responseLabelFind.setForeground(Color.RED);
@@ -750,8 +754,7 @@ public class App {
 		btnFindCourseFindAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				responseLabelFind.setText("All courses collected");
-				responseLabelFind.setForeground(Color.BLACK);
+				
 				dataModelCourseCode.setRowCount(0);
 				String[] headerFindCourse = { "Course Code", "Course Name", "Credits" };
 				dataModelCourseCode.setColumnIdentifiers(headerFindCourse);
@@ -761,6 +764,8 @@ public class App {
 					for (Course temp : allCourses) {
 						dataModelCourseCode.addRow(new Object[] { temp.getCourseCode(), temp.getCourseName(),
 								temp.getCredit() });
+						responseLabelFind.setText("All Courses collected");
+						responseLabelFind.setForeground(Color.GREEN);
 					}
 				} catch (SQLException sqlException) {
 					responseLabelFind.setForeground(Color.RED);
