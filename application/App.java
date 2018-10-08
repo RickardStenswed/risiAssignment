@@ -359,6 +359,9 @@ public class App {
 						responseLabelRegAdd.setForeground(Color.RED);
 						responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(),
 						 "Student"));
+					} catch (RuntimeException rtException) {
+						responseLabelRegAdd.setForeground(Color.RED);
+						responseLabelRegAdd.setText("Student is studying to many credits ");
 					}
 			}
 		});
