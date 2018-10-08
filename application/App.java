@@ -604,6 +604,8 @@ public class App {
 						if (c != null) {
 							dataModelCourseCode
 									.addRow(new Object[] { c.getCourseCode(), c.getCourseName(), c.getCredit() });
+							responseLabelFind.setText("Course collected");
+							responseLabelFind.setForeground(Color.GREEN);
 						} else {
 							responseLabelFind.setForeground(Color.RED);
 							responseLabelFind.setText("Course does not exits");
@@ -647,6 +649,8 @@ public class App {
 						Student s = controller.getStudent(ssn);
 						if (s != null) {
 							dataModelSsnStudent.addRow(new Object[] { s.getSsn(), s.getStudentName(), s.getAddress(), s.getPhoneNumber() });
+							responseLabelFind.setText("Student collected");
+							responseLabelFind.setForeground(Color.GREEN);
 						} else {
 							responseLabelFind.setForeground(Color.RED);
 							responseLabelFind.setText("Student does not exists");
@@ -839,14 +843,16 @@ public class App {
                    } else {
                        for (HasStudied temp : hs)
                        dataModelHighestThroughput.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
-                       }
+                       labelCourseResultResponse.setText("All grades collected");
+                       labelCourseResultResponse.setForeground(Color.GREEN);
+                   }
                    } catch (SQLException sq) {
                        responseLabelRegAdd.setForeground(Color.RED);
                        responseLabelRegAdd.setText(ErrorResponse.getMessageForErrorCode(sq.getErrorCode(), "vem är här?"));
                    }
            }
        });		
-		btnCourseResultGetAllGrades.setBounds(180, 147, 160, 23);
+		btnCourseResultGetAllGrades.setBounds(180, 147, 176, 23);
 		panelCourseResult.add(btnCourseResultGetAllGrades);
 
 		dataModelHighestThroughput = new DefaultTableModel();
@@ -918,6 +924,8 @@ public class App {
 		                for (Map.Entry<String, String> entry : tmp.entrySet()) {
 		                    
 		                    dataModelHighestThroughput.addRow(new Object[] { entry.getKey(), entry.getValue() + "%" });
+		                    labelCourseResultResponse.setText("Grade percentage collected");
+		                    labelCourseResultResponse.setForeground(Color.GREEN);
 		                }
 		            }
 		        }
@@ -926,7 +934,7 @@ public class App {
 		    }
 		}
 		}); 
-		btnCourseResultGetGradePercentage.setBounds(180, 181, 160, 23);
+		btnCourseResultGetGradePercentage.setBounds(180, 181, 176, 23);
 		panelCourseResult.add(btnCourseResultGetGradePercentage);
 		
 		//Button to get all current students from a course
@@ -952,14 +960,16 @@ public class App {
                     } else {
                         for (Student temp : studiesCourse) {
                             dataModelHighestThroughput.addRow(new Object []  { temp.getSsn(), temp.getStudentName(), temp.getAddress( ), temp.getPhoneNumber()});
-                       }
+                            labelCourseResultResponse.setText("All current students collected");
+                            labelCourseResultResponse.setForeground(Color.GREEN);
+                        }
                     }
                 }
                     catch (SQLException sqlException) {
                       labelCourseResultResponse.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
                     }
                     }});
-		btnCourseResultGetAllCurrent.setBounds(180, 215, 160, 23);
+		btnCourseResultGetAllCurrent.setBounds(180, 215, 176, 23);
 		panelCourseResult.add(btnCourseResultGetAllCurrent);
 		
 		JPanel panel_11 = new JPanel();
@@ -1008,7 +1018,9 @@ public class App {
                     else {
                             for (HasStudied temp : hs)
                             dataModelStudentResult.addRow(new Object[]{temp.getCourseCode(), temp.getSsn(), temp.getGrade(), temp.getSemester()});
-                        }
+                            labelStudentResultResponse.setText("All grades collected");
+                            labelStudentResultResponse.setForeground(Color.GREEN);
+                    }
                     //Bug in the system, can not get response specifically if the student does not exist compared to if the student does not study any courses
                 }catch (SQLException sqlException) {labelStudentResultResponse.setText("error");
                 }
@@ -1046,7 +1058,10 @@ public class App {
                     } else {
                         for (Course temp : studies) {
                             dataModelStudentResult.addRow(new Object []  { temp.getCourseCode(), temp.getCourseName(), temp.getCredit()});
-                       }
+                            labelStudentResultResponse.setText("All current courses collected");
+                            labelStudentResultResponse.setForeground(Color.GREEN);
+                            
+                        }
                     }
                    }    
                     catch (SQLException sqlException) {
@@ -1088,10 +1103,12 @@ public class App {
                         labelStudentResultResponse.setText("Fill in all blanks"); 
                     } else if  (s == null){
                         labelStudentResultResponse.setForeground(Color.RED);
-                            labelStudentResultResponse.setText("The student does not study the course");
+                            labelStudentResultResponse.setText("The student have not completed the course");
                     }  else if (s != null) {
                     	HasStudied st =controller.getStudentGradeCourse(ssn, courseCode);
                         dataModelStudentResult.addRow(new Object[] {st.getSsn(),st.getCourseCode(), st.getSemester(), st.getGrade()});
+                        labelStudentResultResponse.setText("Grade for the completed course collected");
+                        labelStudentResultResponse.setForeground(Color.GREEN);
                     }
                         } catch (SQLException sqlException) {
                             responseLabelFind.setText(ErrorResponse.getMessageForErrorCode(sqlException.getErrorCode(), "Kursen/Studenten"));
@@ -1314,7 +1331,7 @@ public class App {
 		comboBoxTask3.addItem("5. Name and family relation for all employees' relatives.");
 		comboBoxTask3.addItem("6. What customers are handled bby (employee) Andreas Berglund?");
 		comboBoxTask3.addItem("7. What bank accounts belong to the customer with customer number 10 000?");
-	    comboBoxTask3.setBounds(30, 128, 345, 31);
+	    comboBoxTask3.setBounds(30, 128, 436, 31);
 	    panel_10.add(comboBoxTask3);
     
 	    JButton btnExcelQuestion = new JButton("Excel");

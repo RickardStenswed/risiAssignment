@@ -155,25 +155,17 @@ import connection.DBconnection;
 	    
 	    public void addStudentHasStudied (String courseCode, String ssn, String semester, String grade) throws SQLException, RuntimeException {
 	       
-	    	double totalCreditThisSemester = controlTotalCreditsSemester(ssn, semester);
-	        double credit = courseDAL.getCourse(courseCode).getCredit();
-	        double totalCredit = credit + totalCreditThisSemester;
+	    	//double totalCreditThisSemester = controlTotalCreditsSemester(ssn, semester);
+	       // double credit = courseDAL.getCourse(courseCode).getCredit();
+	        //double totalCredit = credit + totalCreditThisSemester;
 	        
-	        //Checking if the student is allowed to take the course (must be less than 45 p)
 	        
-	        if (totalCredit <=45) {
 	            String sqlString = "INSERT INTO HasStudied VALUES ('" + courseCode + "', '" + ssn + "', '" + semester + "', '" + grade + "');";
 	            runExecuteUpdate(sqlString);
 	            
 	            String sqlString2 = "DELETE FROM Studies WHERE ssn = '" + ssn + "' AND courseCode = '" + courseCode + "';";
 	            runExecuteUpdate(sqlString2);
-	        }
-	        else {
-	            throw new RuntimeException();
-	            
-	             }
-	         
-	        con.close();
+	      
 	    } }
 	
 	
