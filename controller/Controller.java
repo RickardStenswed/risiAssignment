@@ -18,9 +18,9 @@ public class Controller {
 	// ADD METHODS
 		
 	public void addStudent(String ssn, String studentName, String address, String phoneNumber) throws SQLException { 
-		responseTimer.start();
+		//responseTimer.start();
 		studentDAL.addStudent(ssn, studentName, address, phoneNumber);
-		responseTimer.stop();
+		//responseTimer.stop();
 		
 	} 
 	
